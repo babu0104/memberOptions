@@ -1,0 +1,41 @@
+<div>
+	<p-growl sticky="true" [(value)]="msgs"></p-growl>
+</div>
+<form (ngSubmit)="onSubmit(connectionsForm.value)" #connectionsForm="ngForm" autocomplete="off">
+<div class="form-horizontal connection">
+	<div class="form-group row">
+		<label class="control-label col-md-1" for="cbin">BIN:</label>
+		<div class="col-md-3">
+			<input type="text" class="form-control" maxlength="6" minlength="6" id="cbin" placeholder="" required [(ngModel)]="connections.bin" name="bin" #bin="ngModel">
+			<div *ngIf="bin.invalid && (bin.dirty || bin.touched)">
+				<div *ngIf="bin.errors.required" class="text-danger errtext">
+					BIN is required.
+				</div>
+			</div>
+		</div>
+		<button type="button" class="btn btn-primary pull-right marginRight15" [disabled]="bin.invalid" (click)="fetchConnections(connections.bin)">Retrieve</button>
+	</div>
+	<div class="retrieve-data">
+		<div class="accordionStyle">
+			<p-accordion [multiple]="true">
+				<app-direct-exchange></app-direct-exchange>
+				<app-file-transfer></app-file-transfer>
+				<app-online-interactive></app-online-interactive>
+				<app-ICSDirect></app-ICSDirect>
+
+			</p-accordion>
+			<div class="form-group pull-right margin10">
+				<button type="submit" class="btn btn-primary" [disabled]="!connectionsForm.form.valid">Save</button>
+				<button type="reset" class="btn btn-default">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+<p-dialog [(visible)]="display" modal="modal" width="300">
+		<p class="text-center">{{binErrMsg}}</p>
+		<p class="text-center">{{binRelatedMsg}}</p>
+		<p-footer>
+			<button type="button" pButton (click)="display=false" label="Close"></button>
+		</p-footer>
+	</p-dialog>

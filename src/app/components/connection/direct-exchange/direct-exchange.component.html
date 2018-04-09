@@ -1,0 +1,23 @@
+<p-accordionTab header="Base II Direct Exchange" [selected]="true">
+	<div class="subheadertitle col-xs-12">
+		<p-checkbox binary="true" class="col-md-12 accordionHeader" [(ngModel)]="icsConnBaseTwoDirectExchangeDto.vconSeq" (click)="directExc()"></p-checkbox>
+	</div>
+	<div id="DE">
+		<div [class.selected]="icsConnBaseTwoDirectExchangeDto.vconSeq == true">
+			<div class="form-group">
+				<label class="control-label col-md-2" for="">Output Format</label>
+				<div class="col-md-3">
+					<select class="form-control fix-overlap" [(ngModel)]="icsConnBaseTwoDirectExchangeDto.recFormatOut" name="recFormatOut" #recFormatOut="ngModel" (ngModelChange)="deValueChange()">
+						<option value="F">Formatted</option>
+						<option value="U">Unformatted</option>
+					</select>
+				</div>
+				<div class="checkbox-wrapper">
+					<p-checkbox binary="true" class="col-md-2" [(ngModel)]="icsConnBaseTwoDirectExchangeDto.confirmation" label="Confirmation" (ngModelChange)="deValueChange()"></p-checkbox>
+					<p-checkbox binary="true" class="col-md-2" [(ngModel)]="icsConnBaseTwoDirectExchangeDto.auditAdvice" label="Audit Advice" (ngModelChange)="deValueChange()"></p-checkbox>
+					<p-checkbox binary="true" class="col-md-2" [(ngModel)]="icsConnBaseTwoDirectExchangeDto.scheduledBatch" label="Scheduled Batch" (ngModelChange)="deValueChange()"></p-checkbox>
+				</div>
+			</div>
+		</div>
+	</div>
+</p-accordionTab>

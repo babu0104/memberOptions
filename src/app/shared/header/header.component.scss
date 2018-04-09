@@ -1,0 +1,58 @@
+@import "../../../styles.scss"; 
+.header-container {
+    position: fixed;
+    width: $hundred;
+    height: 58px;
+    border-bottom: 1px solid #dadada;
+    box-shadow: 3px 0px 13px -4px #ccc4c4;
+    z-index: 999;
+    margin: 0;
+    background: $primary-bg;
+    left: 0;
+    h3 {
+        margin-top: 15px;
+        color: $primary-color;
+        display: inline-block;
+    }
+    .header-navigation{
+        list-style-type:none;
+    }
+    .externalLinks{
+        text-align: right;
+        .directLinks {
+            display: inline-block;
+            line-height: 15px;
+            margin:0;
+            
+            li {
+                display: inline-block;
+                font-size:13px;
+                padding: 3px 10px;
+                text-align: center;
+                line-height: 19px;
+                a {
+                    color: #fff;
+                    cursor: pointer;
+                    background: #242665;
+                    border: 1px solid #242767;
+                    padding: 10px;
+                    display: inline-block;
+                    border-radius: 3px;
+                }
+                a:hover {
+                    text-decoration: none;
+                    cursor: pointer;
+                    color: #fa9b00;
+                }
+                 }
+            li:last-child a {
+                color: #242665;
+                background: #fff;
+                border:none;
+                
+            }
+             
+        }
+    }
+    
+}

@@ -1,0 +1,26 @@
+<p-tabView styleClass="nav-result-container" (onChange)="handleChange($event)">
+	<p-tabPanel header="Contacts">
+		<h3>ICS Contacts</h3>
+		<app-contacts (changeGlobalBin)="changeGlobalBin($event)" [updatedBin]="globalBin"></app-contacts>
+	</p-tabPanel>
+	<p-tabPanel header="Options">
+		<h3>ICS Options</h3>
+		<app-options (changeGlobalBin)="changeGlobalBin($event)" [globalBin]="globalBin"></app-options>
+	</p-tabPanel>
+	<p-tabPanel header="Threshold">
+		<h3>ICS Threshold</h3>
+		<app-threshold (changeGlobalBin)="changeGlobalBin($event)" [globalBin]="globalBin"></app-threshold>
+	</p-tabPanel>
+	<p-tabPanel header="Retro Threshold">
+		<h3>ICS Retro Threshold</h3>
+		<app-retro-threshold (changeGlobalBin)="changeGlobalBin($event)" [globalBin]="globalBin"></app-retro-threshold>
+	</p-tabPanel>
+	<p-tabPanel header="Alert/Invalid">
+		<h3>ICS Alert/Invalid</h3>
+		<app-alerts-invalids (changeGlobalBin)="changeGlobalBin($event)" [globalBin]="globalBin"></app-alerts-invalids>
+	</p-tabPanel>
+	<p-tabPanel header="Connection">
+		<h3>ICS Connection</h3>
+		<app-connection (changeGlobalBin)="changeGlobalBin($event)" [globalBin]="globalBin"></app-connection>
+	</p-tabPanel>
+</p-tabView>

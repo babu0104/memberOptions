@@ -1,0 +1,1137 @@
+<div ngModelGroup="unauthorisedUser">
+	<p-accordionTab header="Unauthorised Use" [selected]="true">
+		<ng-template [ngIf]="limited">
+			<div class="form-group type-content">
+				<label class="col-md-12" for="">Type 00 - Card reported loss, with loss</label>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 1:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period1Low"
+						 name="type00Period1Low" #type00period1Low="ngModel" [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type00period1Low"
+						 [(ngModel)]="unauthorisedUserType00.period1High" name="type00Period1High" #type00Period1High="ngModel" [required]="limited"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period1Ssn"
+						 [isGreater]="unauthorisedUserType00.period2Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type00Period1Ssn" #type00Period1Ssn="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period1Address"
+						 [isGreater]="unauthorisedUserType00.period2Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type00Period1Address" #type00Period1Address="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period1Phone"
+						 [isGreater]="unauthorisedUserType00.period2Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type00Period1Phone" #type00Period1Phone="ngModel" [required]="limited">
+					</div>
+				</div>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 2:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period2Low"
+						 name="type00Period2Low" #type00Period2Low="ngModel" [required]="limited && !extended" [disabled]="limited && !extended"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type00Period2Low"
+						 [(ngModel)]="unauthorisedUserType00.period2High" name="type00Period2High" #type00Period2High="ngModel" [required]="limited && !extended"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period2Ssn"
+						 [isLesser]="unauthorisedUserType00.period1Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type00Period2Ssn" #type00Period2Ssn="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period2Address"
+						 [isLesser]="unauthorisedUserType00.period1Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type00Period2Address" #type00Period2Address="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period2Phone"
+						 [isLesser]="unauthorisedUserType00.period1Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type00Period2Phone" #type00Period2Phone="ngModel" [required]="limited && !extended">
+					</div>
+				</div>
+				<div *ngIf="extended" class="padding10">
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 3:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period3Low"
+							 name="type00Period3Low" #type00Period3Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type00Period3Low"
+							 [(ngModel)]="unauthorisedUserType00.period3High" name="type00Period3High" #type00Period3High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period3Ssn"
+							 name="type00Period3Ssn" #type00Period3Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period3Address"
+							 name="type00Period3Address" #type00Period3Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period3Phone"
+							 name="type00Period3Phone" #type00Period3Phone="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 4:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period4Low"
+							 name="type00Period4Low" #type00Period4Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type00Period4Low"
+							 [(ngModel)]="unauthorisedUserType00.period4High" name="type00Period4High" #type00Period4High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period4Ssn"
+							 name="type00Period4Ssn" #type00Period4Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period4Address"
+							 name="type00Period4Address" #type00Period4Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType00.period4Phone"
+							 name="type00Period4Phone" #type00Period4Phone="ngModel">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group type-content">
+				<label class="col-md-12" for="">Type 01 - Card reported stolen, with loss</label>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 1:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period1Low"
+						 name="type01Period1Low" #type01Period1Low="ngModel" [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type01Period1Low"
+						 [(ngModel)]="unauthorisedUserType01.period1High" name="type01Period1High" #type01Period1High="ngModel" [required]="limited"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period1Ssn"
+						 [isGreater]="unauthorisedUserType01.period2Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type01Period1Ssn" #type01Period1Ssn="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period1Address"
+						 [isGreater]="unauthorisedUserType01.period2Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type01Period1Address" #type01Period1Address="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period1Phone"
+						 [isGreater]="unauthorisedUserType01.period2Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type01Period1Phone" #type01Period1Phone="ngModel" [required]="limited">
+					</div>
+				</div>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 2:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period2Low"
+						 name="type01Period2Low" #type01Period2Low="ngModel" [required]="limited && !extended" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type01Period2Low"
+						 [(ngModel)]="unauthorisedUserType01.period2High" name="type01Period2High" #type01Period2High="ngModel" [required]="limited && !extended"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period2Ssn"
+						 [isLesser]="unauthorisedUserType01.period1Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type01Period2Ssn" #type01Period2Ssn="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period2Address"
+						 [isLesser]="unauthorisedUserType01.period1Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type01Period2Address" #type01Period2Address="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period2Phone"
+						 [isLesser]="unauthorisedUserType01.period1Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type01Period2Phone" #type01Period2Phone="ngModel" [required]="limited && !extended">
+					</div>
+				</div>
+				<div *ngIf="extended" class="padding10">
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 3:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period3Low"
+							 name="type01Period3Low" #type01Period3Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type01Period3Low"
+							 [(ngModel)]="unauthorisedUserType01.period3High" name="type01Period3High" #type01Period3High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period3Ssn"
+							 name="type01Period3Ssn" #type01Period3Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period3Address"
+							 name="type01Period3Address" #type01Period3Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period3Phone"
+							 name="type01Period3Phone" #type01Period3Phone="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 4:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period4Low"
+							 name="type01Period4Low" #type00Period4Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type01Period4Low"
+							 [(ngModel)]="unauthorisedUserType01.period4High" name="type01Period4High" #type01Period4High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type01Period4High"
+							 maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period4Ssn" name="type01Period4Ssn" #type01Period4Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period4Address"
+							 name="type01Period4Address" #type01Period4Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType01.period4Phone"
+							 name="type01Period4Phone" #type01Period4Phone="ngModel">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group type-content">
+				<label class="col-md-12" for="">Type 02 - Card not received, with loss</label>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 1:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period1Low"
+						 name="type02Period1Low" #type02Period1Low="ngModel" [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type02Period1Low"
+						 [(ngModel)]="unauthorisedUserType02.period1High" name="type02Period1High" #type02Period1High="ngModel" [required]="limited"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period1Ssn"
+						 [isGreater]="unauthorisedUserType02.period2Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type02Period1Ssn" #type02Period1Ssn="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period1Address"
+						 [isGreater]="unauthorisedUserType02.period2Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type02Period1Address" #type02Period1Address="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period1Phone"
+						 [isGreater]="unauthorisedUserType02.period2Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type02Period1Phone" #type02Period1Phone="ngModel" [required]="limited">
+					</div>
+				</div>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 2:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period2Low"
+						 name="type02Period2Low" #type02Period2Low="ngModel" [required]="limited && !extended" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type02Period2Low"
+						 [(ngModel)]="unauthorisedUserType02.period2High" name="type02Period2High" #type02Period2High="ngModel" [required]="limited && !extended"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period2Ssn"
+						 [isLesser]="unauthorisedUserType02.period1Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type02Period2Ssn" #type02Period2Ssn="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period2Address"
+						 [isLesser]="unauthorisedUserType02.period1Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type02Period2Address" #type02Period2Address="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period2Phone"
+						 [isLesser]="unauthorisedUserType02.period1Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type02Period2Phone" #type02Period2Phone="ngModel" [required]="limited && !extended">
+					</div>
+				</div>
+				<div *ngIf="extended" class="padding10">
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 3:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period3Low"
+							 name="type02Period3Low" #type02Period3Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type02Period3Low"
+							 [(ngModel)]="unauthorisedUserType02.period3High" name="type02Period3High" #type02Period3High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period3Ssn"
+							 name="type02Period3Ssn" #type02Period3Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period3Address"
+							 name="type02Period3Address" #type02Period3Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period3Phone"
+							 name="type02Period3Phone" #type02Period3Phone="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 4:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period4Low"
+							 name="type02Period4Low" #type00Period4Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type00Period4Low"
+							 [(ngModel)]="unauthorisedUserType02.period4High" name="type02Period4High" #type02Period4High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period4Ssn"
+							 name="type02Period4Ssn" #type02Period4Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period4Address"
+							 name="type02Period4Address" #type02Period4Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType02.period4Phone"
+							 name="type02Period4Phone" #type02Period4Phone="ngModel">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group type-content">
+				<label class="col-md-12" for="">Type 03 - Fradulent application, with loss</label>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 1:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period1Low"
+						 name="type03Period1Low" #type03Period1Low="ngModel" [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type03Period1Low"
+						 [(ngModel)]="unauthorisedUserType03.period1High" name="type03Period1High" #type03Period1High="ngModel" [required]="limited"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period1Ssn"
+						 [isGreater]="unauthorisedUserType03.period2Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type03Period1Ssn" #type03Period1Ssn="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period1Address"
+						 [isGreater]="unauthorisedUserType03.period2Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type03Period1Address" #type03Period1Address="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period1Phone"
+						 [isGreater]="unauthorisedUserType03.period2Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type03Period1Phone" #type03Period1Phone="ngModel" [required]="limited">
+					</div>
+				</div>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 2:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period2Low"
+						 name="type03Period2Low" #type03Period2Low="ngModel" [required]="limited && !extended" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type03Period2Low"
+						 [(ngModel)]="unauthorisedUserType03.period2High" name="type03Period2High" #type03Period2High="ngModel" [required]="limited && !extended"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period2Ssn"
+						 [isLesser]="unauthorisedUserType03.period1Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type03Period2Ssn" #type03Period2Ssn="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period2Address"
+						 [isLesser]="unauthorisedUserType03.period1Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type03Period2Address" #type03Period2Address="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period2Phone"
+						 [isLesser]="unauthorisedUserType03.period1Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type03Period2Phone" #type03Period2Phone="ngModel" [required]="limited && !extended">
+					</div>
+				</div>
+				<div *ngIf="extended" class="padding10">
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 3:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period3Low"
+							 name="type03Period3Low" #type03Period3Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type03Period3Low"
+							 [(ngModel)]="unauthorisedUserType03.period3High" name="type03Period3High" #type03Period3High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period3Ssn"
+							 name="type03Period3Ssn" #type03Period3Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period3Address"
+							 name="type03Period3Address" #type03Period3Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period3Phone"
+							 name="type03Period3Phone" #type03Period3Phone="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 4:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period4Low"
+							 name="type03Period4Low" #type00Period4Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type00Period4Low"
+							 [(ngModel)]="unauthorisedUserType03.period4High" name="type03Period4High" #type03Period4High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period4Ssn"
+							 name="type03Period4Ssn" #type03Period4Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period4Address"
+							 name="type03Period4Address" #type03Period4Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType03.period4Phone"
+							 name="type03Period4Phone" #type03Period4Phone="ngModel">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group type-content">
+				<label class="col-md-12" for="">Type 04 - Counterfeit card, with loss</label>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 1:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period1Low"
+						 name="type04Period1Low" #type04Period1Low="ngModel" [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type04Period1Low"
+						 [(ngModel)]="unauthorisedUserType04.period1High" name="type04Period1High" #type04Period1High="ngModel" [required]="limited"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period1Ssn"
+						 [isGreater]="unauthorisedUserType04.period2Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type04Period1Ssn" #type04Period1Ssn="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period1Address"
+						 [isGreater]="unauthorisedUserType04.period2Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type04Pperiod1Address" #type04Period1Address="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period1Phone"
+						 [isGreater]="unauthorisedUserType04.period2Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type04Period1Phone" #type04Period1Phone="ngModel" [required]="limited">
+					</div>
+				</div>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 2:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period2Low"
+						 name="type04Period2Low" #type04Period2Low="ngModel" [required]="limited && !extended" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type04Period2Low"
+						 [(ngModel)]="unauthorisedUserType04.period2High" name="type04Period2High" #type04Period2High="ngModel" [required]="limited && !extended"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period2Ssn"
+						 [isLesser]="unauthorisedUserType04.period1Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type04Period2Ssn" #type04Period2Ssn="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period2Address"
+						 [isLesser]="unauthorisedUserType04.period1Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type04Period2Address" #type04Period2Address="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period2Phone"
+						 [isLesser]="unauthorisedUserType04.period1Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type04Period2Phone" #type04Period2Phone="ngModel" [required]="limited && !extended">
+					</div>
+				</div>
+				<div *ngIf="extended" class="padding10">
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 3:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period3Low"
+							 name="type04Period3Low" #type04Period3Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type04Period3Low"
+							 [(ngModel)]="unauthorisedUserType04.period3High" name="type04Period3High" #type04Period3High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period3Ssn"
+							 name="type04Period3Ssn" #type04Period3Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period3Address"
+							 name="type04Period3Address" #type04Period3Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period3Phone"
+							 name="type04Period3Phone" #type04Period3Phone="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 4:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period4Low"
+							 name="type04Period4Low" #type04Period4Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type04Period4Low"
+							 [(ngModel)]="unauthorisedUserType04.period4High" name="type04Period4High" #type04Period4High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period4Ssn"
+							 name="type04Period4Ssn" #type04Period4Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period4Address"
+							 name="type04Period4Address" #type04Period4Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType04.period4Phone"
+							 name="type04Period4Phone" #type04Period4Phone="ngModel">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group type-content">
+				<label class="col-md-12" for="">Type 05 - ADDRESS Change/account takeover, with loss</label>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 1:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period1Low"
+						 name="type05Period1Low" #type05Period1Low="ngModel" [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type05Period1Low"
+						 [(ngModel)]="unauthorisedUserType05.period1High" name="type05Period1High" #type05Period1High="ngModel" [required]="limited"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period1Ssn"
+						 [isGreater]="unauthorisedUserType05.period2Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type05Period1Ssn" #type05Period1Ssn="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period1Address"
+						 [isGreater]="unauthorisedUserType05.period2Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type05Period1Address" #type05Period1Address="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period1Phone"
+						 [isGreater]="unauthorisedUserType05.period2Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type05Period1Phone" #type05Period1Phone="ngModel" [required]="limited">
+					</div>
+				</div>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 2:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period2Low"
+						 name="type05Period2Low" #type05Period2Low="ngModel" [required]="limited && !extended" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type05Period2Low"
+						 [(ngModel)]="unauthorisedUserType05.period2High" name="type05Period2High" #type05Period2High="ngModel" [required]="limited && !extended"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period2Ssn"
+						 [isLesser]="unauthorisedUserType05.period1Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type05Period2Ssn" #type05Period2Ssn="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period2Address"
+						 [isLesser]="unauthorisedUserType05.period1Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type05Period2Address" #type05Period2Address="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period2Phone"
+						 [isLesser]="unauthorisedUserType05.period1Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type05Period2Phone" #type05Period2Phone="ngModel" [required]="limited && !extended">
+					</div>
+				</div>
+				<div *ngIf="extended" class="padding10">
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 3:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period3Low"
+							 name="type05Period3Low" #type05Period3Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type05Period3Low"
+							 [(ngModel)]="unauthorisedUserType05.period3High" name="type05Period3High" #type05Period3High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period3Ssn"
+							 name="type05Period3Ssn" #type05Period3Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period3Address"
+							 name="type05Period3Address" #type05Period3Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period3Phone"
+							 name="type05Period3Phone" #type05Period3Phone="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 4:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period4Low"
+							 name="type05Period4Low" #type00Period4Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type00Period4Low"
+							 [(ngModel)]="unauthorisedUserType05.period4High" name="type05Period4High" #type05Period4High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period4Ssn"
+							 name="type05Period4Ssn" #type05Period4Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period4Address"
+							 name="type05Period4Address" #type05Period4Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType05.period4Phone"
+							 name="type05Period4Phone" #type05Period4Phone="ngModel">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group type-content">
+				<label class="col-md-12" for="">Type 06 - Telemarketing/no sales draft, with loss</label>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 1:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period1Low"
+						 name="type06Period1Low" #type06Period1Low="ngModel" [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type06Period1Low"
+						 [(ngModel)]="unauthorisedUserType06.period1High" name="type06Period1High" #type06Period1High="ngModel" [required]="limited"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period1Ssn"
+						 [isGreater]="unauthorisedUserType06.period2Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type06Period1Ssn" #type06Period1Ssn="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period1Address"
+						 [isGreater]="unauthorisedUserType06.period2Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type06Period1Address" #period1Address="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period1Phone"
+						 [isGreater]="unauthorisedUserType06.period2Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type06Period1Phone" #type06Period1Phone="ngModel" [required]="limited">
+					</div>
+				</div>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 2:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period2Low"
+						 name="type06Period2Low" #type06Period2Low="ngModel" [required]="limited && !extended" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type06Period2Low"
+						 [(ngModel)]="unauthorisedUserType06.period2High" name="type06Period2High" #type06Period2High="ngModel" [required]="limited && !extended"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period2Ssn"
+						 [isLesser]="unauthorisedUserType06.period1Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type06Period2Ssn" #type06Period2Ssn="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period2Address"
+						 [isLesser]="unauthorisedUserType06.period1Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type06Period2Address" #type06Period2Address="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period2Phone"
+						 [isLesser]="unauthorisedUserType06.period1Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type06Period2Phone" #type06Period2Phone="ngModel" [required]="limited && !extended">
+					</div>
+				</div>
+				<div *ngIf="extended" class="padding10">
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 3:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period3Low"
+							 name="type06Period3Low" #type06Period3Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type06Period3Low"
+							 [(ngModel)]="unauthorisedUserType06.period3High" name="type06Period3High" #type06Period3High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period3Ssn"
+							 name="type06Period3Ssn" #type06Period3Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period3Address"
+							 name="type06Period3Address" #type06Period3Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period3Phone"
+							 name="type06Period3Phone" #type06Period3Phone="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 4:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period4Low"
+							 name="type06Period4Low" #type00Period4Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type00Period4Low"
+							 [(ngModel)]="unauthorisedUserType06.period4High" name="type06Period4High" #type06Period4High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period4Ssn"
+							 name="type06Period4Ssn" #type06Period4Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period4Address"
+							 name="type06Period4Address" #type06Period4Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period4Phone"
+							 name="type06Period4Phone" #type06Period4Phone="ngModel">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group type-content">
+				<label class="col-md-12" for="">Type 07 - Fradulent application, before loss (consumer contacted)</label>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 1:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType07.period1Low"
+						 name="type07Period1Low" #type07Period1Low="ngModel" [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type07Period1Low"
+						 [(ngModel)]="unauthorisedUserType07.period1High" name="type07Period1High" #type07Period1High="ngModel" [required]="limited"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType07.period1Ssn"
+						 [isGreater]="unauthorisedUserType07.period2Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type07Period1Ssn" #type07Period1Ssn="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType07.period1Address"
+						 [isGreater]="unauthorisedUserType07.period2Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type07Period1Address" #type07Period1Address="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType07.period1Phone"
+						 [isGreater]="unauthorisedUserType07.period2Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type07Period1Phone" #type07Period1Phone="ngModel" [required]="limited">
+					</div>
+				</div>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 2:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType07.period2Low"
+						 name="type07Period2Low" #type07Period2Low="ngModel" [required]="limited && !extended" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type07Period2Low"
+						 [(ngModel)]="unauthorisedUserType07.period2High" name="type07Period2High" #type07Period2High="ngModel" [required]="limited && !extended"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType07.period2Ssn"
+						 [isLesser]="unauthorisedUserType07.period1Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type07Period2Ssn" #type07Period2Ssn="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType07.period2Address"
+						 [isLesser]="unauthorisedUserType07.period1Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type07Period2Address" #type07Period2Address="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType07.period2Phone"
+						 [isLesser]="unauthorisedUserType07.period1Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type07Period2Phone" #type07Period2Phone="ngModel" [required]="limited && !extended">
+					</div>
+				</div>
+				<div *ngIf="extended" class="padding10">
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 3:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType07.period3Low"
+							 name="type07Period3Low" #type07Period3Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type07Period3Low"
+							 [(ngModel)]="unauthorisedUserType06.period3High" name="type07Period3High" #type07Period3High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period3Ssn"
+							 name="type07Period3Ssn" #type07Period3Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period3Address"
+							 name="type07Period3Address" #type07Period3Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period3Phone"
+							 name="type07Period3Phone" #type07Period3Phone="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 4:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period4Low"
+							 name="type07Period4Low" #type00Period4Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type00Period4Low"
+							 [(ngModel)]="unauthorisedUserType06.period4High" name="type07Period4High" #type07Period4High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period4Ssn"
+							 name="type07Period4Ssn" #type07Period4Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period4Address"
+							 name="type07Period4Address" #type07Period4Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType06.period4Phone"
+							 name="type07Period4Phone" #type07Period4Phone="ngModel">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group type-content">
+				<label class="col-md-12" for="">Type 08 - Suspicious application, before loss (cannot verify data)</label>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 1:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period1Low"
+						 name="type08Period1Low" #type08Period1Low="ngModel" [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type08Period1Low"
+						 [(ngModel)]="unauthorisedUserType08.period1High" name="type08Period1High" #type08Period1High="ngModel" [required]="limited"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period1Ssn"
+						 [isGreater]="unauthorisedUserType08.period2Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type08Period1Ssn" #type08Period1Ssn="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period1Address"
+						 [isGreater]="unauthorisedUserType08.period2Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type08Period1Address" #type08Period1Address="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period1Phone"
+						 [isGreater]="unauthorisedUserType08.period2Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type08Period1Phone" #type08Period1Phone="ngModel" [required]="limited">
+					</div>
+				</div>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 2:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period2Low"
+						 name="type08Period2Low" #type08Period2Low="ngModel" [required]="limited && !extended" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type08Period2Low"
+						 [(ngModel)]="unauthorisedUserType08.period2High" name="type08Period2High" #type08Period2High="ngModel" [required]="limited && !extended"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period2Ssn"
+						 [isLesser]="unauthorisedUserType08.period1Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type08Period2Ssn" #type08Period2Ssn="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period2Address"
+						 [isLesser]="unauthorisedUserType08.period1Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type08Period2Address" #type08Period2Address="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period2Phone"
+						 [isLesser]="unauthorisedUserType08.period1Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type08Period2Phone" #type08Period2Phone="ngModel" [required]="limited && !extended">
+					</div>
+				</div>
+				<div *ngIf="extended" class="padding10">
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 3:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period3Low"
+							 name="type08Period3Low" #type08Period3Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type07Period3Low"
+							 [(ngModel)]="unauthorisedUserType08.period3High" name="type08Period3High" #type08Period3High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period3Ssn"
+							 name="type08Period3Ssn" #type08Period3Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period3Address"
+							 name="type08Period3Address" #type08Period3Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period3Phone"
+							 name="type08Period3Phone" #type08Period3Phone="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 4:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period4Low"
+							 name="type08Period4Low" #type08Period4Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type08Period4Low"
+							 [(ngModel)]="unauthorisedUserType08.period4High" name="type08Period4High" #type08Period4High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period4Ssn"
+							 name="type08Period4Ssn" #type08Period4Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period4Address"
+							 name="type08Period4Address" #type08Period4Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType08.period4Phone"
+							 name="type08Period4Phone" #type08Period4Phone="ngModel">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group type-content">
+				<label class="col-md-12" for="">Type 09 - Bust Out</label>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 1:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period1Low"
+						 name="type09Period1Low" #type09Period1Low="ngModel" [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type09Period1Low"
+						 [(ngModel)]="unauthorisedUserType09.period1High" name="type09Period1High" #type09Period1High="ngModel" [required]="limited"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period1Ssn"
+						 [isGreater]="unauthorisedUserType09.period2Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type09Period1Ssn" #type09Period1Ssn="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period1Address"
+						 [isGreater]="unauthorisedUserType09.period2Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type09Period1Address" #type09Period1Address="ngModel" [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period1Phone"
+						 [isGreater]="unauthorisedUserType09.period2Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type09Period1Phone" #type09Period1Phone="ngModel" [required]="limited">
+					</div>
+				</div>
+				<div class="row">
+					<label class="control-label col-md-2" for="bid">Period 2:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period2Low"
+						 name="type09Period2Low" #type09Period2Low="ngModel" [required]="limited && !extended" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1" for="bid">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type09Period2Low"
+						 [(ngModel)]="unauthorisedUserType09.period2High" name="type09Period2High" #type09Period2High="ngModel" [required]="limited && !extended"
+						 [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left" for="bid">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period2Ssn"
+						 [isLesser]="unauthorisedUserType09.period1Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type09Period2Ssn" #type09Period2Ssn="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period2Address"
+						 [isLesser]="unauthorisedUserType09.period1Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type09Period2Address" #type09Period2Address="ngModel" [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period2Phone"
+						 [isLesser]="unauthorisedUserType09.period1Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="type09Period2Phone" #type09Period2Phone="ngModel" [required]="limited && !extended">
+					</div>
+				</div>
+				<div *ngIf="extended" class="padding10">
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 3:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period3Low"
+							 name="type09Period3Low" #type09Period3Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type09Period3Low"
+							 [(ngModel)]="unauthorisedUserType09.period3High" name="type09Period3High" #type09Period3High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period3Ssn"
+							 name="type09Period3Ssn" #type09Period3Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period3Address"
+							 name="type09Period3Address" #type09Period3Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period3Phone"
+							 name="type09Period3Phone" #type09Period3Phone="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="bid">Period 4:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period4Low"
+							 name="type09Period4Low" #type09Period4Low="ngModel">
+						</div>
+						<label class="control-label col-md-1" for="bid">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="type09Period4Low"
+							 [(ngModel)]="unauthorisedUserType09.period4High" name="type09Period4High" #type09Period4High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left" for="bid">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period4Ssn"
+							 name="type09Period4Ssn" #type09Period4Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" id="" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period4Address"
+							 name="type09Period4Address" #type09Period4Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" id="" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="unauthorisedUserType09.period4Phone"
+							 name="type09Period4Phone" #type09Period4Phone="ngModel">
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-template>
+	</p-accordionTab>
+</div>

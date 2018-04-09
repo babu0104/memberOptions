@@ -1,0 +1,37 @@
+@import "../../../styles.scss"; 
+.app-main {
+
+  .left-menu {
+    padding:0;
+    display: block;
+
+    li {
+        list-style: none;
+        a {
+          padding:15px $spacing-base;
+          display: block;
+          cursor: pointer;
+          border-bottom: 1px #8e969c solid;
+          color: $primary-bg;
+          text-indent: 40px;
+          font-size: 13px;
+          &.active-link{
+             background: $primary-bg;
+             color: $primary-color;
+             text-decoration: none;
+             border-bottom:3px solid $secondary-color;
+          }
+            &:hover{
+              text-decoration: none;
+              background: $primary-bg;
+              color: #535353;
+            }
+        }
+        .active{
+          background: $primary-bg;
+
+        }
+    }
+}
+}
+

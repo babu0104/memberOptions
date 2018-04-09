@@ -1,0 +1,267 @@
+<div>
+	<p-growl [(value)]="msgs"></p-growl>
+</div>
+<form #contactsform="ngForm" autocomplete="off">
+	<div class="form-horizontal main-container">
+		<div class="row">
+			<label class="control-label col-md-1" for="businessId" name="businessId">BID:</label>
+			<div class="col-md-2">
+				<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" id="businessId" [(ngModel)]="user.businessId" name="businessId"
+				 #businessId="ngModel" maxlength="4" minlength="4" (focusout)="fetchBin(user.businessId)" required>
+				<div *ngIf="businessId.invalid && (businessId.dirty || businessId.touched)">
+					<div *ngIf="businessId.errors.minlength || businessId.errors.pattern" class="text-danger errtext">
+						Invalid Value
+					</div>
+				</div>
+
+			</div>
+			<label class="control-label col-md-2" for="cbid">BIN:</label>
+			<div class="col-md-3">
+				<p-autoComplete [(ngModel)]="user.icabin" [suggestions]="filteredBins" (completeMethod)="filterBins($event)" [size]="30"
+				 [minLength]="1" placeholder="" [dropdown]="true" name="icabin" #icabin="ngModel" pattern="^(?=.*?[1-9])[0-9()-]+$" maxlength="4"
+				 minlength="4" required>
+					<ng-template let-icabin pTemplate="item">
+						<div class="ui-helper-clearfix">
+							<div>{{icabin}}</div>
+						</div>
+					</ng-template>
+				</p-autoComplete>
+				<div *ngIf="icabin.invalid && (icabin.dirty || icabin.touched)">
+					<div *ngIf="icabin.errors.minlength || icabin.errors.pattern" class="text-danger errtext">
+						Invalid Value
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<label class="control-label col-md-1" for="cib">CIB:</label>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="cib" name="cib" [(ngModel)]="user.procId">
+			</div>
+			<button type="submit" class="btn btn-primary pull-right marginRight15" (click)="fetchContact(user.businessId, user.icabin)">Retrieve</button>
+		</div>
+		<div class="retrieve-data">
+			<div class="accordionStyle">
+				<p-accordion [multiple]="true">
+					<p-accordionTab header="Member (BID) Information" [selected]="true">
+						<div class="form-group">
+							<label class="control-label col-md-4 col-md-offset-7" for="bid">Last Change Date-BID:</label>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-1" for="bid">Name:</label>
+							<div class="col-md-3">
+								<input type="text" pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$" class="form-control" id="mbrName" (ngModelChange)="BINchanged()"
+								 [(ngModel)]="user.mbrName" #mbrName="ngModel" maxlength="50" name="cname" required>
+								<div *ngIf="mbrName.invalid && (mbrName.dirty || mbrName.touched)">
+									<div *ngIf="mbrName.errors.required" class="text-danger errtext">
+										This field is required
+									</div>
+									<div *ngIf="mbrName.errors.pattern" class="text-danger errtext">
+										Invalid
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-1" for="bid">Address:</label>
+							<div class="col-md-5">
+								<input type="text" class="form-control" id="mbrAddr1" (ngModelChange)="BIDchanged()" maxlength="40" name="mbrAddr1" [(ngModel)]="user.mbrAddr1"
+								 #mbrAddr1="ngModel" required>
+								<div *ngIf="mbrAddr1.invalid && (mbrAddr1.dirty || mbrAddr1.touched)">
+									<div *ngIf="mbrAddr1.errors.required" class="text-danger errtext">
+										This field is required
+									</div>
+									<div *ngIf="mbrAddr1.errors.pattern" class="text-danger errtext">
+										Invalid
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5">
+								<input type="text" class="form-control" id="mbrAddr2" (ngModelChange)="BIDchanged()" maxlength="40" name="mbrAddr2" [(ngModel)]="user.mbrAddr2">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-1" for="bid">City:</label>
+							<div class="col-md-3">
+								<input type="text" class="form-control" id="mbrCity" (ngModelChange)="BIDchanged()" maxlength="28" name="mbrCity" [(ngModel)]="user.mbrCity"
+								 #mbrCity="ngModel" required>
+								<div *ngIf="mbrCity.invalid && (mbrCity.dirty || mbrCity.touched)">
+									<div *ngIf="mbrCity.errors.required" class="text-danger errtext">
+										This field is required
+									</div>
+								</div>
+							</div>
+							<label class="control-label col-md-1" for="bid">State:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="mbrState" required (ngModelChange)="BIDchanged()" name="mbrState" [(ngModel)]="user.mbrState"
+								 #mbrState="ngModel" required>
+									<option value="default">Select State</option>
+									<option value="01">a</option>
+									<option value="02">bb</option>
+									<option value="03">ccc</option>
+									<option value="04">dd</option>
+								</select>
+								<div *ngIf="mbrState.invalid && (mbrState.dirty || mbrState.touched)">
+									<div *ngIf="mbrState.errors.required" class="text-danger errtext">
+										This field is required
+									</div>
+								</div>
+							</div>
+							<label class="control-label col-md-1" for="bid">ZIP+4:</label>
+							<div class="col-md-2">
+								<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" id="zip" value="{{zipcode}}" (ngModelChange)="BIDchanged()"
+								 maxlength="9" [(ngModel)]="user.mbrZipCode" #mbrZipCode="ngModel" name="mbrZipCode" minlength="5" (blur)="setZip(mbrZipCode.value)"
+								 required>
+								<div *ngIf="mbrZipCode.invalid && mbrZipCode.touched">
+									<div *ngIf="mbrZipCode.errors.required" class="text-danger errtext">
+										This field is required
+									</div>
+									<div *ngIf="mbrZipCode.errors.pattern" class="text-danger errtext">
+										Invalid Zip number
+									</div>
+								</div>
+							</div>
+						</div>
+					</p-accordionTab>
+					<p-accordionTab header="BIN Information" [selected]="true">
+						<div class="form-group">
+							<div class="col-md-3">
+								<h4>ICS Business Owner</h4>
+							</div>
+							<label class="control-label col-md-4 col-md-offset-4" for="bid" maxlength="150">Last Change Date-BIN:</label>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-1" for="bid">Contact:</label>
+							<div class="col-md-3">
+								<input type="text" pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$" class="form-control" id="boName" (ngModelChange)="BINchanged()"
+								 [(ngModel)]="user.boName" #boName="ngModel" maxlength="50" name="boName">
+								<div *ngIf="boName.invalid && (boName.dirty || boName.touched)">
+									<!--<div *ngIf="boName.errors.required" class="text-danger errtext">
+										This field is required
+									</div>-->
+									<div *ngIf="boName.errors.pattern" class="   -danger errtext">
+										Invalid
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-1" for="bid">Phone:</label>
+							<div class="col-md-3">
+								<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" id="boPhone" value="{{phonevalue}}" (ngModelChange)="BINchanged()"
+								 [(ngModel)]="user.boPhone" name="boPhone" #boPhone="ngModel" (blur)="phoneno(boPhone.value)" maxlength="10" minlength="7">
+								<div *ngIf="boPhone.invalid && (boPhone.dirty || boPhone.touched)">
+									<!--<div *ngIf="boPhone.errors.required" class="text-danger errtext">
+										This field is required
+									</div>-->
+									<div *ngIf="boPhone.errors.minlength || boPhone.errors.pattern" class="text-danger errtext">
+										Invalid Phone number
+									</div>
+								</div>
+							</div>
+
+							<label class="control-label col-md-1" for="bid">Fax:</label>
+							<div class="col-md-2">
+								<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" id="bofax" value="{{bofaxvalue}}" (ngModelChange)="BINchanged()"
+								 [(ngModel)]="user.boFax" name="boFax" #boFax="ngModel" (blur)="bofaxno(boFax.value)" maxlength="10" minlength="7">
+								<div *ngIf="boFax.invalid && (boFax.dirty || boFax.touched)">
+									<!--<div *ngIf="boFax.errors.required" class="text-danger errtext">
+										This field is required
+									</div>-->
+									<div *ngIf="boFax.errors.minlength || boFax.errors.pattern" class="text-danger errtext">
+										Invalid Fax number
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-1" for="bid">Email:</label>
+							<div class="col-md-3">
+								<input type="email" class="form-control" id="boEmail" (ngModelChange)="BINchanged()" [(ngModel)]="user.boEmail" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+								 #boEmail="ngModel" maxlength="50" name="boEmail">
+								<div *ngIf="boEmail.invalid && (boEmail.dirty || boEmail.touched)">
+									<!--<div *ngIf="boEmail.errors.required" class="text-danger errtext">
+										This field is required
+									</div>-->
+									<div *ngIf="boEmail.errors.pattern" class="text-danger errtext">
+										Email format should be
+										<small>
+											<b>joe@abc.com</b>
+										</small>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h4>ICS Technical Contact</h4>
+						<div class="form-group">
+							<label class="control-label col-md-1" for="bid">Contact:</label>
+							<div class="col-md-3">
+								<input type="text" pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$" class="form-control" id="tcName" (ngModelChange)="BINchanged()"
+								 [(ngModel)]="user.tcName" #tcName="ngModel" maxlength="50" name="tcName">
+								<div *ngIf="tcName.invalid && (tcName.dirty || tcName.touched)">
+									<!--<div *ngIf="tcName.errors.required" class="text-danger errtext">
+										This field is required
+									</div>-->
+									<div *ngIf="tcName.errors.pattern" class="text-danger errtext">
+										Invalid
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-1" for="bid">Phone:</label>
+							<div class="col-md-3">
+								<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" id="tcPhone" value="{{tcphonevalue}}" (ngModelChange)="BINchanged()"
+								 [(ngModel)]="user.tcPhone" name="tcphone" #tcPhone="ngModel" (blur)="tcphoneno(tcPhone.value)" maxlength="10" minlength="7">
+								<div *ngIf="tcPhone.invalid && (tcPhone.dirty || tcPhone.touched)">
+									<!--<div *ngIf="tcPhone.errors.required" class="text-danger errtext">
+										This field is required
+									</div>-->
+									<div *ngIf="tcPhone.errors.minlength || tcPhone.errors.pattern" class="text-danger errtext">
+										Invalid Phone number
+									</div>
+								</div>
+							</div>
+							<label class="control-label col-md-1" for="bid">Fax:</label>
+							<div class="col-md-2">
+								<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" id="tcFax" value="{{tcfaxvalue}}" (ngModelChange)="BINchanged()"
+								 [(ngModel)]="user.tcFax" name="tcFax" #tcFax="ngModel" (blur)="tcfaxno(tcFax.value)" maxlength="10" minlength="7">
+								<div *ngIf="tcFax.invalid && (tcFax.dirty || tcFax.touched)">
+									<!--<div *ngIf="tcFax.errors.required" class="text-danger errtext">
+										This field is required
+									</div>-->
+									<div *ngIf="tcFax.errors.minlength || tcFax.errors.pattern" class="text-danger errtext">
+										Invalid Fax number
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-1" for="bid">Email:</label>
+							<div class="col-md-3">
+								<input type="email" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" id="tcEmail" (ngModelChange)="BINchanged()" [(ngModel)]="user.tcEmail"
+								 pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #tcEmail="ngModel" maxlength="50" name="tcEmail">
+								<div *ngIf="tcEmail.invalid && (tcEmail.dirty || tcEmail.touched)">
+									<!--<div *ngIf="tcEmail.errors.required" class="text-danger errtext">
+										This field is required
+									</div>-->
+									<div *ngIf="tcEmail.errors.pattern" class="text-danger errtext">
+										Email format should be
+										<small>
+											<b>joe@abc.com</b>
+										</small>
+									</div>
+								</div>
+							</div>
+						</div>
+					</p-accordionTab>
+				</p-accordion>
+			</div>
+			<div class="form-group text-right margin10">
+				<button type="submit" class="btn btn-primary" [disabled]="!contactsform.form.valid" (click)="saveContact()">Save</button>
+				<button type="submit" class="btn btn-default" (click)="cancelContact()">Cancel</button>
+			</div>
+		</div>
+	</div>
+</form>

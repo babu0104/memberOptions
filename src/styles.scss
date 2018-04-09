@@ -1,0 +1,897 @@
+/* You can add global styles to this file, and also import other style files */
+/*Primary colors Used*/
+
+$h5border: #e8e8e8;
+$h5background: #f6f8f7;
+$fieldsetborder: #efeaea;
+$border: #d2d2d2;
+$primary-color: #0023a0;
+$secondary-color: #fa9b00;
+$primary-bg: #fff;
+$secondary-bg: #0275d8;
+$primary-background: #242868;
+$buttonprimary-bg: #337ab7;
+$form-bg: #fbfbfb;
+$form-border: #ddd;
+$primary-font: #000000;
+$spacing-base: 10px;
+$spacing-double: $spacing-base*2;
+$spacing-triple: $spacing-base*3;
+$spacing-half: $spacing-base/2;
+$spacing-quarter: $spacing-triple/2;
+$hundred: 100%;
+$fontweight-normal: normal;
+$fontweight-500: 500;
+$fontweight-600: 600;
+$fontweight-700: 700;
+$font-weight-bold: bold;
+
+/****MIXINS****/
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin listbox_label($content) {
+  content: $content;
+  position: absolute;
+  left: 36px;
+}
+@mixin disable {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+@mixin switch-font($color) {
+  color: $color;
+  z-index: 111;
+  text-transform: capitalize;
+}
+@mixin input-switch {
+  width: 50% !important;
+  padding: 3px 0px;
+}
+
+/*************************/
+
+html {
+  height: 100%;
+}
+body {
+  height: $hundred;
+  background: $primary-background;
+  padding-top: 54px;
+  color: #5c5c5c;
+  .h4, h4,h3,.h3 {
+    font-size: 16px;
+  }
+  .padding-0 {
+    padding: 0;
+  }
+  .margin15 {
+    margin: $spacing-quarter 0;
+  }
+  .marginTop15 {
+    margin-top: $spacing-quarter;
+  }
+  .marginRight15 {
+    margin-right: $spacing-quarter;
+  }
+  .marginLeft15 {
+    margin-left: $spacing-quarter;
+  }
+  .paddingTop15 {
+    padding-top: $spacing-quarter;
+  }
+  .app-container {
+    height: $hundred;
+  }
+  textarea {
+    resize: none;
+  }
+  .app-main-container {
+    height: $hundred;
+    position: relative;
+    margin-top: 58px;
+  }
+  .value2~p-listbox,  .value3~p-listbox,  .value6~p-listbox,  .value7~p-listbox,  .phone11~p-listbox,  .phone12~p-listbox,
+  .phone16~p-listbox,  .phone17~p-listbox {
+    .ui-listbox .ui-listbox-header {
+      @include disable
+    }
+  }
+  .value2~p-listbox .ui-listbox .ui-listbox-item:nth-child(2),  .value3~p-listbox .ui-listbox .ui-listbox-item:nth-child(3),
+  .value6~p-listbox .ui-listbox .ui-listbox-item:nth-child(2),  .value7~p-listbox .ui-listbox .ui-listbox-item:nth-child(3),
+  .phone11~p-listbox .ui-listbox .ui-listbox-item:nth-child(3),  .phone12~p-listbox .ui-listbox .ui-listbox-item:nth-child(4),
+  .phone16~p-listbox .ui-listbox .ui-listbox-item:nth-child(11),  .phone17~p-listbox .ui-listbox .ui-listbox-item:nth-child(12) {
+    @include disable;
+    background: $h5border;
+  }
+  .ui-listbox {
+    width: 100%;
+    span {
+      font-size: 13px;
+    }
+  }
+  .ui-listbox .ui-listbox-item.ui-state-highlight,
+  .ui-listbox:not(.ui-state-disabled) .ui-listbox-item:hover {
+    background: #fff;
+    color: $primary-font;
+  }
+  .ui-listbox .ui-listbox-header {
+    position: relative;
+    z-index: 4;
+    margin: 0 50% 0 5%;
+    border-bottom: 0;
+    font-size: 15px;
+    color: $primary-color;
+  }
+  .ssnMask .ui-widget-header .ui-inputtext,
+  .ui-widget-content .ui-inputtext {
+    width: 100%;
+  }
+  p-inputswitch .ui-widget-content {
+    height: 22px;
+    margin-top: 7px;
+    border: 1px solid #e1e0e0;
+  }
+  .app-main-right-container .ui-tabview.nav-result-container .ui-tabview-panels .form-horizontal.main-container {
+    overflow: visible;
+  }
+  .ui-accordion {
+    .ui-accordion-header {
+      font-weight: $font-weight-bold;
+      background: transparent;
+      border: 0;
+      >.fa{
+        top: 45%;
+      }
+      a {
+        color: $primary-bg;
+        text-decoration: none;
+        &:hover {
+          color: $primary-color;
+        }
+      }
+      &.ui-state-active {
+        background: transparent;
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+    .ui-accordion-content {
+      padding: 0px;
+      background: transparent;
+    }
+  }
+  .ui-widget-content {
+    border: 0px;
+    //height: $hundred;
+  }
+  .ui-inputswitch-checked.ui-inputswitch {
+    .ui-inputswitch-off span {
+      margin-right: -4px !important;
+      @include switch-font($primary-font);
+    }
+    .ui-inputswitch-on span {
+      color: $primary-bg;
+    }
+  }
+  .ui-tabview.ui-tabview-top .ui-tabview-nav li {
+    padding: 3px;
+  }
+  .app-main-left-container {
+    position: fixed;
+    left: 0;
+    .ui-accordion {
+      .ui-accordion-header {
+        a {
+          padding: 1.65em .5em 1.65em 2em;
+          font-size: 13px;
+          &:hover {
+            color: $primary-color;
+            background: #F7B600;
+          }
+        }
+      }
+    }
+  }
+  .app-main-right-container {
+    margin-left: 16.6667%;
+    .ui-tabview.nav-result-container {
+      padding: 20px 0;
+      background: $primary-bg;
+      padding-top: 0;
+      padding-right: 0;
+      overflow: hidden;
+      .ui-tabview-panels {
+        .form-horizontal,
+        .wrapper {
+          padding: 20px;
+          background: $form-bg;
+          overflow: hidden;
+          @include border-radius(5px);
+          border: 1px solid $form-border;
+          margin-bottom: 20px;
+        }
+      }
+      .ui-tabview-nav {
+        background: $primary-bg;
+        border-bottom: 1px solid $border;
+        box-shadow: 2px 0px 12px -2px #eaeaea;
+        padding: 12px $spacing-base;
+        li {
+          background: $secondary-bg;
+          border: 0;
+          @include border-radius(0);
+          &:not(.ui-state-active) {
+            background: $secondary-bg;
+          }
+          &:not(.ui-state-disabled) {
+            background: $primary-bg;
+            border-bottom: 3px solid $primary-bg;
+            margin: 0;
+            &:hover {
+              border-bottom: 3px solid $secondary-color;
+            }
+          }
+        }
+        .ui-state-default {
+          a {
+            color: #24296a;
+            font-size: 13px;
+          }
+          &:hover a {
+            color: $secondary-color;
+          }
+        }
+        .ui-tabview-selected.ui-state-active {
+          background: $primary-bg;
+          border-bottom: 3px solid $secondary-color;
+          a {
+            color: $secondary-color;
+          }
+        }
+      }
+    }
+  }
+  .accordionStyle {
+    .ui-accordion {
+      .ui-accordion-header {
+        background: $primary-bg;
+        color: $primary-color;
+        border-top: 2px solid $secondary-color;
+        margin-top: $spacing-base;
+        a {
+          color: $primary-color;
+          font-size: 17px;
+          line-height: 2.5rem;
+          font-weight: $fontweight-normal;
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+          &:hover {
+            color: $secondary-color;
+          }
+        }
+        .ui-state-active {
+          background: transparent;
+        }
+      }
+      .ui-accordion-content-wrapper {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        background: $primary-bg;
+      }
+      .ui-accordion-content {
+        padding: $spacing-base;
+        background: transparent;
+      }
+    }
+  }
+  .ui-datatable thead th.ui-sortable-column:not(.ui-state-active):hover {
+    background-color: $primary-background;
+  }
+  .ui-accordion .ui-accordion-content {
+    position: relative;
+  }
+  .ui-datatable {
+    .ui-datatable-thead>tr>th {
+      background: $primary-background;
+      color: $primary-bg;
+    }
+    .ui-paginator {
+      border: none;
+      padding: 10px 0;
+    }
+    .ui-datatable-data tr {
+      &.ui-datatable-even,
+      &.ui-datatable-odd {
+        border-bottom: 1px solid $h5border;
+        background-color: $primary-bg;
+        &:hover {
+          background-color: #f7f7f7;
+        }
+      }
+    }
+  }
+  p-inputswitch .ui-widget-content {
+    height: 28px;
+    width: 84px;
+    margin-top: 5px;
+    background-color: $buttonprimary-bg;
+    border-color: #2e6da4;
+  }
+  .app-main-right-container .ui-tabview.nav-result-container .records .ui-tabview-nav {
+    .ui-tabview-selected.ui-state-active {
+      border: none;
+    }
+    .ui-tabview-selected.ui-state-active a {
+      padding: 10px;
+    }
+    li:not(.ui-state-disabled):hover {
+      border: none;
+    }
+  }
+  .ui-dialog .ui-dialog-titlebar {
+    .ui-dialog-title {
+      color: $primary-color;
+      font-size: 2.2rem;
+      font-weight: 500;
+    }
+  }
+  .Success-popup.ui-dialog {
+    .ui-dialog-titlebar {
+      border: none;
+    }
+    .ui-dialog-content {
+      label {
+        font-size: 17px;
+        font-weight: 400;
+        display: block;
+        margin-bottom: 20px;
+      }
+      .fa.fa-check-circle-o {
+        font-size: 80px;
+        color: #87bf6a;
+      }
+      button {
+        background: $buttonprimary-bg;
+        &:hover {
+          background-color: #286090;
+          color: $primary-bg;
+        }
+      }
+    }
+  }
+  .table-invoices .ui-inputtext {
+    position: absolute;
+    top: -53px;
+    width: 240px;
+    right: 16%;
+  }
+  .ui-radiobutton .ui-radiobutton-box .ui-radiobutton-icon {
+    top: 0.24px;
+  }
+  .padding30 {
+    padding: 30px;
+  }
+  .content-wrapper {
+    box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 5px;
+    margin-bottom: 24px;
+    border-top: 2px solid #fa9b00;
+    h3 {
+      color: $primary-color;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      margin-top: 0;
+      font-size: 2.2rem;
+      font-weight: 400;
+    }
+  }
+  .data-container .content-wrapper {
+    border-top: none;
+  }
+  .label-value {
+    padding-top: 7px;
+  }
+  p-radiobutton label {
+    font-weight: 400;
+  }
+  .data-listbox .ui-listbox .ui-listbox-header {
+    width: 10px
+  }
+  .address-list .ui-listbox .ui-listbox-item {
+    float: left;
+    width: 50%;
+    max-height: 29px;
+  }
+  .connection .view-data {
+    p-checkbox.accordionHeader {
+      right: 0;
+    }
+    h4 {
+      color: $primary-color;
+    }
+  }
+  .ui-dialog .ui-dialog-content {
+    overflow: hidden;
+  }
+  .rankingAll label{
+    margin-bottom: 0px;
+}
+}
+.ui-tabview-panels {
+  padding: 20px;
+  min-height: calc(100vh - 140px);
+}
+body .app-main-right-container .ui-tabview.nav-result-container .ui-tabview-nav {
+  position: fixed;
+  top: 54px;
+  z-index: 999;
+  width: $hundred;
+}
+.ui-tabview-panel {
+  margin-top: 30px;
+}
+.ui-chkbox-label {
+  font-weight: $fontweight-600;
+}
+.connection {
+  p-checkbox.accordionHeader {
+    position: relative;
+    bottom: 48px;
+    right: 10px;
+    width: 15px;
+    padding: 0;
+  }
+  .ui-accordion .ui-accordion-header>.fa {
+    right: 23px;
+    left: auto;
+  }
+}
+.form-horizontal .textLeft .control-label {
+  text-align: left;
+}
+.ssnAlerts {
+  .checkboxSet {
+    label.ui-chkbox-label {
+      font-weight: $fontweight-normal;
+    }
+  }
+}
+.form-horizontal .control-label {
+  font-weight: $fontweight-600;
+  font-size: 13px;
+}
+.margin10 {
+  margin: $spacing-base;
+}
+.selected {
+  background: #d8efce;
+  padding: $spacing-base;
+}
+// .row:not(.threshold){
+//   margin: 0;
+// }
+.row+.row {
+  margin-top: 1rem;
+}
+.fa-caret-down:before {
+  content: '\f107';
+  font-size: 20px;
+}
+.fa-caret-right:before {
+  content: '\f105';
+  font-size: 20px;
+}
+.fa.fa-sign-out {
+  font-size: 25px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin: 0 $spacing-base;
+}
+// .form-horizontal .control-label{
+//     text-align: center;
+//  }
+.text-center {
+  text-align: center;
+}
+p-listbox {
+    .SSNalerts .ui-helper-clearfix:before {
+        @include listbox_label('All SSN Alerts');
+    }
+    .SSNinvalids .ui-helper-clearfix:before {
+      @include listbox_label('All SSN Invalids');
+    }
+    .Addressinvalids .ui-helper-clearfix:before {
+      @include listbox_label('All Address Invalids');
+    }
+    .Addressalerts .ui-helper-clearfix:before {
+      @include listbox_label('All Address Alerts');
+    }
+    .Phoneinvalids .ui-helper-clearfix:before {
+      @include listbox_label('All Phone Invalids');
+    }
+    .Phonealerts .ui-helper-clearfix:before {
+      @include listbox_label('All Phone Alerts');
+    }
+    .StateIdAlert .ui-helper-clearfix:before {
+      @include listbox_label('All State Id Alerts');
+    }
+    .StateIdInvalid .ui-helper-clearfix:before {
+      @include listbox_label('All State Id Invalid');
+    }
+    .FundingSourceAlerts .ui-helper-clearfix:before {
+      @include listbox_label('All Funding Source Alerts');
+    }
+    .FundingSourceInvalids .ui-helper-clearfix:before {
+      @include listbox_label('All Funding Source Invalids');
+    }
+    .EmailAlerts .ui-helper-clearfix:before {
+      @include listbox_label('All Email Alerts');
+    }
+    .EmailInvalids .ui-helper-clearfix:before {
+      @include listbox_label('All Email Invalids');
+    }
+     .IPAddressAlerts .ui-helper-clearfix:before {
+      @include listbox_label('All IP Address Alerts');
+    }
+     .IPAddressInvalids .ui-helper-clearfix:before {
+      @include listbox_label('All IP Address Invalids');
+    }
+     .DeviceIDAlert .ui-helper-clearfix:before {
+      @include listbox_label('All Device ID Alert');
+    }
+     .DeviceIDInvalids .ui-helper-clearfix:before {
+      @include listbox_label('All Device ID Invalids');
+    }
+}
+.ui-listbox .ui-listbox-list-wrapper {
+  padding: 25px 30px 20px 30px;
+  position: relative;
+  z-index: 3;
+  border: 1px solid $border;
+  top: -19px;
+}
+.control-label {
+  &.pull-left,
+  &.text-left {
+    text-align: left;
+  }
+}
+table {
+  th {
+    background: $primary-color;
+    color: $primary-bg;
+    font-weight: 700;
+  }
+  tbody {
+    background: $h5background;
+  }
+}
+.tertiary-btn {
+  background-color: $primary-bg;
+  text-decoration: underline;
+  &:hover {
+    color: $secondary-bg;
+    text-decoration: underline;
+  }
+}
+.content-area {
+  display: inline-block;
+  width: 100%;
+  .container {
+    background: $secondary-bg none repeat scroll 0 0;
+    margin: 24px auto 14px;
+    //min-height: 82vh;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px -1px #e0e0e0;
+    border-left: 0;
+  }
+  .errtext {
+    //background: rgba(0, 0, 0, 0) url("../ICS/unchecked.gif") no-repeat scroll 0 33%;
+    color: #d45963;
+    margin-top: 3px;
+    font-size: 0.9em;
+    font-weight: 700;
+  }
+  .form-control.false,
+  .calendar.false input,
+  .autocomplete.false input,
+  input.ng-invalid.ng-touched,
+  select.ng-invalid.ng-touched,
+  textarea.ng-invalid.ng-touched,
+  p-inputmask.ng-invalid.ng-touched input,
+  p-calendar.ng-invalid.ng-touched input,
+  p-autocomplete.ng-invalid.ng-touched input {
+    border-radius: 4px;
+    background: #ffefef;
+    border: 1px solid #efb3b3;
+  }
+}
+.mso-options {
+  font-size: 12px;
+  margin: 10px 10px 0 0;
+}
+input.ui-inputtext.ui-widget.ui-state-default.ui-corner-all.ui-autocomplete-input {
+  width: 100%;
+}
+.hierarchymso input.ui-inputtext.ui-widget.ui-state-default.ui-corner-all.ui-autocomplete-input {
+  width: 87%;
+}
+.ui-autocomplete-panel.ui-widget-content.ui-corner-all.ui-shadow {
+  height: auto;
+}
+.ui-autocomplete-dd .ui-autocomplete-dropdown.ui-corner-all {
+  padding: 1px;
+}
+span.ui-button-icon-left.ui-clickable.fa.fa-fw.fa-fw.fa-caret-down {
+  top: 45%;
+}
+.ui-autocomplete-panel.ui-widget-content.ui-corner-all.ui-shadow {
+  width: 85%;
+}
+.footer {
+  width: 100%;
+  color: #a2a2a2;
+  padding-left: 16.7%;
+  text-align: center;
+}
+.inner-rightContainer {
+  background: $primary-bg;
+  height: calc(100vh - 115px);
+  h3 {
+    color: $primary-color;
+    margin-top: 0;
+  }
+}
+/*****PickList customization****/
+
+// .ui-picklist.ui-widget.ui-helper-clearfix {
+//   width: $hundred;
+// }
+.ui-picklist .ui-picklist-list {
+  width: $hundred;
+  border: 1px solid #cdcdcd;
+}
+.ui-picklist-buttons:first-child,.ui-picklist-buttons:last-child {
+  display: none;
+}
+.ui-picklist .ui-picklist-buttons {
+  width: 100px;
+  padding-left: 25px;
+}
+.ui-picklist-listwrapper.ui-picklist-source-wrapper,
+.ui-picklist-listwrapper.ui-picklist-target-wrapper {
+  width: 300px;
+}
+.form-container {
+  padding: 30px;
+  background: $form-bg;
+  border-radius: 5px;
+  border: 1px solid $form-border;
+}
+.form-wrapper {
+  padding: 40px;
+}
+.table-invoices {
+  th.ui-state-default {
+    font-weight: 700;
+  }
+  .ui-datatable-thead>tr>th,
+  .ui-datatable-tfoot>tr>td,
+  .ui-datatable-data>tr>td {
+    border-width: 0px;
+    text-align: center;
+    padding: 13px 4px;
+  }
+  .ui-datatable-data tr {
+    &:hover {
+      background-color: #f7f7f7;
+    }
+  }
+}
+.ui-growl {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 20em;
+  .ui-growl-message-info {
+    margin-top: 50px;
+  }
+}
+.registerGrowl.ui-growl {
+  width: 20em;
+  top: 0px;
+  .ui-growl-message-info{
+    margin-top: 0px;
+  }
+}
+.secondary-btn {
+  background-color: $primary-bg;
+  color: $buttonprimary-bg;
+  border: 1px solid $buttonprimary-bg;
+  &:hover {
+    background-color: $buttonprimary-bg;
+    color: $primary-bg;
+  }
+}
+.tertiary-btn {
+  background-color: $primary-bg;
+  text-decoration: underline;
+  &:hover {
+    color: $buttonprimary-bg;
+  }
+}
+#wrapper {
+  height: 100%;
+  &.loggedin {
+    background: $primary-background;
+  }
+  &.main-wrapper {
+    background: $primary-bg;
+  }
+}
+.ui-inputswitch {
+  .ui-inputswitch-handle {
+    @include input-switch;
+  }
+  .ui-inputswitch-off {
+    width: 50%;
+    padding: 3px 0px;
+    span {
+      @include switch-font($primary-bg);
+      width: 32px;
+      margin-right: -29px;
+    }
+  }
+  .ui-inputswitch-on {
+    @include input-switch;
+    span {
+      @include switch-font($primary-font);
+      margin-left: -4px !important;
+    }
+  }
+}
+.select-threshold {
+  input.ui-inputtext.ui-widget.ui-state-default.ui-corner-all.ui-autocomplete-input {
+    width: 87%;
+  }
+  .ui-autocomplete-dd .ui-autocomplete-dropdown.ui-corner-all {
+    width: 13%;
+  }
+}
+/********************************/
+.app-main-right-container {
+  .records {
+    border-top: 1px solid $fieldsetborder;
+    margin-top: 15px;
+    padding: 15px;
+    .ui-tabview-panels {
+      padding: 0;
+      min-height: 0;
+    }
+    .labels {
+      margin-top: 20px;
+      label {
+        width: 100%;
+        padding: 46px 0;
+      }
+    }
+    .input-boxes {
+      .input-group:after {
+        content: '';
+        position: absolute;
+        width: 25vw;
+        height: 1px;
+        background: $h5border;
+        top: 50px;
+        right: 0;
+      }
+      .text-box:first-child {
+        margin: 15px 0;
+      }
+      .text-box {
+        margin: 30px 0 15px 0;
+      }
+    }
+    .ui-tabview .ui-tabview-panel {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+.hierarchy-accordion.accordionStyle .ui-accordion .ui-accordion-content {
+  padding-top: 20px;
+}
+p-autocomplete {
+  .ui-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+p-radioButton.media {
+  margin-top: 2px;
+  label {
+    padding-top: 5px;
+  }
+}
+p-header.list-header {
+  position: absolute;
+  top: 10px;
+  left: 34px;
+  background: white;
+  padding: 9px 17px 11px 11px;
+}
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,
+.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar {
+  background-color: #337ab7 !important;
+}
+.ui-autocomplete-loader {
+  display: none;
+}
+.pcsCheck {
+  .ui-chkbox-label:after {
+    content:"*";
+    color: red;
+    padding-left: 3px;
+  }
+} 
+.modal {
+  &.show 
+  { 
+    opacity: 0;
+    .modal-dialog {
+        transition: 0.25s all;
+        opacity: 0;
+        transform: translate(0, 5vh);
+    }
+  }
+
+  &.custom-show{
+    opacity: 1;
+    background: rgba(55, 55, 55, 0.5);
+    .modal-dialog {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+}
+.progress-bar{
+  background:#fa9b00;
+}
+.modal-body
+{
+  &.showWarning{
+    .showMsg{ display: block;}
+    .timer { display: none;}
+  }
+  &.showTimer{
+    .showMsg{ display: none;}
+    .timer { display: block;}
+  }
+  
+}
+.modal-footer{
+  &.showRefresh{
+    .showRefreshBtn{
+      display:inline-block;
+    }
+    .showLogonBtn{
+      display:none;
+    }
+  }
+  &.showLogon{
+    .showRefreshBtn{
+      display:none;
+    }
+    .showLogonBtn{
+      display:inline-block;
+    }
+  }
+  
+}

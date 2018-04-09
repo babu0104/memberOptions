@@ -1,0 +1,24 @@
+p-checkbox{
+    padding-top: 10px;
+}
+.input-box-slash:after {
+    content: "/";
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 5px;
+    font-size: 20px;
+}
+.mos
+{
+    input{
+        width: 40%;
+    }
+    &:after{
+    content: "mos.";
+    position: absolute;
+    top: 0;
+    right: 35%;
+    padding-top: 5px;
+}
+}

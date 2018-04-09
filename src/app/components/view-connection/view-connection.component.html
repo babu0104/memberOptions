@@ -1,0 +1,695 @@
+<div class="form-horizontal connection">
+	<div class="form-group row">
+		<label class="control-label col-md-1" for="cbin">BIN:</label>
+		<div class="col-md-3">
+			<input type="text" class="form-control" id="cbin" placeholder="">
+		</div>
+		<button type="submit" class="btn btn-primary pull-right marginRight15">Retrieve</button>
+	</div>
+	<div class="retrieve-data">
+		<div class="accordionStyle">
+			<p-accordion [multiple]="true">
+				<p-accordionTab header="Base II Direct Exchange" [selected]="true">
+					<div class="subheadertitle col-xs-12">
+						<p-checkbox name="groupname" value="DE" class="col-md-12 accordionHeader" ></p-checkbox>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-2" for="">Output Format</label>
+						<div class="col-md-3">
+							<select class="form-control fix-overlap" id="" required>
+                <option value="default">Select</option>
+                <option value="01">a</option>
+                <option value="02">b</option>
+                <option value="03">c</option>
+                <option value="04">d</option>
+              </select>
+						</div>
+						<div class="checkbox-wrapper">
+							<p-checkbox name="groupname" value="Confirm" class="col-md-2"  label="Confirmation"></p-checkbox>
+							<p-checkbox name="groupname" value="Audit" class="col-md-2"  label="Audit Advice"></p-checkbox>
+							<p-checkbox name="groupname" value="SB" class="col-md-2"  label="Scheduled Batch"></p-checkbox>
+						</div>
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="File Transfer 1">
+					<div class="subheadertitle col-xs-12">
+						<p-checkbox name="groupname" value="filetransfer1" class="col-md-12 accordionHeader"></p-checkbox>
+					</div>
+					<div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Input Layout:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Output Layout:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+							<div class="checkbox-wrapper">
+								<p-checkbox name="groupname" value="confirm2" class="col-md-2"  label="Confirmation"></p-checkbox>
+								<p-checkbox name="groupname" value="Audit2" class="col-md-2"  label="Audit Advice"></p-checkbox>
+								<p-checkbox name="groupname" value="SB2" class="col-md-2"  label="Scheduled Batch"></p-checkbox>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Output Format:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+							<label class="control-label col-md-2" for="">Nulls Flag:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+							<label class="control-label col-md-2" for="">Process Flag:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="Message">Message:</label>
+							<div class="col-md-3">
+								<input type="text" class="form-control" id="Message" placeholder="">
+							</div>
+							<div class="col-md-6">
+								<input type="text" class="form-control" id="" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="Description">Description:</label>
+							<div class="col-md-6">
+								<textarea rows="5" cols="30" pInputTextarea></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<p-checkbox name="groupname" value="ICS1" class="col-md-offset-2 col-md-10"  label="ICS"></p-checkbox>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2"></label>
+							<p-checkbox name="groupname" value="Partner1" class="col-md-4"  label="Partner B"></p-checkbox>
+							<label class="control-label col-md-2" for="">Identity Type:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+						</div>
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="File Transfer 2">
+					<div class="subheadertitle col-xs-12">
+						<p-checkbox name="groupname" value="filetransfer2" class="col-md-12 accordionHeader" ></p-checkbox>
+					</div>
+					<div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Input Layout:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Output Layout:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+							<div class="checkbox-wrapper">
+								<p-checkbox name="groupname" value="confirm2" class="col-md-2"  label="Confirmation"></p-checkbox>
+								<p-checkbox name="groupname" value="Audit2" class="col-md-2"  label="Audit Advice"></p-checkbox>
+								<p-checkbox name="groupname" value="SB2" class="col-md-2"  label="Scheduled Batch"></p-checkbox>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Output Format:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+							<label class="control-label col-md-2" for="">Nulls Flag:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+							<label class="control-label col-md-2" for="">Process Flag:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="Message">Message:</label>
+							<div class="col-md-3">
+								<input type="text" class="form-control" id="Message" placeholder="">
+							</div>
+							<div class="col-md-6">
+								<input type="text" class="form-control" id="" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="Description">Description:</label>
+							<div class="col-md-6">
+								<textarea rows="5" cols="30" pInputTextarea></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2"></label>
+							<p-checkbox name="groupname" value="ICS2" class="col-md-offset-2 col-md-10"  label="ICS"></p-checkbox>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2"></label>
+							<p-checkbox name="groupname" value="Partner2" class="col-md-4"  label="Partner B"></p-checkbox>
+							<label class="control-label col-md-2" for="">Identity Type:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+						</div>
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="File Transfer 3">
+					<div class="subheadertitle col-xs-12">
+						<p-checkbox name="groupname" value="filetransfer3" class="col-md-12 accordionHeader"></p-checkbox>
+					</div>
+					<div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Input Layout:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Output Layout:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+							<div class="checkbox-wrapper">
+								<p-checkbox name="groupname" value="confirm2" class="col-md-2"  label="Confirmation"></p-checkbox>
+								<p-checkbox name="groupname" value="Audit2" class="col-md-2"  label="Audit Advice"></p-checkbox>
+								<p-checkbox name="groupname" value="SB2" class="col-md-2"  label="Scheduled Batch"></p-checkbox>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Output Format:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+							<label class="control-label col-md-2" for="">Nulls Flag:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+							<label class="control-label col-md-2" for="">Process Flag:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="Message">Message:</label>
+							<div class="col-md-3">
+								<input type="text" class="form-control" id="Message" placeholder="">
+							</div>
+							<div class="col-md-6">
+								<input type="text" class="form-control" id="" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="Description">Description:</label>
+							<div class="col-md-6">
+								<textarea rows="5" cols="30" pInputTextarea></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2"></label>
+							<p-checkbox name="groupname" value="ICS3" class="col-md-offset-2 col-md-10"  label="ICS"></p-checkbox>
+						</div>
+						<div class="form-group">
+							<p-checkbox name="groupname" value="Partner3" class="col-md-offset-2 col-md-4"  label="Partner B"></p-checkbox>
+							<label class="control-label col-md-2" for="">Identity Type:</label>
+							<div class="col-md-2">
+								<select class="form-control fix-overlap" id="" required>
+                  <option value="default">Select</option>
+                  <option value="01">a</option>
+                  <option value="02">b</option>
+                  <option value="03">c</option>
+                  <option value="04">d</option>
+                </select>
+							</div>
+						</div>
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="Online Interactive 1">
+					<div class="subheadertitle col-xs-12">
+						<p-checkbox name="groupname" value="onlineinteractive1" class="col-md-12 accordionHeader"></p-checkbox>
+					</div>
+					<div class="form-group">
+						<div>
+							<div class="row">
+								<label class="control-label col-md-2" for="name">Net Name:</label>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="name" placeholder="" maxlength="7">
+								</div>
+								<p-checkbox name="groupname" value="vais1" class="col-md-2 col-md-offset-3"  label="VAIS Layout Input"></p-checkbox>
+							</div>
+							<div class="row">
+								<label class="control-label col-md-2" for="Description">Description:</label>
+								<div class="col-md-6">
+									<textarea rows="5" cols="30" pInputTextarea></textarea>
+								</div>
+								<label class="control-label col-md-2" for="">Process Flag:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="ICS4" class="col-md-offset-2 col-md-10"  label="ICS"></p-checkbox>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="PartnerA1" class="col-md-2 col-md-offset-2"  label="Partner A"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+								<label class="control-label col-md-2" for="">Customer Number:</label>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="custNo" placeholder="">
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="Partnerb1" class="col-md-2 col-md-offset-2"  label="Partner B"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="Partnerc1" class="col-md-2 col-md-offset-2"  label="Partner C"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="Online Interactive 2">
+
+					<div class="subheadertitle col-xs-12">
+						<p-checkbox name="groupname" value="onlineinteractive2" class="col-md-12 accordionHeader"></p-checkbox>
+					</div>
+					<div class="form-group">
+						<div>
+							<div class="row">
+								<label class="control-label col-md-2" for="name">Net Name:</label>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="name" placeholder="" maxlength="7">
+								</div>
+								<p-checkbox name="groupname" value="vais1" class="col-md-2 col-md-offset-3"  label="VAIS Layout Input"></p-checkbox>
+							</div>
+							<div class="row">
+								<label class="control-label col-md-2" for="Description">Description:</label>
+								<div class="col-md-6">
+									<textarea rows="5" cols="30" pInputTextarea></textarea>
+								</div>
+								<label class="control-label col-md-2" for="">Process Flag:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="ICS4" class="col-md-offset-2 col-md-10"  label="ICS"></p-checkbox>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="PartnerA1" class="col-md-2 col-md-offset-2"  label="Partner A"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+								<label class="control-label col-md-2" for="">Customer Number:</label>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="custNo" placeholder="">
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="Partnerb1" class="col-md-2 col-md-offset-2"  label="Partner B"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="Partnerc1" class="col-md-2 col-md-offset-2"  label="Partner C"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="Online Interactive 3">
+
+					<div class="subheadertitle col-xs-12">
+						<p-checkbox name="groupname" value="onlineinteractive3" class="col-md-12 accordionHeader"></p-checkbox>
+					</div>
+					<div class="form-group">
+						<div>
+							<div class="row">
+								<label class="control-label col-md-2" for="name">Net Name:</label>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="name" placeholder="" maxlength="7">
+								</div>
+								<p-checkbox name="groupname" value="vais1" class="col-md-2 col-md-offset-3"  label="VAIS Layout Input"></p-checkbox>
+							</div>
+							<div class="row">
+								<label class="control-label col-md-2" for="Description">Description:</label>
+								<div class="col-md-6">
+									<textarea rows="5" cols="30" pInputTextarea></textarea>
+								</div>
+								<label class="control-label col-md-2" for="">Process Flag:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="ICS4" class="col-md-offset-2 col-md-10"  label="ICS"></p-checkbox>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="PartnerA1" class="col-md-2 col-md-offset-2"  label="Partner A"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+								<label class="control-label col-md-2" for="">Customer Number:</label>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="custNo" placeholder="">
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="Partnerb1" class="col-md-2 col-md-offset-2"  label="Partner B"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="Partnerc1" class="col-md-2 col-md-offset-2"  label="Partner C"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="Online Interactive 4">
+
+					<div class="subheadertitle col-xs-12">
+						<p-checkbox name="groupname" value="onlineinteractive4" class="col-md-12 accordionHeader"></p-checkbox>
+					</div>
+					<div class="form-group">
+						<div>
+
+							<div class="row">
+								<label class="control-label col-md-2" for="name">Net Name:</label>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="name" placeholder="" maxlength="7">
+								</div>
+								<p-checkbox name="groupname" value="vais1" class="col-md-2 col-md-offset-3"  label="VAIS Layout Input"></p-checkbox>
+							</div>
+							<div class="row">
+								<label class="control-label col-md-2" for="Description">Description:</label>
+								<div class="col-md-6">
+									<textarea rows="5" cols="30" pInputTextarea maxlength="40"></textarea>
+								</div>
+								<label class="control-label col-md-2" for="">Process Flag:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="ICS4" class="col-md-offset-2 col-md-10"  label="ICS"></p-checkbox>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="PartnerA1" class="col-md-2 col-md-offset-2"  label="Partner A"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+								<label class="control-label col-md-2" for="">Customer Number:</label>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="custNo" placeholder="">
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="Partnerb1" class="col-md-2 col-md-offset-2"  label="Partner B"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox name="groupname" value="Partnerc1" class="col-md-2 col-md-offset-2"  label="Partner C"></p-checkbox>
+								<label class="control-label col-md-2" for="">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" id="" required>
+                    <option value="default">Select</option>
+                    <option value="01">a</option>
+                    <option value="02">b</option>
+                    <option value="03">c</option>
+                    <option value="04">d</option>
+                  </select>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="ICSDirect">
+					<div class="row">
+						<label class="control-label col-md-2" for="">Process Flag:</label>
+						<label class="control-label col-md-2" for="Description">Description:</label>
+						<div class="col-md-6">
+							<textarea rows="5" cols="30" pInputTextarea></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-4" for="">ICSDirect File Transfer For Batch Processing Output Formats:</label>
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="custNo" placeholder="">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="">Output Format:</label>
+						<div class="col-md-3">
+							<select class="form-control fix-overlap" id="" required>
+                <option value="default">Select</option>
+                <option value="01">a</option>
+                <option value="02">b</option>
+                <option value="03">c</option>
+                <option value="04">d</option>
+              </select>
+						</div>
+						<div class="checkbox-wrapper">
+							<p-checkbox name="groupname" value="confirm4" class="col-md-2"  label="Confirmation"></p-checkbox>
+							<p-checkbox name="groupname" value="Audit4" class="col-md-2"  label="Audit Advice"></p-checkbox>
+						</div>
+					</div>
+
+				</p-accordionTab>
+			</p-accordion>
+			<div class="form-group pull-right margin10">
+				<button type="submit" class="btn btn-primary" disabled>Save</button>
+				<button type="submit" class="btn btn-default">Cancel</button>
+			</div>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,82 @@
+<div>
+  <p-growl sticky="true" [(value)]="msgs"></p-growl>
+</div>
+<form (ngSubmit)="onSubmit(areaCodeForm.value)" #areaCodeForm="ngForm">
+  <div class="connection">
+    <div class="wrapper">
+      <div class="row">
+        <label class="control-label col-md-2" for="businessId">BIN:</label>
+        <span class="col-md-2 label-value">{{areaCode.bin}}</span>
+        <label class="control-label col-md-2" for="businessId">Project #:</label>
+        <span class="col-md-2 label-value">{{areaCode.projectNum}}</span>
+      </div>
+      <div class="row">
+        <label class="control-label col-md-2" for="businessId">MSO:</label>
+        <span class="col-md-2 label-value">{{areaCode.mso}}</span>
+        <label class="control-label col-md-2" for="businessId">Criteria Level:</label>
+        <span class="col-md-2 label-value">{{areaCode.criteriaLevel}}</span>
+      </div>
+      <div class="row">
+        <label class="control-label col-md-2" for="">Member Name:</label>
+        <span class="col-md-4 label-value" for="">{{areaCode.memberName}}</span>
+      </div>
+    </div>
+    <div class="margin15 content-wrapper">
+      <h3>Previously Entered Area Codes</h3>
+      <div class="padding-16">
+        <button type="reset" class="btn secondary-btn">Delete All</button>
+      </div>
+      <div class="row padding30">
+        <p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425" #cd>
+          <p-footer>
+            <button type="button" pButton icon="fa-close" label="No" (click)="cd.reject()"></button>
+            <button type="button" pButton icon="fa-check" label="Yes" (click)="cd.accept()"></button>
+          </p-footer>
+        </p-confirmDialog>
+        <p-dataTable [value]="areaCode.areaCodeRange" name="filteredData" tableStyleClass="table-invoices marginTop15">
+          <p-headerColumnGroup>
+            <p-row>
+              <p-column header="From Area Code"></p-column>
+              <p-column header="To Area Code"></p-column>
+              <p-column header="Action"></p-column>
+            </p-row>
+          </p-headerColumnGroup>
+          <p-column field="fromCode">
+            <ng-template let-areaCode="rowData" pTemplate="item">
+              <span>{{areaCode.fromCode}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="toCode">
+            <ng-template let-areaCode="rowData" pTemplate="item">
+              <span>{{areaCode.toCode}}</span>
+            </ng-template>
+          </p-column>
+          <p-column field="delete">
+            <ng-template let-areaCode="rowData" pTemplate="item">
+              <a href="javascript:void(0)" (click)="deleteAreaCode(areaCode.fromCode, areaCode.toCode)">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </a>
+            </ng-template>
+          </p-column>
+        </p-dataTable>
+      </div>
+    </div>
+    <div class="margin15 content-wrapper">
+      <h3>Add New Area Code</h3>
+      <div class="row padding30">
+        <label class="control-label pull-left" for="">From Area Code:</label>
+        <div class="col-xs-2">
+          <input class="form-control" name="fromCode" [(ngModel)]="fromAndToCodes.fromCode" #fromCode="ngModel" />
+        </div>
+        <label class="control-label pull-left col-xs-offset-2" for="">To Area Code:</label>
+        <div class="col-xs-2">
+          <input class="form-control" name="toCode" [(ngModel)]="fromAndToCodes.toCode" #toCode="ngModel" />
+        </div>
+      </div>
+    </div>
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn tertiary-btn marginRight15">Cancel</button>
+    </div>
+  </div>
+</form>

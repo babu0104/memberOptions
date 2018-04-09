@@ -1,0 +1,8 @@
+{
+    "data": [
+        {"role": "Admin", "userID": "GUSERICS1", "service": "PCS", "name": "Larry West", "created": "Oct23, 2014", "modified": "Oct23, 2014","last_login": "Nov 1, 2017", "status": "Active"},
+        {"role": "Visa User", "userID": "GUSERICS2", "service": "PCS", "name": "John Brown", "created": "Oct23, 2014", "modified": "Oct23, 2014","last_login": "Nov 1, 2017", "status": "Active"},
+        {"role": "Visa Master", "userID": "GUSERICS3", "service": "PCS", "name": "Jessica White", "created": "Oct23, 2014", "modified": "Oct23, 2014","last_login": "Nov 1, 2017", "status": "Active"},
+        {"role": "General User", "userID": "GUSERICS4", "service": "PCS", "name": "Mike Edward", "created": "Oct23, 2014", "modified": "Oct23, 2014","last_login": "Nov 1, 2017", "status": "Active"}
+    ]
+}

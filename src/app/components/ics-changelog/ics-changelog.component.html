@@ -1,0 +1,51 @@
+<div class="form-horizontal inner-rightContainer">
+  <div class="form-wrapper passwordcontainer">
+    <h3>ICS Member Options Change Tracking</h3>
+    <div class="form-container">
+      <div class="row">
+        <label class="control-label col-md-2" for="">BIN:</label>
+        <div class="col-md-2">
+          <input type="text" class="form-control" id="" placeholder="">
+        </div>
+        <label class="control-label col-md-2" for="">User ID:</label>
+        <div class="col-md-2">
+          <input type="text" class="form-control" id="" placeholder="">
+        </div>
+      </div>
+      <div class="row">
+        <label class="control-label col-md-2" for="">Log Date
+          <span class="marginLeft15">From:</span>
+        </label>
+
+        <div class="col-md-2">
+          <p-calendar  [showIcon]="true" monthNavigator="true" dateFormat="dd/mm/yy" yearNavigator="true" yearRange="1947:2017"></p-calendar>
+        </div>
+        <label class="control-label col-md-2" for="">To:</label>
+        <div class="col-md-2">
+          <p-calendar  [showIcon]="true" monthNavigator="true" dateFormat="dd/mm/yy" yearNavigator="true" yearRange="1947:2017"></p-calendar>
+        </div>
+        <button type="submit" class="btn btn-primary pull-right marginRight15">Retrieve</button>
+      </div>
+      <div class="row">
+        <p-dataTable [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" tableStyleClass="table-invoices marginTop15">
+          <p-column field="timestamp" header="Timestamp"></p-column>
+          <p-column field="bid" header="BID"></p-column>
+          <p-column field="bin" header="BIN"></p-column>
+          <p-column field="mso" header="MSO"></p-column>
+          <p-column field="userid" header="User ID"></p-column>
+          <p-column field="tablename" header="Table Name"></p-column>
+          <p-column field="recordkey" header="Record Key"></p-column>
+          <p-column field="fieldname" header="Field Name"></p-column>
+          <p-column field="before" header="Before"></p-column>
+          <p-column field="after" header="After"></p-column>
+          <p-column field="action" header="Action"></p-column>
+        </p-dataTable>
+      </div>
+    </div>
+    <div class="form-group margin10 pull-right">
+      <button type="submit" class="btn btn-primary">View Report</button>
+      <button type="submit" class="btn secondary-btn marginRight15">Download Report</button>
+
+    </div>
+  </div>
+</div>

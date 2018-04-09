@@ -1,0 +1,92 @@
+@import "../../../styles.scss"; 
+.pipeline {
+    position: fixed;
+    .verticalLine {
+        width: 3px;
+        height: 415px;
+        background-color: #4e4e4e;
+        position: absolute;
+        top: 30px;
+        left: 28px;
+    }
+    .circle{
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        background: #FF7959;
+        margin: 0 auto;
+        border-radius: 100%;        
+        z-index: 1;
+        color: white;
+        &.active {
+            background: blue;
+            color: white;
+        }
+        a {
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: #fff;
+            .circlevalue {
+                position: relative;
+                top: 2px;
+                left: 10px;
+                font-size: 17px;
+            }
+        }
+        
+    }
+    .circle1 {
+        top: 20px;
+    }
+    .circle2 {
+        top: 100px;
+    }
+    .circle3 {
+        top: 180px;
+    }
+    .circle4 {
+        top: 260px;
+    }
+    .circle5 {
+        top: 340px;
+    }
+    .circle6 {
+        top: 420px;
+    }
+}
+.divider{
+    border-bottom: 1px solid;
+    clear: both;
+}
+.set-margin{
+    margin: 15px 0;
+}
+.paddtopbtm-10{ padding: 10px 0px;}
+label.control-label.col-form-label{ margin-top: 10px;}
+.pcs-threshold{
+    .row + .row{
+        margin-top: 1.5rem;
+    }
+}
+.accordionStyle{
+    .period{
+        text-align: center;
+    }
+    
+}
+
+.add-margin{
+    margin: 0px 15px 0px 0px;
+}
+
+p-accordiontab.text-left {
+    .ui-accordion-content-wrapper{
+        .row.paddtopbtm-10 {
+            .period{
+                text-align: center;
+            }
+        }
+    }
+}

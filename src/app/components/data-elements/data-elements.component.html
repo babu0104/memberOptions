@@ -1,0 +1,417 @@
+<div>
+  <p-growl sticky="true" [(value)]="msgs"></p-growl>
+</div>
+<form (ngSubmit)="onSubmit(dataElementsForm.value)" #dataElementsForm="ngForm" autocomplete="off">
+  <div class="form-horizontal main-container connection">
+    <div class="view-data">
+      <div class="row">
+        <label class="control-label col-md-2" for="businessId">BIN:</label>
+        <span class="col-md-2 label-value">{{dataElements.bin}}</span>
+        <label class="control-label col-md-2" for="businessId">Project #:</label>
+        <span class="col-md-2 label-value">{{dataElements.projectNum}}</span>
+      </div>
+      <div class="row">
+        <label class="control-label col-md-2" for="businessId">MSO:</label>
+        <span class="col-md-2 label-value">{{dataElements.mso}}</span>
+        <label class="control-label col-md-2" for="businessId">Criteria Level:</label>
+        <span class="col-md-2 label-value">{{dataElements.criteriaLevel}}</span>
+      </div>
+      <div class="row">
+        <label class="control-label col-md-2" for="">Member Name:</label>
+        <span class="col-md-4 label-value" for="">{{dataElements.memberName}}</span>
+      </div>
+      <div class="accordionStyle">
+        <p-accordion [multiple]="true">
+          <p-accordionTab header="Prescreen Contact Information" [selected]="true">
+            <div class="row">
+              <p-checkbox binary="true" name="ssnOn" [(ngModel)]="dataElements.ssnOn" label="Social Security Members" class="col-xs-4"></p-checkbox>
+              <p-checkbox binary="true" name="addrOn" [(ngModel)]="dataElements.addrOn" label="Addresses" class="col-xs-3"></p-checkbox>
+              <p-checkbox binary="true" name="phoneOn" [(ngModel)]="dataElements.phoneOn" label="Telephone Numbers" class="col-xs-4"></p-checkbox>
+              <p-checkbox binary="true" name="bnkrpcyOn" [(ngModel)]="dataElements.bnkrpcyOn" label="Bankruptcy Data (Must check SSN  and select Time Parameter)"
+                class="col-xs-7 marginTop15"></p-checkbox>
+              <div class="col-xs-5 margin15">
+                <p-checkbox binary="true" name="bnkrpcyMonths1" [(ngModel)]="dataElements.bnkrpcyMonths1" label="Entire Database or" class="pull-left"></p-checkbox>
+                <div class="col-xs-2">
+                  <input class="form-control" name="bnkrpcyMonths" [(ngModel)]="dataElements.bnkrpcyMonths" #bnkrpcyMonths="ngModel" />
+                </div>
+                <span>month(s)</span>
+              </div>
+              <p-checkbox binary="true" name="bnkrpcyDisputeOn" [(ngModel)]="dataElements.bnkrpcyDisputeOn" label="Bankruptcy Dispute (Must check SSN)"
+                class="col-xs-4"></p-checkbox>
+              <p-checkbox binary="true" name="applnDisputeOn" [(ngModel)]="dataElements.applnDisputeOn" label="Application Dispute" class="col-xs-3"></p-checkbox>
+              <p-checkbox binary="true" name="uuDisputeOn" [(ngModel)]="dataElements.uuDisputeOn" label="Fraud Dispute" class="col-xs-4"></p-checkbox>
+
+            </div>
+          </p-accordionTab>
+          <p-accordionTab header="Application Activity">
+            <p-checkbox binary="true" name="applnActivityon" [(ngModel)]="dataElements.applnActivityon" class="accordionHeader "></p-checkbox>
+
+            <div class="row">
+              <label class="control-label text-left col-xs-offset-3 col-xs-3">SSN</label>
+              <label class="control-label text-left col-xs-3">Address</label>
+              <label class="control-label text-left col-xs-3">Phone #</label>
+            </div>
+            <div class="row">
+              <label class="control-label col-xs-3">Application Activity (3-99)/(1-24 mos.)</label>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="ssnApplnCount" [(ngModel)]="dataElements.ssnApplnCount" #ssnApplnCount="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="ssnApplnTimeparam" [(ngModel)]="dataElements.ssnApplnTimeparam" #ssnApplnTimeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="addrApplnCount" [(ngModel)]="dataElements.addrApplnCount" #addrApplnCount="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="addrApplnTimeparam" [(ngModel)]="dataElements.addrApplnTimeparam" #addrApplnTimeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="phoneApplnCount" [(ngModel)]="dataElements.phoneApplnCount" #phoneApplnCount="ngModel"
+                />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="phoneApplnTimeparam" [(ngModel)]="dataElements.phoneApplnTimeparam" #phoneApplnTimeparam="ngModel"
+                />
+              </div>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab header="Fraud Activity">
+            <p-checkbox binary="true" name="uuActivityOn" [(ngModel)]="dataElements.uuActivityOn" class="accordionHeader "></p-checkbox>
+            <div class="row">
+              <label class="control-label text-left col-xs-offset-3 col-xs-3">SSN</label>
+              <label class="control-label text-left col-xs-3">Address</label>
+              <label class="control-label text-left col-xs-3">Phone #</label>
+            </div>
+            <div class="row">
+              <label class="control-label col-xs-3">(00) Card Reported "Lost" (1-99)/(1-24 mos.)</label>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="ssnUU00Count" [(ngModel)]="dataElements.ssnUU00Count" #ssnUU00Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="ssnUU00Timeparam" [(ngModel)]="dataElements.ssnUU00Timeparam" #ssnUU00Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="addrUU00Count" [(ngModel)]="dataElements.addrUU00Count" #addrUU00Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="addrUU00Timeparam" [(ngModel)]="dataElements.addrUU00Timeparam" #addrUU00Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="phoneUU00Count" [(ngModel)]="dataElements.phoneUU00Count" #phoneUU00Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="phoneUU00Timeparam" [(ngModel)]="dataElements.phoneUU00Timeparam" #phoneUU00Timeparam="ngModel"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <label class="control-label col-xs-3">(01) Card Reported "Stolen" (1-99)/(1-24 mos.)</label>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="ssnUU01Count" [(ngModel)]="dataElements.ssnUU01Count" #ssnUU01Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="ssnUU01Timeparam" [(ngModel)]="dataElements.ssnUU01Timeparam" #ssnUU01Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="addrUU01Count" [(ngModel)]="dataElements.addrUU01Count" #addrUU01Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="addrUU01Timeparam" [(ngModel)]="dataElements.addrUU01Timeparam" #addrUU01Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="phoneUU01Count" [(ngModel)]="dataElements.phoneUU01Count" #phoneUU01Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="phoneUU01Timeparam" [(ngModel)]="dataElements.phoneUU01Timeparam" #phoneUU01Timeparam="ngModel"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <label class="control-label col-xs-3">(02) Card Reported "Not Received" (1-99)/(1-24 mos.)</label>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="ssnUU02Count" [(ngModel)]="dataElements.ssnUU02Count" #ssnUU02Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="ssnUU02Timeparam" [(ngModel)]="dataElements.ssnUU02Timeparam" #ssnUU02Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="addrUU02Count" [(ngModel)]="dataElements.addrUU02Count" #addrUU02Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="addrUU02Timeparam" [(ngModel)]="dataElements.addrUU02Timeparam" #addrUU02Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="phoneUU02Count" [(ngModel)]="dataElements.phoneUU02Count" #phoneUU02Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="phoneUU02Timeparam" [(ngModel)]="dataElements.phoneUU02Timeparam" #phoneUU02Timeparam="ngModel"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <label class="control-label col-xs-3">(03)Fraudulent Application (1-99)/(1-48 mos.)</label>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="ssnUU03Count" [(ngModel)]="dataElements.ssnUU03Count" #ssnUU03Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="ssnUU03Timeparam" [(ngModel)]="dataElements.ssnUU03Timeparam" #ssnUU03Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="addrUU03Count" [(ngModel)]="dataElements.addrUU03Count" #addrUU03Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="addrUU03Timeparam" [(ngModel)]="dataElements.addrUU03Timeparam" #addrUU03Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="phoneUU03Count" [(ngModel)]="dataElements.phoneUU03Count" #phoneUU03Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="phoneUU03Timeparam" [(ngModel)]="dataElements.phoneUU03Timeparam" #phoneUU03Timeparam="ngModel"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <label class="control-label col-xs-3">(04) Counterfeit Card USe (1-99)/(1-24 mos.)</label>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="ssnUU04Count" [(ngModel)]="dataElements.ssnUU04Count" #ssnUU04Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="ssnUU04Timeparam" [(ngModel)]="dataElements.ssnUU04Timeparam" #ssnUU04Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="addrUU04Count" [(ngModel)]="dataElements.addrUU04Count" #addrUU04Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="addrUU04Timeparam" [(ngModel)]="dataElements.addrUU04Timeparam" #addrUU04Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="phoneUU04Count" [(ngModel)]="dataElements.phoneUU04Count" #phoneUU04Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="phoneUU04Timeparam" [(ngModel)]="dataElements.phoneUU04Timeparam" #phoneUU04Timeparam="ngModel"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <label class="control-label col-xs-3">(05) Account Takeover / Address Change(1-99)/(1-48 mos.)</label>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="ssnUU05Count" [(ngModel)]="dataElements.ssnUU05Count" #ssnUU05Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="ssnUU05Timeparam" [(ngModel)]="dataElements.ssnUU05Timeparam" #ssnUU05Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="addrUU05Count" [(ngModel)]="dataElements.addrUU05Count" #addrUU05Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="addrUU05Timeparam" [(ngModel)]="dataElements.addrUU05Timeparam" #addrUU05Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="phoneUU05Count" [(ngModel)]="dataElements.phoneUU05Count" #phoneUU05Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="phoneUU05Timeparam" [(ngModel)]="dataElements.phoneUU05Timeparam" #phoneUU05Timeparam="ngModel"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <label class="control-label col-xs-3">(06) Telemarketing / No Sales Draft (1-99)/(1-24 mos.)</label>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="ssnUU06Count" [(ngModel)]="dataElements.ssnUU06Count" #ssnUU06Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="ssnUU06Timeparam" [(ngModel)]="dataElements.ssnUU06Timeparam" #ssnUU06Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="addrUU06Count" [(ngModel)]="dataElements.addrUU06Count" #addrUU06Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="addrUU06Timeparam" [(ngModel)]="dataElements.addrUU06Timeparam" #addrUU06Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="phoneUU06Count" [(ngModel)]="dataElements.phoneUU06Count" #phoneUU06Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="phoneUU06Timeparam" [(ngModel)]="dataElements.phoneUU06Timeparam" #phoneUU06Timeparam="ngModel"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <label class="control-label col-xs-3">(07) Fraudulent Application detected before loss (1-99)/(1-48 mos.)</label>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="ssnUU07Count" [(ngModel)]="dataElements.ssnUU07Count" #ssnUU07Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="ssnUU07Timeparam" [(ngModel)]="dataElements.ssnUU07Timeparam" #ssnUU07Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="addrUU07Count" [(ngModel)]="dataElements.addrUU07Count" #addrUU07Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="addrUU07Timeparam" [(ngModel)]="dataElements.addrUU07Timeparam" #addrUU07Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="phoneUU07Count" [(ngModel)]="dataElements.phoneUU07Count" #phoneUU07Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="phoneUU07Timeparam" [(ngModel)]="dataElements.phoneUU07Timeparam" #phoneUU07Timeparam="ngModel"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <label class="control-label col-xs-3">(08)Suspicious Application detected before loss (1-99)/(1-48 mos.)</label>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="ssnUU08Count" [(ngModel)]="dataElements.ssnUU08Count" #ssnUU08Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="ssnUU08Timeparam" [(ngModel)]="dataElements.ssnUU08Timeparam" #ssnUU08Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="addrUU08Count" [(ngModel)]="dataElements.addrUU08Count" #addrUU08Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="addrUU08Timeparam" [(ngModel)]="dataElements.addrUU08Timeparam" #addrUU08Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="phoneUU08Count" [(ngModel)]="dataElements.phoneUU08Count" #phoneUU08Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="phoneUU08Timeparam" [(ngModel)]="dataElements.phoneUU08Timeparam" #phoneUU08Timeparam="ngModel"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <label class="control-label col-xs-3">(09)Bust Out(1-99)/(1-48 mos.)</label>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="ssnUU09Count" [(ngModel)]="dataElements.ssnUU09Count" #ssnUU09Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="ssnUU09Timeparam" [(ngModel)]="dataElements.ssnUU09Timeparam" #ssnUU09Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="addrUU09Count" [(ngModel)]="dataElements.addrUU09Count" #addrUU09Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="addrUU09Timeparam" [(ngModel)]="dataElements.addrUU09Timeparam" #addrUU09Timeparam="ngModel"
+                />
+              </div>
+              <div class="col-xs-1 input-box-slash">
+                <input class="form-control" name="phoneUU09Count" [(ngModel)]="dataElements.phoneUU09Count" #phoneUU09Count="ngModel" />
+              </div>
+              <div class="col-xs-2 mos">
+                <input class="form-control" name="phoneUU09Timeparam" [(ngModel)]="dataElements.phoneUU09Timeparam" #phoneUU09Timeparam="ngModel"
+                />
+              </div>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab header="Questionable Data with Activity">
+            <p-checkbox binary="true" name="alertWithVelocityOn" [(ngModel)]="dataElements.alertWithVelocityOn" class="accordionHeader "></p-checkbox>
+            <div class="row data-container">
+              <div class="col-xs-6">
+                <div class="content-wrapper">
+                  <h3>SSN</h3>
+                  <p-checkbox binary="true" name="alertSsnAll" [(ngModel)]="dataElements.alertSsnAll" label="All" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertSsn01On" [(ngModel)]="dataElements.alertSsn01On" label="01 Deceased" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertSsn02On" [(ngModel)]="dataElements.alertSsn02On" label="02 Invalid Combination of Digits"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertSsn03On" [(ngModel)]="dataElements.alertSsn03On" label="03 Has not been Assigned" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertSsn04On" [(ngModel)]="dataElements.alertSsn04On" label="04 May Have Been Improperly Released"
+                    class="col-xs-12"></p-checkbox>
+
+                </div>
+                <div class="content-wrapper">
+                  <h3>Address</h3>
+                  <p-checkbox binary="true" name="alertAddrAll" [(ngModel)]="dataElements.alertAddrAll" label="All" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr01On" [(ngModel)]="dataElements.alertAddr01On" label="01 Rental Box / Mail receiving Service / Mail Drop"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr02On" [(ngModel)]="dataElements.alertAddr02On" label="02 Address Not Assigned" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr03On" [(ngModel)]="dataElements.alertAddr03On" label="03 Answering Service" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr04On" [(ngModel)]="dataElements.alertAddr04On" label="04 Prison / Penal Institution"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr05On" [(ngModel)]="dataElements.alertAddr05On" label="05 Hospital" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr06On" [(ngModel)]="dataElements.alertAddr06On" label="06 Nursing/Primary Care Service"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr07On" [(ngModel)]="dataElements.alertAddr07On" label="07 Drug / Alcohol Treatement Center"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr08On" [(ngModel)]="dataElements.alertAddr08On" label="08 Zip Code/Area Code Mismatch"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr09On" [(ngModel)]="dataElements.alertAddr09On" label="09 Health Agency" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr10On" [(ngModel)]="dataElements.alertAddr10On" label="10 Hotel/Motel/Vacation Resort"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr11On" [(ngModel)]="dataElements.alertAddr11On" label="11 Vacant Lot" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertAddr12On" [(ngModel)]="dataElements.alertAddr12On" label="12 Seasonal" class="col-xs-12"></p-checkbox>
+
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="content-wrapper">
+                  <h3>Phone</h3>
+                  <p-checkbox binary="true" name="alertPhoneAll" [(ngModel)]="dataElements.alertPhoneAll" label="All" class="col-xs-12"></p-checkbox>
+                  <hr>
+                  <p-checkbox binary="true" name="alertPhone01On" [(ngModel)]="dataElements.alertPhone01On" label="01 Rental Box / Directory Assistance #/ Toll-free #"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone02On" [(ngModel)]="dataElements.alertPhone02On" label="02 Cellular #/ Pager #"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone03On" [(ngModel)]="dataElements.alertPhone03On" label="03 Answering Service" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone04On" [(ngModel)]="dataElements.alertPhone04On" label="04 Prison / Penal Institution"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone05On" [(ngModel)]="dataElements.alertPhone05On" label="05 Hospital" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone06On" [(ngModel)]="dataElements.alertPhone06On" label="06 Nursing/Primary Care Service"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone07On" [(ngModel)]="dataElements.alertPhone07On" label="07 Drug / Alcohol Treatement Center"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone08On" [(ngModel)]="dataElements.alertPhone08On" label="08 Zip Code/Area Code Mismatch"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone09On" [(ngModel)]="dataElements.alertPhone09On" label="09 Health Agency" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone10On" [(ngModel)]="dataElements.alertPhone10On" label="10 Hotel/Motel/Vacation Resort"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone11On" [(ngModel)]="dataElements.alertPhone11On" label="11 Invalid Area Code" class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone12On" [(ngModel)]="dataElements.alertPhone12On" label="12 Area Code Does Not Match Prefix"
+                    class="col-xs-12"></p-checkbox>
+                  <p-checkbox binary="true" name="alertPhone13On" [(ngModel)]="dataElements.alertPhone13On" label="13 Cellular Phone" class="col-xs-12"></p-checkbox>
+
+                </div>
+                <div class="content-wrapper">
+                  <h3>Area Code</h3>
+                  <p-radioButton name="areacode" value="1" [(ngModel)]="areacode" label="Select Ranges (Enter Selected Area Code in the Area Code Tab)"
+                    class="media col-xs-12"></p-radioButton>
+                  <p-radioButton name="areacode" value="0" [(ngModel)]="areacode" label="All Ranges" class="media col-xs-12"></p-radioButton>
+                </div>
+                <div class="content-wrapper">
+                  <h3>SCF</h3>
+                  <p-radioButton name="scf" value="1" [(ngModel)]="scf" label="Select Ranges (Enter Selected SCF Code in the SCF Tab)" class="media col-xs-12"></p-radioButton>
+                  <p-radioButton name="scf" value="0" [(ngModel)]="scf" label="All Ranges" class="media col-xs-12"></p-radioButton>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </div>
+    <div class="row text-right margin15">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="reset" class="btn btn-default">Reset</button>
+    </div>
+  </div>
+</form>

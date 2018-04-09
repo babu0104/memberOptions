@@ -1,0 +1,24 @@
+<div class="form-horizontal">
+  
+      
+  
+  <div class="form-group logincontainer">
+    <h1 class="text-center">User Login</h1>
+    
+    <form name="form" id="pwd-form" #f="ngForm" novalidate>
+      <div class="row"><div *ngIf="error" class="alert alert-danger error-msg mo-msg">{{error}}</div></div>
+      <div class="row">
+        <input type="text" class="form-control" id="userName" placeholder="Username" name="userName" [(ngModel)]="model.userName" required>
+      </div>
+      <div class="row">
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password" [(ngModel)]="model.password" required>
+      </div>
+       
+      <div class="row">
+        <button type="submit" class="btn btn-primary btn-submit" (click)="login()">Submit</button>
+        <button type="submit" class="btn tertiary-btn forgot-password">Forgot Password ?</button>
+        <!-- <img  src="../../../../assets/ICS/loader.png" /> -->
+      </div>
+    </form>
+  </div>
+</div>

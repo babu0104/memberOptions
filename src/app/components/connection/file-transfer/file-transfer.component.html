@@ -1,0 +1,293 @@
+<p-accordionTab header="File Transfer 1">
+	<div class="subheadertitle col-xs-12">
+		<p-checkbox binary="true" class="col-md-12 accordionHeader" [(ngModel)]="ftNode1.vconSeq" (click)="fileNode1()"></p-checkbox>
+	</div>
+	<div [class.selected]="ftNode1.vconSeq == true">
+		<div class="form-group">
+			<label class="control-label col-md-2" for="">Input Layout:</label>
+			<div class="col-md-3">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode1.recLayoutIn" name="recLayoutIn1" #recLayoutIn1="ngModel" (ngModelChange)="ftValueChange(1)">
+					<option value="B">Batch</option>
+					<option value="O">Online</option>
+					<option value="V">VAIS</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="">Output Layout:</label>
+			<div class="col-md-3">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode1.recLayoutOut" name="recLayoutOut1" #recLayoutOut1="ngModel">
+					<option value="B">Batch</option>
+					<option value="O">Online</option>
+					<option value="V">VAIS</option>
+				</select>
+			</div>
+			<div class="checkbox-wrapper">
+				<p-checkbox binary="true" class="col-md-2" [(ngModel)]="ftNode1.confirmation" label="Confirmation"></p-checkbox>
+				<p-checkbox binary="true" class="col-md-2" [(ngModel)]="ftNode1.auditAdvice" label="Audit Advice"></p-checkbox>
+				<p-checkbox binary="true" class="col-md-2" [(ngModel)]="ftNode1.scheduledBatch" label="Scheduled Batch"></p-checkbox>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="">Output Format:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode1.recFormatOut" name="recFormatOut1" #recFormatOut1="ngModel">
+					<option value="F">Formatted</option>
+					<option value="U">Unformatted</option>
+				</select>
+			</div>
+			<label class="control-label col-md-2" for="">Nulls Flag:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode1.nullsFlag" name="nullsFlag1" #nullsFlag1="ngModel">
+					<option value="N">Nulls</option>
+					<option value="B">Blanks</option>
+				</select>
+			</div>
+			<label class="control-label col-md-2" for="">Process Flag:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode1.processFlag" name="processFlag1" #processFlag1="ngModel">
+					<option value="C">Cert</option>
+					<option value="B">Parallel</option>
+					<option value="P">Prod</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-md-2" for="Message">Message:</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="Message" placeholder="" maxlength="3" [(ngModel)]="ftNode1.messageCode" name="messagesCode1"
+				 #messagesCode1="ngModel">
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control" placeholder="" maxlength="72" [(ngModel)]="ftNode1.messageText" name="messageText1" #messageText1="ngModel">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="Description">Description:</label>
+			<div class="col-md-6">
+				<textarea rows="5" cols="30" pInputTextarea maxlength="40" [(ngModel)]="ftNode1.connectDesc" name="connectDesc1" #connectDesc1="ngModel"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<p-checkbox binary="true" class="col-md-offset-2 col-md-10" [(ngModel)]="ftNode1.piParamName" label="ICS" (click)="partners(ftNode1)"></p-checkbox>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2"></label>
+			<p-checkbox binary="true" class="col-md-4" [(ngModel)]="ftNode1.pbParamName" label="Partner B" (click)="partners(ftNode1)"></p-checkbox>
+			<label class="control-label col-md-2" for="">Identity Type:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode1.pbIdentityType" name="pbIdentityType1" #pbIdentityType1="ngModel">
+					<option value="B">Business</option>
+					<option value="C">Consumer</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2"></label>
+			<p-checkbox binary="true" class="col-md-4" [(ngModel)]="ftNode1.pcParamName" label="Partner C" (click)="partners(ftNode1)"></p-checkbox>
+			<label class="control-label col-md-2" for="">Identity Type:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode1.pcIdentityType" name="pcIdentityType1" #pcIdentityType1="ngModel">
+					<option value="B">Business</option>
+					<option value="C">Consumer</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</p-accordionTab>
+<p-accordionTab header="File Transfer 2">
+	<div class="subheadertitle col-xs-12">
+		<p-checkbox binary="true" class="col-md-12 accordionHeader" [(ngModel)]="ftNode2.vconSeq" (click)="fileNode2()"></p-checkbox>
+	</div>
+	<div [class.selected]="ftNode2.vconSeq == true">
+		<div class="form-group">
+			<label class="control-label col-md-2" for="">Input Layout:</label>
+			<div class="col-md-3">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode2.recLayoutIn" name="recLayoutIn2" #recLayoutIn2="ngModel" (ngModelChange)="ftValueChange(2)">
+					<option value="O">Online</option>
+					<option value="V">VAIS</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="">Output Layout:</label>
+			<div class="col-md-3">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode2.recLayoutOut" name="recLayoutOut2" #recLayoutOut2="ngModel">
+					<option value="B">Batch</option>
+					<option value="O">Online</option>
+					<option value="V">VAIS</option>
+				</select>
+			</div>
+			<div class="checkbox-wrapper">
+				<p-checkbox binary="true" class="col-md-2" [(ngModel)]="ftNode2.confirmation" label="Confirmation"></p-checkbox>
+				<p-checkbox binary="true" class="col-md-2" [(ngModel)]="ftNode2.auditAdvice" label="Audit Advice"></p-checkbox>
+				<p-checkbox binary="true" class="col-md-2" [(ngModel)]="ftNode2.scheduledBatch" label="Scheduled Batch"></p-checkbox>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="">Output Format:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode2.recFormatOut" name="recFormatOut2" #recFormatOut2="ngModel">
+					<option value="F">Formatted</option>
+					<option value="U">Unformatted</option>
+				</select>
+			</div>
+			<label class="control-label col-md-2" for="">Nulls Flag:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode2.nullsFlag" name="nullsFlag2" #nullsFlag2="ngModel">
+					<option value="N">Nulls</option>
+					<option value="B">Blanks</option>
+				</select>
+			</div>
+			<label class="control-label col-md-2" for="">Process Flag:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode2.processFlag" name="processFlag2" #processFlag2="ngModel">
+					<option value="C">Cert</option>
+					<option value="B">Parallel</option>
+					<option value="P">Prod</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-md-2" for="Message">Message:</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="Message" placeholder="" maxlength="3" [(ngModel)]="ftNode2.messageCode" name="messagesCode2"
+				 #messagesCode2="ngModel">
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control" placeholder="" maxlength="72" [(ngModel)]="ftNode2.messageText" name="messageText2" #messageText2="ngModel">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="Description">Description:</label>
+			<div class="col-md-6">
+				<textarea rows="5" cols="30" pInputTextarea maxlength="40" [(ngModel)]="ftNode2.connectDesc" name="connectDesc2" #connectDesc2="ngModel"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<p-checkbox binary="true" class="col-md-offset-2 col-md-10" [(ngModel)]="ftNode2.piParamName" label="ICS" (click)="partners(ftNode2)"></p-checkbox>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2"></label>
+			<p-checkbox binary="true" class="col-md-4" [(ngModel)]="ftNode2.pbParamName" label="Partner B" (click)="partners(ftNode2)"></p-checkbox>
+			<label class="control-label col-md-2" for="">Identity Type:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode2.pbIdentityType" name="pbIdentityType2" #pbIdentityType2="ngModel">
+					<option value="B">Business</option>
+					<option value="C">Consumer</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2"></label>
+			<p-checkbox binary="true" class="col-md-4" [(ngModel)]="ftNode2.pcParamName" label="Partner C" (click)="partners(ftNode2)"></p-checkbox>
+			<label class="control-label col-md-2" for="">Identity Type:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode2.pcIdentityType" name="pcIdentityType2" #pcIdentityType2="ngModel">
+					<option value="B">Business</option>
+					<option value="C">Consumer</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</p-accordionTab>
+<p-accordionTab header="File Transfer 3">
+	<div class="subheadertitle col-xs-12">
+		<p-checkbox binary="true" class="col-md-12 accordionHeader" [(ngModel)]="ftNode3.vconSeq" (click)="fileNode3()"></p-checkbox>
+	</div>
+	<div [class.selected]="ftNode3.vconSeq == true">
+		<div class="form-group">
+			<label class="control-label col-md-2" for="">Input Layout:</label>
+			<div class="col-md-3">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode3.recLayoutIn" name="recLayoutIn3" #recLayoutIn3="ngModel" (ngModelChange)="ftValueChange(3)">
+					<option value="B">Batch</option>
+					<option value="O">Online</option>
+					<option value="V">VAIS</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="">Output Layout:</label>
+			<div class="col-md-3">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode3.recLayoutOut" name="recLayoutOut3" #recLayoutOut3="ngModel">
+					<option value="B">Batch</option>
+					<option value="O">Online</option>
+					<option value="V">VAIS</option>
+				</select>
+			</div>
+			<div class="checkbox-wrapper">
+				<p-checkbox binary="true" class="col-md-2" [(ngModel)]="ftNode3.confirmation" label="Confirmation"></p-checkbox>
+				<p-checkbox binary="true" class="col-md-2" [(ngModel)]="ftNode3.auditAdvice" label="Audit Advice"></p-checkbox>
+				<p-checkbox binary="true" class="col-md-2" [(ngModel)]="ftNode3.scheduledBatch" label="Scheduled Batch"></p-checkbox>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="">Output Format:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode3.recFormatOut" name="recFormatOut3" #recFormatOut3="ngModel">
+					<option value="F">Formatted</option>
+					<option value="U">Unformatted</option>
+				</select>
+			</div>
+			<label class="control-label col-md-2" for="">Nulls Flag:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode3.nullsFlag" name="nullsFlag3" #nullsFlag3="ngModel">
+					<option value="N">Nulls</option>
+					<option value="B">Blanks</option>
+				</select>
+			</div>
+			<label class="control-label col-md-2" for="">Process Flag:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode3.processFlag" name="processFlag3" #processFlag3="ngModel">
+					<option value="C">Cert</option>
+					<option value="B">Parallel</option>
+					<option value="P">Prod</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-md-2" for="Message">Message:</label>
+			<div class="col-md-3">
+				<input type="text" class="form-control" id="Message" placeholder="" maxlength="3" [(ngModel)]="ftNode3.messageCode" name="messagesCode3"
+				 #messagesCode3="ngModel">
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control" placeholder="" maxlength="72" [(ngModel)]="ftNode3.messageText" name="messageText3" #messageText3="ngModel">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2" for="Description">Description:</label>
+			<div class="col-md-6">
+				<textarea rows="5" cols="30" pInputTextarea maxlength="40" [(ngModel)]="ftNode3.connectDesc" name="connectDesc3" #connectDesc3="ngModel"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<p-checkbox binary="true" class="col-md-offset-2 col-md-10" [(ngModel)]="ftNode3.piParamName" label="ICS" (click)="partners(ftNode3)"></p-checkbox>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2"></label>
+			<p-checkbox binary="true" class="col-md-4" [(ngModel)]="ftNode3.pbParamName" label="Partner B" (click)="partners(ftNode3)"></p-checkbox>
+			<label class="control-label col-md-2" for="">Identity Type:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode3.pbIdentityType" name="pbIdentityType3" #pbIdentityType3="ngModel">
+					<option value="B">Business</option>
+					<option value="C">Consumer</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2"></label>
+			<p-checkbox binary="true" class="col-md-4" [(ngModel)]="ftNode3.pcParamName" label="Partner C" (click)="partners(ftNode3)"></p-checkbox>
+			<label class="control-label col-md-2" for="">Identity Type:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap"  [(ngModel)]="ftNode3.pcIdentityType" name="pcIdentityType3" #pcIdentityType3="ngModel">
+					<option value="B">Business</option>
+					<option value="C">Consumer</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</p-accordionTab>

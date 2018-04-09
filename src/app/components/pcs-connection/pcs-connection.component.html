@@ -1,0 +1,176 @@
+<div>
+	<p-growl sticky="true" [(value)]="msgs"></p-growl>
+</div>
+<form (ngSubmit)="onSubmit(pcsConnectionsForm.value)" #pcsConnectionsForm="ngForm" autocomplete="off">
+	<div class="form-horizontal connection">
+		<div class="form-group">
+			<div class="row">
+				<label class="control-label col-md-2" for="hbin">BIN:</label>
+				<div class="col-md-2">
+					<input type="text" class="form-control" maxlength="6" minlength="6" id="cbin" placeholder="" required [(ngModel)]="connections.bin"
+					 name="bin" #bin="ngModel">
+					<div *ngIf="bin.invalid && (bin.dirty || bin.touched)">
+						<div *ngIf="bin.errors.required" class="text-danger errtext">
+							BIN is required.
+						</div>
+					</div>
+				</div>
+				<label class="control-label col-md-2" for="bid">Contact:</label>
+			</div>
+			<div class="row">
+				<label class="control-label col-md-2">Prepaid Options:</label>
+				<!-- <span class="label-value col-md-2 text-left">ICSP</span> -->
+			</div>
+			<div class="text-right">
+				<button type="button" class="btn btn-primary marginRight15" [disabled]="bin.invalid" (click)="fetchConnections(connections.bin)">Retrieve</button>
+			</div>
+		</div>
+		<div class="retrieve-data">
+			<div class="accordionStyle">
+				<p-accordion [multiple]="true">
+					<p-accordionTab header="File Transfer 1">
+						<div class="subheadertitle col-xs-12">
+							<p-checkbox binary="true" class="col-md-12 accordionHeader" [(ngModel)]="ftNode1.vconSeq" name="vconSeq"></p-checkbox>
+						</div>
+						<div [class.selected]="ftNode1.vconSeq == true">
+							<div class="row">
+								<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="ftNode1.confirmation" name="confirmation" label="Confirmation"
+								 (ngModelChange)="ftValueChange(1)"></p-checkbox>
+							</div>
+							<div class="row">
+								<label class="control-label col-md-2" for="Message">Message:</label>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="Message" placeholder="" maxlength="4" [(ngModel)]="ftNode1.messageCode" name="messageCode"
+									 #messageCode="ngModel">
+								</div>
+								<div class="col-md-5">
+									<input type="text" class="form-control" placeholder="" maxlength="72" [(ngModel)]="ftNode1.messageText" name="messageText"
+									 #messageText="ngModel">
+								</div>
+							</div>
+							<div class="row">
+								<label class="control-label col-md-2" for="Description">Description:</label>
+								<div class="col-md-5">
+									<textarea rows="5" cols="30" pInputTextarea maxlength="40" [(ngModel)]="ftNode1.connectDesc" name="connectDesc1" #connectDesc1="ngModel"></textarea>
+								</div>
+							</div>
+						</div>
+					</p-accordionTab>
+					<p-accordionTab header="Online Interactive 1">
+						<div class="subheadertitle col-xs-12">
+							<p-checkbox binary="true" class="col-md-12 accordionHeader" [(ngModel)]="oiNode1.vconSeq" name="vconSeq1" (ngModelChange)="oiSeqCheck()"></p-checkbox>
+						</div>
+						<div [class.selected]="oiNode1.vconSeq == true">
+							<div class="row">
+								<label class="control-label col-md-2" for="Description">Net Name:</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control" id="name" placeholder="" maxlength="7" [(ngModel)]="oiNode1.netName" name="netName"
+									 #netName="ngModel" maxlength="7" (ngModelChange)="oiValueChange(1)">
+								</div>
+							</div>
+							<div class="row">
+								<label class="control-label col-md-2" for="Description">Description:</label>
+								<div class="col-md-5">
+									<textarea rows="5" cols="30" pInputTextarea [(ngModel)]="oiNode1.connectDesc" maxlength="40" name="connectDesc2" #connectDesc2="ngModel"></textarea>
+								</div>
+							</div>
+							<div class="row">
+								<!-- <p-checkbox binary="true" class="col-md-10 col-md-offset-2 marginTop15" [(ngModel)]="oiNode1.piParamName" name="piParamName" label="ICSP"></p-checkbox> -->
+								<p-checkbox binary="true" class="col-md-10 col-md-offset-2 marginTop15" [class.pcsCheck]="oiNode1.vconSeq == true" [disabled]="oiNode1.vconSeq == true" [(ngModel)]="oiNode1.ppParamName"
+								 name="ppParamName" label="PCS"></p-checkbox>
+							</div>
+							<div class="row">
+								<p-checkbox binary="true" class="col-md-3 col-md-offset-2 identity-checkbox" [(ngModel)]="oiNode1.pdParamName" name="pdParamName"
+								 label="IDA Score Plus"></p-checkbox>
+								<label class="control-label col-md-2">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" [(ngModel)]="oiNode1.pdIdentityType" name="pdIdentityType1" #pdIdentityType1="ngModel">
+										<option value="default">Select</option>
+										<option value="B">Business</option>
+										<option value="C">Consumer</option>
+									</select>
+								</div>
+								<label class="control-label col-md-1">Product:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" [(ngModel)]="oiNode1.pdProduct" name="pdProduct" #dnProduct="ngModel">
+										<option value="default"></option>
+										<option value="1">a</option>
+										<option value="2">b</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox binary="true" class="col-md-3 col-md-offset-2" [(ngModel)]="oiNode1.psParamName" name="psParamName" label="IDA Score"></p-checkbox>
+								<label class="control-label col-md-2">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" [(ngModel)]="oiNode1.psIdentityType" name="psIdentityType1" #psIdentityType1="ngModel">
+										<option value="default">Select</option>
+										<option value="B">Business</option>
+										<option value="C">Consumer</option>
+									</select>
+								</div>
+								<label class="control-label col-md-1">Product:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" [(ngModel)]="oiNode1.psProduct" name="psProduct" #psProduct="ngModel">
+										<option value="default"></option>
+										<option value="1">a</option>
+										<option value="2">b</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox binary="true" class="col-md-3 col-md-offset-2" [(ngModel)]="oiNode1.poParamName" name="poParamName" label="IDA Credit Optics"></p-checkbox>
+								<label class="control-label col-md-2">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" [(ngModel)]="oiNode1.poIdentityType" name="poIdentityType" #poIdentityType="ngModel">
+										<option value="default">Select</option>
+										<option value="B">Business</option>
+										<option value="C">Consumer</option>
+									</select>
+								</div>
+								<label class="control-label col-md-1">Product:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" [(ngModel)]="oiNode1.poProduct" name="poProduct" #poProduct="ngModel">
+										<option value="default"></option>
+										<option value="1">a</option>
+										<option value="2">b</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<p-checkbox binary="true" class="col-md-3 col-md-offset-2" [(ngModel)]="oiNode1.pnParamName" name="pnParamName" label="IDA Score Action"></p-checkbox>
+								<label class="control-label col-md-2">Identity Type:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" [(ngModel)]="oiNode1.pnIdentityType" name="pnIdentityType" #pnIdentityType="ngModel">
+										<option value="default">Select</option>
+										<option value="B">Business</option>
+										<option value="C">Consumer</option>
+									</select>
+								</div>
+								<label class="control-label col-md-1">Product:</label>
+								<div class="col-md-2">
+									<select class="form-control fix-overlap" [(ngModel)]="oiNode1.pnProduct" name="pnProduct" #pnProduct="ngModel">
+										<option value="default"></option>
+										<option value="1">a</option>
+										<option value="2">b</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</p-accordionTab>
+				</p-accordion>
+			</div>
+			<div class="form-group pull-right margin10">
+				<button type="submit" class="btn btn-primary" [disabled]="!pcsConnectionsForm.form.valid">Save</button>
+				<button type="button" class="btn btn-default">Cancel</button>
+			</div>
+		</div>
+		<p-dialog [(visible)]="display" modal="modal" width="300">
+			<p class="text-center">{{binErrMsg}}</p>
+			<p class="text-center">{{binRelatedMsg}}</p>
+			<p-footer>
+				<button type="button" pButton (click)="display=false" label="Close"></button>
+			</p-footer>
+		</p-dialog>
+	</div>
+</form>

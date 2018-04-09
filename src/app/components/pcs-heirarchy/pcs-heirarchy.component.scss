@@ -1,0 +1,41 @@
+.hierarchy-data{
+    display: none;
+}
+.hierarchy-data.show{
+    display: block;
+}
+.fa-trash-o {
+    font-size: 25px;
+    background: #337ab7;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 4px;
+}
+.fa-arrow-up, .fa-arrow-down {
+    cursor: pointer;
+}
+
+.ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td{
+    border-width:0;
+}
+.ui-datatable th a,.ui-datatable th a:hover,.ui-datatable th a:active{
+    color:#fff;
+    text-decoration:none;
+}
+.ui-accordion .ui-accordion-content{
+    position:relative;
+}
+.loader{
+    position: absolute;
+    top: 130px;
+    left: 50%;
+}
+.ranking-info{
+    height: 360px;
+}
+.search-container{
+    margin: 7px 0 17px 0;
+}
+.rankingAll label{
+    margin-bottom: 0px;
+}

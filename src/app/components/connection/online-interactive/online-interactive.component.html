@@ -1,0 +1,277 @@
+<p-accordionTab header="Online Interactive 1">
+	<div class="subheadertitle col-xs-12">
+		<p-checkbox binary="true" class="col-md-12 accordionHeader" [(ngModel)]="oiNode1.vconSeq" name="vconSeq1" (click)="onlineIntNode1()"></p-checkbox>
+	</div>
+	<div class="form-group">
+		<div [class.selected]="oiNode1.vconSeq == true">
+			<div class="row">
+				<label class="control-label col-md-2" for="name">Net Name:</label>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="name" placeholder="" maxlength="7" [(ngModel)]="oiNode1.netName" name="netName1" #netName1="ngModel" (ngModelChange)="oiValueChange(1)">
+				</div>
+				<p-checkbox name="groupname" value="vais1" class="col-md-2 col-md-offset-3" [(ngModel)]="oiNode1.vaisInd" name="vaisInd1" label="VAIS Layout Input"></p-checkbox>
+			</div>
+			<div class="row">
+				<label class="control-label col-md-2" for="Description">Description:</label>
+				<div class="col-md-6">
+					<textarea rows="5" cols="30" pInputTextarea maxlength="40" [(ngModel)]="oiNode1.connectDesc" name="connectDesc1" #connectDesc1="ngModel"></textarea>
+				</div>
+				<label class="control-label col-md-2" for="">Process Flag:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode1.processFlag" name="processFlag1" #processFlag1="ngModel">					
+						<option value="C">Cert</option>
+						<option value="B">Parallel</option>
+						<option value="P">Prod</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-offset-2 col-md-10" [(ngModel)]="oiNode1.piParamName" name="piParamName1" label="ICS" (click)="partners(oiNode1)"></p-checkbox>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode1.paParamName" name="paParamName1" label="Partner A" (click)="partners(oiNode1)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Option:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode1.paOption" name="paOption1" #paOption1="ngModel">						
+						<option value="F">Fraud(Fraud Intelligence only)</option>
+						<option value="Q">Qualify(DebitReport only)</option>
+						<option value="B">Both(Fraud Intelligence and DebitReport)</option>
+					</select>
+				</div>
+				<label class="control-label col-md-2" for="">Customer Number:</label>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="custNo" placeholder="" maxlength="50" [(ngModel)]="oiNode1.paCustomerNumber" name="customerNumber1"
+					 #customerNumber1="ngModel" [required] = "oiNode1.paParamName == true">
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode1.pbParamName" name="pbParamName1" label="Partner B" (click)="partners(oiNode1)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Identity Type:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode1.pbIdentityType" name="pbIdentityType1" #pbIdentityType1="ngModel">					
+						<option value="B">Business</option>
+						<option value="C">Consumer</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode1.pcParamName" name="pcParamName1" label="Partner C" (click)="partners(oiNode1)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Identity Type:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode1.pcIdentityType" name="pcIdentityType1" #pcIdentityType1="ngModel">
+						<option value="B">Business</option>
+						<option value="C">Consumer</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</p-accordionTab>
+<p-accordionTab header="Online Interactive 2">
+	<div class="subheadertitle col-xs-12">
+		<p-checkbox binary="true" class="col-md-12 accordionHeader" [(ngModel)]="oiNode2.vconSeq" name="vconSeq2" (click)="onlineIntNode2()"></p-checkbox>
+	</div>
+	<div class="form-group">
+		<div [class.selected]="oiNode2.vconSeq == true">
+			<div class="row">
+				<label class="control-label col-md-2" for="name">Net Name:</label>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="name" placeholder="" maxlength="7" [(ngModel)]="oiNode2.netName" name="netName2" #netName2="ngModel" (ngModelChange)="oiValueChange(2)">
+				</div>
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-3" [(ngModel)]="oiNode2.vaisInd" name="vaisInd2" label="VAIS Layout Input"></p-checkbox>
+			</div>
+			<div class="row">
+				<label class="control-label col-md-2" for="Description">Description:</label>
+				<div class="col-md-6">
+					<textarea rows="5" cols="30" pInputTextarea maxlength="40" [(ngModel)]="oiNode2.connectDesc" name="connectDes2" #connectDes2="ngModel"></textarea>
+				</div>
+				<label class="control-label col-md-2" for="">Process Flag:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode2.processFlag" name="processFlag2" #processFlag2="ngModel">						
+						<option value="C">Cert</option>
+						<option value="B">Parallel</option>
+						<option value="P">Prod</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-offset-2 col-md-10" [(ngModel)]="oiNode2.piParamName" name="piParamName2" label="ICS" (click)="partners(oiNode2)"></p-checkbox>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode2.paParamName" name="paParamName2" label="Partner A" (click)="partners(oiNode2)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Option:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode2.paOption" name="paOption2" #paOption2="ngModel">						
+						<option value="F">Fraud(Fraud Intelligence only)</option>
+						<option value="Q">Qualify(DebitReport only)</option>
+						<option value="B">Both(Fraud Intelligence and DebitReport)</option>
+					</select>
+				</div>
+				<label class="control-label col-md-2" for="">Customer Number:</label>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="custNo" placeholder="" maxlength="50" [(ngModel)]="oiNode2.paCustomerNumber" name="customerNumber2"
+					 #customerNumber2="ngModel" [required] = "oiNode2.paParamName == true">
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode2.pbParamName" name="pbParamName2" label="Partner B" (click)="partners(oiNode2)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Identity Type:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode2.pbIdentityType" name="pbIdentityType2" #pbIdentityType2="ngModel">						
+						<option value="B">Business</option>
+						<option value="C">Consumer</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode2.pcParamName" name="pcParamName2" label="Partner C" (click)="partners(oiNode2)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Identity Type:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode2.pcIdentityType" name="pcIdentityType2" #pcIdentityType2="ngModel">						
+						<option value="B">Business</option>
+						<option value="C">Consumer</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</p-accordionTab>
+<p-accordionTab header="Online Interactive 3">
+	<div class="subheadertitle col-xs-12">
+		<p-checkbox binary="true" class="col-md-12 accordionHeader" [(ngModel)]="oiNode3.vconSeq" name="vconSeq3" (click)="onlineIntNode3()"></p-checkbox>
+	</div>
+	<div class="form-group">
+		<div [class.selected]="oiNode3.vconSeq == true">
+			<div class="row">
+				<label class="control-label col-md-2" for="name">Net Name:</label>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="name" placeholder="" maxlength="7" [(ngModel)]="oiNode3.netName" name="netName3" #netName3="ngModel" (ngModelChange)="oiValueChange(3)">
+				</div>
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-3" [(ngModel)]="oiNode3.vaisInd" name="vaisInd3" label="VAIS Layout Input"></p-checkbox>
+			</div>
+			<div class="row">
+				<label class="control-label col-md-2" for="Description">Description:</label>
+				<div class="col-md-6">
+					<textarea rows="5" cols="30" pInputTextarea maxlength="40" [(ngModel)]="oiNode3.connectDesc" name="connectDesc3" #connectDesc3="ngModel"></textarea>
+				</div>
+				<label class="control-label col-md-2" for="">Process Flag:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode3.processFlag" name="processFlag3" #processFlag3="ngModel">					
+						<option value="C">Cert</option>
+						<option value="B">Parallel</option>
+						<option value="P">Prod</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-offset-2 col-md-10" [(ngModel)]="oiNode3.piParamName" name="piParamName3" label="ICS" (click)="partners(oiNode3)"></p-checkbox>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode3.paParamName" name="paParamName3" label="Partner A" (click)="partners(oiNode3)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Option:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode3.paOption" name="paOption3" #paOption3="ngModel">					
+						<option value="F">Fraud(Fraud Intelligence only)</option>
+						<option value="Q">Qualify(DebitReport only)</option>
+						<option value="B">Both(Fraud Intelligence and DebitReport)</option>
+					</select>
+				</div>
+				<label class="control-label col-md-2" for="">Customer Number:</label>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="custNo" placeholder="" maxlength="50" [(ngModel)]="oiNode3.paCustomerNumber" name="customerNumber3"
+					 #customerNumber3="ngModel" [required] = "oiNode3.paParamName == true">
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode3.pbParamName" name="pbParamName3" label="Partner B" (click)="partners(oiNode3)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Identity Type:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode3.pbIdentityType" name="pbIdentityType3" #pbIdentityType3="ngModel">						
+						<option value="B">Business</option>
+						<option value="C">Consumer</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode3.pcParamName" name="pcParamName3" label="Partner C" (click)="partners(oiNode3)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Identity Type:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode3.pcIdentityType" name="pcIdentityType3" #pcIdentityType3="ngModel">						
+						<option value="B">Business</option>
+						<option value="C">Consumer</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</p-accordionTab>
+<p-accordionTab header="Online Interactive 4">
+	<div class="subheadertitle col-xs-12">
+		<p-checkbox binary="true" class="col-md-12 accordionHeader" [(ngModel)]="oiNode4.vconSeq" name="vconSeq4" (click)="onlineIntNode4()"></p-checkbox>
+	</div>
+	<div class="form-group">
+		<div [class.selected]="oiNode4.vconSeq == true">
+
+			<div class="row">
+				<label class="control-label col-md-2" for="name">Net Name:</label>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="name" placeholder="" maxlength="7" [(ngModel)]="oiNode4.netName" name="netName4" #netName4="ngModel" (ngModelChange)="oiValueChange(4)">
+				</div>
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-3" [(ngModel)]="oiNode4.vaisInd" name="vaisInd4" label="VAIS Layout Input"></p-checkbox>
+			</div>
+			<div class="row">
+				<label class="control-label col-md-2" for="Description">Description:</label>
+				<div class="col-md-6">
+					<textarea rows="5" cols="30" pInputTextarea maxlength="40" [(ngModel)]="oiNode4.connectDesc" name="connectDesc4" #connectDesc4="ngModel"></textarea>
+				</div>
+				<label class="control-label col-md-2" for="">Process Flag:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode4.processFlag" name="processFlag4" #processFlag4="ngModel">						
+						<option value="C">Cert</option>
+						<option value="B">Parallel</option>
+						<option value="P">Prod</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-offset-2 col-md-10" [(ngModel)]="oiNode4.piParamName" name="piParamName4" label="ICS" (click)="partners(oiNode4)"></p-checkbox>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode4.paParamName" name="paParamName4" label="Partner A" (click)="partners(oiNode4)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Option:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode4.paOption" name="paOption4" #paOption4="ngModel">						
+						<option value="F">Fraud(Fraud Intelligence only)</option>
+						<option value="Q">Qualify(DebitReport only)</option>
+						<option value="B">Both(Fraud Intelligence and DebitReport)</option>
+					</select>
+				</div>
+				<label class="control-label col-md-2" for="">Customer Number:</label>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="custNo" placeholder="" maxlength="50" [(ngModel)]="oiNode4.paCustomerNumber" name="customerNumber4"
+					 #customerNumber4="ngModel" [required] = "oiNode4.paParamName == true">
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode4.pbParamName" name="pbParamName4" label="Partner B" (click)="partners(oiNode4)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Identity Type:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode4.pbIdentityType" name="pbIdentityType4" #pbIdentityType4="ngModel">						
+						<option value="B">Business</option>
+						<option value="C">Consumer</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<p-checkbox binary="true" class="col-md-2 col-md-offset-2" [(ngModel)]="oiNode4.pcParamName" name="pcParamName4" label="Partner C" (click)="partners(oiNode4)"></p-checkbox>
+				<label class="control-label col-md-2" for="">Identity Type:</label>
+				<div class="col-md-2">
+					<select class="form-control fix-overlap" [(ngModel)]="oiNode4.pcIdentityType" name="pcIdentityType4" #pcIdentityType4="ngModel">						
+						<option value="B">Business</option>
+						<option value="C">Consumer</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</p-accordionTab>

@@ -1,0 +1,288 @@
+<div>
+	<p-growl sticky="true" [(value)]="msgs"></p-growl>
+</div>
+<form (ngSubmit)="onSubmit(fileReportForm)" #fileReportForm="ngForm" autocomplete="off">
+	<div class="form-horizontal main-container">
+		<div class="row">
+			<label class="control-label col-md-1" for="businessId">BIN:</label>
+			<div class="col-md-2">
+				<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" [(ngModel)]="fileReport.icaBin" name="icaBin" #icaBin="ngModel"
+				 maxlength="6" minlength="6" (focusout)="fetchProjects(fileReport.icaBin)" required>
+				<div *ngIf="icaBin.invalid && (icaBin.dirty || icaBin.touched)">
+					<div *ngIf="icaBin.errors.minlength || icaBin.errors.pattern" class="text-danger errtext">
+						Invalid Value
+					</div>
+				</div>
+			</div>
+			<label class="control-label col-md-2" for="cbid">Project:</label>
+			<p-autoComplete name="projectNum" [(ngModel)]="fileReport.projectNum" [suggestions]="filteredProjects" (completeMethod)="filterProjects($event)"
+			 [size]="30" [maxlength]="8" placeholder="Enter Project" [dropdown]="true" class="col-xs-2" OnlyNumber="true" (ngModelChange)="checkCriteriaLevel()"
+			 required>
+				<ng-template let-project pTemplate="item">
+					<div class="ui-helper-clearfix">
+						<div>{{project}}</div>
+					</div>
+				</ng-template>
+			</p-autoComplete>
+			<!-- <div class="col-md-3">
+			<div *ngIf="icabin.invalid && (icabin.dirty || icabin.touched)">
+				<div *ngIf="icabin.errors.minlength || icabin.errors.pattern" class="text-danger errtext">
+					Invalid Value
+				</div>
+			</div>
+		</div> -->
+		</div>
+		<div class="row">
+			<label class="control-label col-md-1" for="mso">MSO:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap" id="mso" name="mso" [(ngModel)]="fileReport.mso" #mso="ngModel" required>
+					<option *ngFor="let mso of msos" [value]="mso">{{mso}}</option>
+				</select>
+			</div>
+			<label class="control-label col-md-2">Criteria Level:</label>
+			<div class="col-xs-2">
+				<select class="form-control fix-overlap" name="criteriaLevel" [(ngModel)]="fileReport.criteriaLevel" #criteriaLevel="ngModel"
+				 required>
+					<option value="A">A</option>
+					<option value="B">B</option>
+					<option value="C">C</option>
+					<option value="D">D</option>
+				</select>
+			</div>
+			<button type="button" class="btn btn-primary pull-right marginRight15" (click)="fetchFileReports(fileReport.icaBin, fileReport.projectNum, fileReport.mso, fileReport.criteriaLevel)">Retrieve</button>
+		</div>
+		<div class="accordionStyle">
+			<p-accordion [multiple]="true">
+				<p-accordionTab header="Prescreen Contact Information" [selected]="true">
+					<div class="row">
+						<label class="control-label col-md-2">Member Name:</label>
+						<span class="col-md-4 label-value">{{contactInfo.mbrName}}</span>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="mbrContact">Contact:</label>
+						<div class="col-md-3">
+							<input type="text" pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$" class="form-control" maxlength="150" id="mbrContact" name="mbrContact"
+							 [(ngModel)]="contactInfo.mbrContact" #mbrContact="ngModel" required>
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="mbrAddr1">Address:</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control" maxlength="40" id="mbrAddr1" name="mbrAddr1" [(ngModel)]="contactInfo.mbrAddr1" #mbrAddr1="ngModel"
+							 required>
+						</div>
+						<div class="col-md-5">
+							<input type="text" class="form-control" maxlength="40" name="mbrAddr2" [(ngModel)]="contactInfo.mbrAddr2" #mbrAddr2="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="mbrCity">City:</label>
+						<div class="col-md-3">
+							<input type="text" class="form-control" maxlength="28" id="mbrCity" name="mbrCity" [(ngModel)]="contactInfo.mbrCity" #mbrCity="ngModel"
+							 required>
+						</div>
+						<label class="control-label col-md-2" for="mbrState">State:</label>
+						<div class="col-md-2">
+							<select class="form-control fix-overlap" id="mbrState" name="mbrState" [(ngModel)]="contactInfo.mbrState" #mbrState="ngModel"
+							 required>
+								<option *ngFor='let state of listOfStates' value="{{state}}">{{state}}</option>
+							</select>
+						</div>
+						<label class="control-label col-md-1" for="mbrZipCode">ZIP+4:</label>
+						<div class="col-md-2">
+							<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" maxlength="9" minlength="5" (blur)="setZip(mbrZipCode.value)"
+							 id="mbrZipCode" name="mbrZipCode" [(ngModel)]="contactInfo.mbrZipCode" #mbrZipCode="ngModel" required>
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="mbrphone">Phone:</label>
+						<div class="col-md-3">
+							<p-inputMask mask="(999) 999-9999" unmask="true" styleClass="form-control" id="mbrphone" name="mbrphone" [(ngModel)]="contactInfo.mbrphone"
+							 #mbrphone="ngModel" id="mbrphone" placeholder="(XXX) XXX-XXXX"></p-inputMask>
+							<div *ngIf="mbrphone.invalid && (mbrphone.dirty || mbrphone.touched)">
+								Invalid phone number
+							</div>
+						</div>
+						<label class="control-label col-md-2" for="mbrFax">Fax:</label>
+						<div class="col-md-2">
+							<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" id="mbrFax" name="mbrFax" (blur)="bopmfaxno(pmBoFax.value)"
+							 maxlength="10" minlength="7" [(ngModel)]="contactInfo.mbrFax" #mbrFax="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="mbrEmail">Email:</label>
+						<div class="col-md-3">
+							<input type="email" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" maxlength="50" id="mbrEmail"
+							 name="mbrEmail" [(ngModel)]="contactInfo.mbrEmail" #mbrEmail="ngModel">
+							<div *ngIf="mbrEmail.invalid && (mbrEmail.dirty || mbrEmail.touched)">
+								<div *ngIf="mbrEmail.errors.pattern" class="text-danger errtext">
+									Email format should be
+									<small>
+										<b>joe@abc.com</b>
+									</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="List Proccessor Information">
+					<div class="row">
+						<label class="control-label col-md-2">Member Name:</label>
+						<span class="col-md-4 label-value"> {{fileReport.iprocName}} </span>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="iprocContactName">Contact:</label>
+						<div class="col-md-3">
+							<input type="text" pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$" class="form-control" maxlength="150" id="iprocContactName" name="iprocContactName"
+							 [(ngModel)]="fileReport.iprocContactName" #iprocContactName="ngModel" required>
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="iprocAddr1">Address:</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control" maxlength="40" id="iprocAddr1" name="iprocAddr1" [(ngModel)]="fileReport.iprocAddr1"
+							 #iprocAddr1="ngModel" required>
+						</div>
+						<div class="col-md-5">
+							<input type="text" class="form-control" maxlength="40" name="iprocAddr2" [(ngModel)]="fileReport.iprocAddr2" #iprocAddr2="ngModel"
+							 required>
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="iprocCity">City:</label>
+						<div class="col-md-3">
+							<input type="text" class="form-control" maxlength="28" id="iprocCity" name="iprocCity" [(ngModel)]="fileReport.iprocCity"
+							 #iprocCity="ngModel" required>
+						</div>
+						<label class="control-label col-md-2" for="iprocState">State:</label>
+						<div class="col-md-2">
+							<select class="form-control fix-overlap" id="iprocState" name="iprocState" [(ngModel)]="fileReport.iprocState" #iprocState="ngModel"
+							 required>
+								<option *ngFor='let state of listOfStates' value="{{state}}">{{state}}</option>
+							</select>
+						</div>
+						<label class="control-label col-md-1" for="iprocZipCode">ZIP+4:</label>
+						<div class="col-md-2">
+							<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" maxlength="9" id="iprocZipCode" name="iprocZipCode"
+							 minlength="5" (blur)="setZip(mbrZipCode.value)" [(ngModel)]="fileReport.iprocZipCode" #iprocZipCode="ngModel" required>
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="iprocPhone">Phone:</label>
+						<div class="col-md-3">
+							<p-inputMask mask="(999) 999-9999" unmask="true" styleClass="form-control" id="iprocPhone" name="iprocPhone" [(ngModel)]="fileReport.iprocPhone"
+							 #iprocPhone="ngModel" placeholder="(XXX) XXX-XXXX"></p-inputMask>
+							<div *ngIf="iprocPhone.invalid && (iprocPhone.dirty || iprocPhone.touched)">
+								Invalid phone number
+							</div>
+						</div>
+						<label class="control-label col-md-2" for="iprocFax">Fax:</label>
+						<div class="col-md-2">
+							<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" class="form-control" id="iprocFax" name="iprocFax" (blur)="bopmfaxno(pmBoFax.value)"
+							 maxlength="10" minlength="7" [(ngModel)]="fileReport.iprocFax" #iprocFax="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2" for="iprocEmail">Email:</label>
+						<div class="col-md-3">
+							<input type="email" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" maxlength="50" id="iprocEmail"
+							 name="iprocEmail" [(ngModel)]="fileReport.iprocEmail" #iprocEmail="ngModel">
+							<div *ngIf="iprocEmail.invalid && (iprocEmail.dirty || iprocEmail.touched)">
+								<div *ngIf="iprocEmail.errors.pattern" class="text-danger errtext">
+									Email format should be
+									<small>
+										<b>joe@abc.com</b>
+									</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="Prescreen Status">
+					<div class="row">
+						<label class="control-label col-md-2">Status:</label>
+						<div class="col-md-2">
+							<select class="form-control fix-overlap" [ngClass]="(invalidStatus)?'invalid-field':''" name="" required name="approvalStatus"
+							 [(ngModel)]="fileReport.approvalStatus" #approvalStatus="ngModel" (ngModelChange)="selectStatus($event)">
+								<option value="INPROG">IN Progress</option>
+								<option value="CRITAPRV">Criteria Approved</option>
+								<option value="RPTGEN">Reports Generated</option>
+								<option value="RPTAPRV">Reports Approved</option>
+								<option value="FILEGEN">Files Generated</option>
+								<option value="RECURR">Recurring</option>
+								<option value="CANCEL">Canceled</option>
+							</select>
+						</div>
+						<label class="control-label col-md-3">Recurring Date of Month(01-31):</label>
+						<div class="col-md-2">
+							<input type="text" class="form-control" name="recurringStartDate" [(ngModel)]="fileReport.recurringStartDate" #recurringStartDate="ngModel"
+							 OnlyNumber="true" [required]="recurringStartDateMandatory" />
+						</div>
+
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="Reports Selection">
+					<div class="row">
+						<label class="control-label col-md-2">Audit/Report Date:</label>
+						<div class="col-md-3">
+							<p-calendar name="auditReport" readonlyInput="true" [(ngModel)]="fileReport.auditReport" #auditReport="ngModel" [showIcon]="true"
+							 (ngModelChange)="selectAuditReport()"></p-calendar>
+						</div>
+						<div class="col-md-3">
+							<strong *ngIf="invalidAuditReport" style="color: #d45963">Audit/Report Date should be minimum 2 days ahead of current date</strong>
+						</div>
+					</div>
+					<div class="row">
+						<p-checkbox binary="true" (ngModelChange)="updateMatchBackAuditReport()" name="matchBackAuditReport" [(ngModel)]="fileReport.matchBackAuditReport"
+						 label="Matchback Audit Report" class="col-xs-3" required></p-checkbox>
+						<p-checkbox binary="true" name="activityReport" [(ngModel)]="fileReport.activityReport" label="Prescreen Activity Report"
+						 class="col-xs-3"></p-checkbox>
+						<p-checkbox binary="true" (ngModelChange)="updateFileOuputReport()" name="fileOuputReport" [(ngModel)]="fileReport.fileOuputReport"
+						 label="Prescreen File Output Report" class="col-xs-4" required="(fileReport.fileOuputReport == false)"></p-checkbox>
+					</div>
+				</p-accordionTab>
+				<p-accordionTab header="Suppression File">
+					<div class="row">
+						<label class="control-label col-md-2">Format:</label>
+						<div class="col-md-2">
+							<select class="form-control fix-overlap" required name="superFileFmt" [(ngModel)]="fileReport.superFileFmt" #superFileFmt="ngModel"
+							 required>
+								<option value="1">Format 1- Combined File</option>
+								<option value="2">Format 2- Multiple Criteria Files</option>
+								<option value="3">Format 3- Single Files</option>
+							</select>
+						</div>
+						<label class="control-label col-md-2">Media:</label>
+						<p-radioButton name="media" value="1" [(ngModel)]="fileReport.media" label="Cartridge" class="col-xs-2 media" (onClick)="checkFiletransfer()"></p-radioButton>
+						<p-radioButton name="media" value="0" [(ngModel)]="fileReport.media" label="File Transfer" class="pull-left media" (onClick)="checkFiletransfer()"></p-radioButton>
+						<div class="col-md-2">
+							<input type="text" class="form-control" name="fileTransferIp" [(ngModel)]="fileReport.fileTransferIp" #fileTransferIp="ngModel"
+							 [required]="fileTransferChecked">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2">Mask SSN:</label>
+						<div class="col-md-2">
+							<select class="form-control fix-overlap" required name="maskSsn" [(ngModel)]="fileReport.maskSsn" #maskSsn="ngModel" required>
+								<option value="Y">Yes</option>
+								<option value="N">No</option>
+							</select>
+						</div>
+						<label class="control-label col-md-2">File Delivery Date:</label>
+						<div class="col-md-2">
+							<p-calendar name="fileDelivery" readonlyInput="true" [(ngModel)]="fileReport.fileDelivery" #fileDelivery="ngModel" [showIcon]="true"
+							 (ngModelChange)="selectFileDelivery()" required></p-calendar>
+						</div>
+						<div class="col-md-3">
+							<strong *ngIf="invalidFileDelivery" style="color: #d45963">File Delivery should be minimum 5 days ahead of current date</strong>
+						</div>
+					</div>
+				</p-accordionTab>
+			</p-accordion>
+		</div>
+		<div class="row text-right margin15">
+			<button type="submit" class="btn btn-primary" [disabled]="(!fileReportForm.form.valid || matchBackAuditReportUnchecked || fileOuputReportUnchecked || invalidAuditReport || invalidFileDelivery || invalidStatus || (fileReport.media === undefined))">Save</button>
+			<button type="submit" class="btn btn-default">Reset</button>
+		</div>
+	</div>
+</form>

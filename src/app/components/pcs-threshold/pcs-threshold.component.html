@@ -1,0 +1,555 @@
+<!-- <form  (ngSubmit)="onSubmit(alertsinvalidsForm.value)" #alertsinvalidsForm="ngForm" autocomplete="off"> -->
+  <div>
+    <p-growl [(value)]="msgs"></p-growl>
+  </div>
+  <div class="form-horizontal main-container pcs-threshold">
+    <div class="form-group">
+      <div class="row">
+        <label class="control-label col-md-3" for="pcsbin" name="icaBin">BIN:</label>
+        <div class="col-md-2">
+          <input type="text" maxlength="6" minlength="6" (focusout)="getMSO()" class="form-control" id="pcsbin" [(ngModel)]="threshold.icaBin"
+            name="icaBin" #icaBin="ngModel" required>
+          <div *ngIf="icaBin.invalid && (icaBin.dirty || icaBin.touched)">
+            <div *ngIf="icaBin.errors.minlength || icaBin.errors.pattern" class="text-danger errtext">
+              Invalid Value
+            </div>
+          </div>
+        </div>
+  
+        <label class="control-label col-md-2" for="bid">Contact:</label>
+      </div>
+      <div class="row">
+        <label class="control-label col-md-3">MSO:</label>
+        <div class="col-md-2">
+          <select class="form-control fix-overlap" id="mso" name="mso" [(ngModel)]="threshold.mso" #mso="ngModel">
+            <option *ngFor="let mso of msos" [value]="mso">{{mso}}</option>
+          </select>
+        </div>
+        <label class="control-label col-md-2">Prepaid Options:</label>
+        <span class="col-md-1 text-left label-value">PCS</span>
+      </div>
+    </div>
+    <div class="row threshold">
+      <div>
+        <label class="control-label col-md-3">Prepaid Threshold Option:</label>
+        <span class="col-md-1 text-left label-value">{{prepaidOptionLabel}}</span>
+      </div>
+      <button type="submit" class="btn btn-primary pull-right marginRight15" [disabled]="icaBin.invalid" (click)="retrieveBucketData($event , this)">Retrieve</button>
+      <!-- <button type="submit" class="btn btn-primary pull-right marginRight15" (click)="retrieve(2)">Retrieve</button> -->
+  
+    </div>
+    <div class="retrieve-data text-center">
+      <div class="form-group records" id="enrollments">
+        <form id="pcs-threshold" autocomplete="off" (ngSubmit)="onSubmit(pcsForm.value)" #pcsForm = "ngForm"> 
+          <div class="accordionStyle">
+            <p-accordion [multiple]="true">                  
+              <p-accordionTab *ngFor="let data of finalData; let i = index;" class="text-left accordion-tab-{{i}}"  header="{{data.title}}">
+                  <div class="row">
+                      <!-- Period 1 -->
+                      <div class="col-xs-4">  
+                        <div class="paddtopbtm-10">
+                          <div class="col-xs-offset-6 period">Period 1</div>
+                        </div>
+                        <!-- row 1 -->
+                        <div class="form-group">
+                          <label for="inputPassword" class="col-xs-6 control-label text-right">Low Day:</label>
+                          <div class="col-xs-6">
+                            <input type="text" class="form-control" value="{{data.period_1_low}}" placeholder="LOW" name="period_1_low"
+                              OnlyNumber="true">
+                          </div>
+                        </div>
+                        <!-- row 2 -->
+                        <div class="form-group">
+                          <label for="inputPassword" class="col-xs-6 control-label text-right">High Day:</label>
+                          <div class="col-xs-6 ">
+                            <input type="text" class="form-control" value="{{data.period_1_high}}" placeholder="HIGH"  name="period_1_high"
+                              OnlyNumber="true">
+                          </div>
+                        </div>
+                        <!-- row 3 -->
+                        <div class="form-group holder">
+                          <div class="col-xs-6 text-right">
+                            <label class="control-label col-form-label ">SSN:</label>
+                          </div>
+                          <div class="col-xs-6 input-boxes">
+                            <input type="text" class="form-control set-margin" value="{{data.period_1_ssn}}" name="period_1_ssn" placeholder="SSN"
+                               OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" value="{{data.period_1_ssnAmt}}" maxlength="3" name="period_1_ssnAmt"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 4 -->
+                        <div class="form-group holder">
+                          <div class="col-xs-6 text-right">
+                            <label class="control-label col-form-label ">ID State and Number:</label>
+                          </div>
+                          <div class="col-xs-6 input-boxes">
+                            <input type="text" class="form-control set-margin" value="{{data.period_1_id}}" name="period_1_id" placeholder="STATE"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" value="{{data.period_1_idAmt}}" maxlength="3" name="period_1_idAmt"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 5 -->
+                        <div class="form-group holder">
+                          <div class="col-xs-6 text-right">
+                            <label class="control-label col-form-label ">Full Address:</label>
+                          </div>
+                          <div class="col-xs-6 input-boxes">
+                            <input type="text" class="form-control set-margin" value="{{data.period_1_adr}}" placeholder="ADDRESS" name="period_1_adr"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_1_adrAmt" value="{{data.period_1_adrAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 6 -->
+                        <div class="form-group holder">
+                          <div class="col-xs-6 text-right">
+                            <label class="control-label col-form-label ">Phone Number:</label>
+                          </div>
+                          <div class="col-xs-6 input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_1_ph" placeholder="PHONE" value="{{data.period_1_ph}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_1_phAmt" value="{{data.period_1_phAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 7 -->
+                        <div class="form-group holder">
+                          <div class="col-xs-6 text-right">
+                            <label class="control-label col-form-label ">Device ID:</label>
+                          </div>
+                          <div class="col-xs-6 input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_1_device" placeholder="DEVICE" value="{{data.period_1_device}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_1_deviceAmt" value="{{data.period_1_deviceAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 8 -->
+                        <div class="form-group holder">
+                          <div class="col-xs-6 text-right">
+                            <label class="control-label col-form-label ">IP Address:</label>
+                          </div>
+                          <div class="col-xs-6 input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_1_ip" placeholder="IP" value="{{data.period_1_ip}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_1_ipAmt" value="{{data.period_1_ipAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 9 -->
+                        <div class="form-group holder">
+                          <div class="col-xs-6 text-right">
+                            <label class="control-label col-form-label ">Consumer's Email Address:</label>
+                          </div>
+                          <div class="col-xs-6 input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_1_email" placeholder="EMAIL" value="{{data.period_1_email}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_1_emailAmt" value="{{data.period_1_emailAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 10 -->
+                        <div class="form-group holder">
+                          <div class="col-xs-6 text-right">
+                            <label class="control-label col-form-label">Funding Source Type and Number:</label>
+                          </div>
+                          <div class="col-xs-6 input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_1_fund" placeholder="FUND" value="{{data.period_1_fund}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_1_fundAmt" value="{{data.period_1_fundAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+      
+                      <!-- Period 2 -->
+                      <div class="col-xs-2 add-margin">
+                        <div class="paddtopbtm-10">
+                          <div class="period">Period 2</div>
+                        </div>
+                        <!-- row 1 -->
+                        <div class="form-group">
+                          <input type="text" class="form-control" value="{{data.period_2_low}}" placeholder="LOW" name="period_2_low"
+                            OnlyNumber="true">
+                        </div>
+                        <!-- row 2 -->
+                        <div class="form-group">
+                          <input type="text" class="form-control text-box" value="{{data.period_2_high}}" placeholder="HIGH" name="period_2_high"
+                            OnlyNumber="true">
+                        </div>
+      
+                        <!-- row 3 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_2_ssn" placeholder="SSN"  value="{{data.period_2_ssn}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_2_ssnAmt" value="{{data.period_2_ssnAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 4 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" value="{{data.period_2_id}}" name="period_2_id" placeholder="STATE" 
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" value="{{data.period_2_idAmt}}" maxlength="3" name="period_2_idAmt" 
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 5 -->
+                        <div class="form-group holder">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" value="{{data.period_2_adr}}" placeholder="ADDRESS" name="period_2_adr"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_2_adrAmt" value="{{data.period_2_adrAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 6 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_2_ph" placeholder="PHONE" value="{{data.period_2_ph}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_2_phAmt" value="{{data.period_2_phAmt}}" maxlength="3" 
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 7 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_2_device" placeholder="DEVICE" value="{{data.period_2_device}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_2_deviceAmt" value="{{data.period_2_deviceAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 8 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_2_ip" placeholder="IP" value="{{data.period_2_ip}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_2_ipAmt" value="{{data.period_2_ipAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 9 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_2_email" placeholder="EMAIL" value="{{data.period_2_email}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_2_emailAmt" value="{{data.period_2_emailAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 10 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_2_fund" placeholder="FUND" value="{{data.period_2_fund}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_2_fundAmt" value="{{data.period_2_fundAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+      
+      
+      
+                      <!-- Period 3 -->
+                      <div class="col-xs-2 add-margin" *ngIf="prepaidOptionisExpanded">
+                        <div class="paddtopbtm-10">
+                          <div class="col-xs-offset-* period">Period 3</div>
+                        </div>
+                        <div class="form-group">
+                          <input type="text" class="form-control" value="{{data.period_3_low}}" placeholder="LOW" name="period_3_low"
+                            OnlyNumber="true">
+                        </div>
+                        <!-- row 2 -->
+                        <div class="form-group">
+                          <input type="text" class="form-control text-box" value="{{data.period_3_high}}" placeholder="HIGH" name="period_3_high"
+                            OnlyNumber="true">
+                        </div>
+      
+                        <!-- row 3 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_3_ssn" placeholder="SSN" value="{{data.period_3_ssn}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_3_ssnAmt" value="{{data.period_3_ssnAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 4 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" value="{{data.period_3_id}}" name="period_3_id" placeholder="STATE" 
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" value="{{data.period_3_idAmt}}" maxlength="3" name="period_3_idAmt" 
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 5 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_3_adr" value="{{data.period_3_adr}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_3_adrAmt" value="{{data.period_3_adrAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 6 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_3_ph" placeholder="PHONE" value="{{data.period_3_ph}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_3_phAmt" value="{{data.period_3_phAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 7 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_3_device" placeholder="DEVICE" value="{{data.period_3_device}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_3_deviceAmt" value="{{data.period_3_deviceAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 8 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_3_ip" placeholder="IP" value="{{data.period_3_ip}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_3_ipAmt" value="{{data.period_3_ipAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 9 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_3_email" placeholder="EMAIL" value="{{data.period_3_email}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_3_emailAmt" value="{{data.period_3_emailAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 10 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_3_fund" placeholder="FUND" value="{{data.period_3_fund}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_3_fundAmt" value="{{data.period_3_fundAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+      
+                      <!-- Period 4 -->
+                      <div class="col-xs-2 add-margin" *ngIf="prepaidOptionisExpanded">
+                        <div class="paddtopbtm-10">
+                          <div class="col-xs-offset-* period">Period 4</div>
+                        </div>
+                        <!-- row 1 -->
+                        <div class="form-group">
+                          <div class="">
+                            <input type="text" class="form-control" value="{{data.period_4_low}}" placeholder="LOW" name="period_4_low"
+                              OnlyNumber="true">
+                          </div>
+                        </div>
+                        <!-- row 2 -->
+                        <div class="form-group">
+                          <input type="text" class="form-control text-box" value="{{data.period_4_high}}" placeholder="HIGH" name="period_4_high"
+                            OnlyNumber="true">
+                        </div>
+      
+                        <!-- row 3 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_4_ssn" placeholder="SSN" value="[{data.period_4_ssn}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_4_ssnAmt" value="{{data.period_4_ssnAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 4 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" value="{{data.period_4_id}}" name="period_4_id" placeholder="STATE" 
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" value="{{data.period_4_idAmt}}" maxlength="3" name="period_4_idAmt" 
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 5 -->
+                        <div class="form-group holder">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" value="{{data.period_4_adr}}" placeholder="ADDRESS" name="period_4_adr"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_4_adrAmt" value="{{data.period_4_adrAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 6 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_4_ph" placeholder="PHONE" value="{{data.period_4_ph}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_4_phAmt" value="{{data.period_4_phAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 7 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_4_device" placeholder="DEVICE" value="{{data.period_4_device}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_4_deviceAmt" value="{{data.period_4_deviceAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 8 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_4_ip" placeholder="IP" value="{{data.period_4_ip}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_4_ipAmt" value="{{data.period_4_ipAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 9 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_4_email" placeholder="EMAIL" value="{{data.period_4_email}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_4_emailAmt"  value="{{data.period_4_emailAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- row 10 -->
+                        <div class="form-group">
+                          <div class="input-boxes">
+                            <input type="text" class="form-control set-margin" name="period_4_fund" placeholder="FUND"  value="{{data.period_4_fund}}"
+                              OnlyNumber="true">
+                            <div class="input-group">
+                              <span class="input-group-addon">$</span>
+                              <input type="text" class="form-control" name="period_4_fundAmt" value="{{data.period_4_fundAmt}}" maxlength="3"
+                                OnlyNumber="true">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>    
+              </p-accordionTab>
+              
+            </p-accordion>
+          </div>
+          <br/>
+          <div class="form-group text-right margin10">
+            <button type="submit" class="btn btn-primary" >Save</button>
+            <button type="button" class="btn btn-default">Cancel</button>
+          </div>
+          <!-- <button type="submit" class="btn btn-default">Save</button> -->
+        </form>
+      </div>
+    </div>
+    <p-dialog [(visible)]="display" modal="modal" width="300">
+      <p class="text-center">{{binErrMsg}}</p>
+      <p class="text-center">{{binRelatedMsg}}</p>
+      <p-footer>
+        <button type="button" pButton (click)="display=false" label="Close"></button>
+      </p-footer>
+    </p-dialog>

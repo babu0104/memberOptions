@@ -1,0 +1,49 @@
+<div class="form-horizontal inner-rightContainer">
+<div class="form-wrapper">
+   <h3>Group Administration</h3>
+  <div class="form-container">
+    <div class="row">
+      <label class="control-label col-md-2" for="">Security Groups:</label>
+      <div class="col-md-2">
+        <select class="form-control fix-overlap" id="state" required>
+          <option value="default">Select Group</option>
+          <option value="01">SUPERA</option>
+          <option value="02">tAsite</option>
+          <option value="03">BNTest</option>
+          <option value="04">tsuper</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <label class="control-label col-md-2" for="">Group ID:</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" id="" placeholder="">
+      </div>
+    </div>
+    <div class="row">
+      <label class="control-label col-md-2" for="">Group Name:</label>
+      <div class="col-md-2">
+        <input type="text" class="form-control" id="" placeholder="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-12">
+        <p-pickList [source]="sourceOption" [target]="targetOption" dragdrop="true" showSourceControls="false" showTargetControls="false"
+          sourceHeader="Assigned Privileges" targetHeader="Available Privileges">
+          <ng-template let-responseObject pTemplate="item">
+            <div class="ui-helper-clearfix">
+              <div id={{responseObject.id}}>{{responseObject.name}}</div>
+            </div>
+          </ng-template>
+        </p-pickList>
+      </div>
+    </div>
+   
+  </div>
+  <div class="form-group margin10 pull-right">
+    <button type="submit" class="btn btn-primary">New Group</button>
+    <button type="submit" class="btn secondary-btn">Save</button>
+    <button type="submit" class="btn tertiary-btn marginRight15">Reset</button>
+  </div>
+</div>
+</div>

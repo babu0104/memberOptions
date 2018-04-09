@@ -1,0 +1,25 @@
+[{
+    "role": "visa admin",
+    "pages": [
+        "user-admin",
+        "preferences"    
+    ],
+    "default":"pcs-home/user-admin"
+},
+{
+    "role": "processor",
+    "pages": [
+        "home",
+        "manual-entry",
+        "file-upload",
+        "view-records",
+        "reports",
+        "receive-files",
+        "new-user",
+        "edit-user",
+        "user-admin",
+        "preferences"
+    ],
+    "default":"home/ics-new"
+ }
+]

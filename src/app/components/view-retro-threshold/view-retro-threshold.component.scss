@@ -1,0 +1,8 @@
+@import "../../../styles.scss"; 
+.type-content {
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    padding: $spacing-base 0;
+    margin:$spacing-base 0;
+    @include border-radius(5px); 
+}

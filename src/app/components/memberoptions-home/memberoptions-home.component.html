@@ -1,0 +1,76 @@
+<div class="app-main">
+  <div class="col-md-2 app-main-left-container padding-0">
+    <p-accordion (onOpen)="onTabOpen($event)">
+
+      <p-accordionTab header="ICS Member Options" styleClass="header-style" [selected]="true">
+        <ul class="left-menu">
+          <li>
+            <a [routerLink]="['./ics-new']" routerLinkActive="active-link">New/Change Setup</a>
+          </li>
+          <li>
+            <a [routerLink]="['./ics-mso', {'system': 'ICS'}]" routerLinkActive="active-link">Add MSO</a>
+          </li>
+          <li>
+            <a [routerLink]="['./ics-settings']" routerLinkActive="active-link">View Settings</a>
+          </li>
+          <li>
+            <a [routerLink]="['./ics-changelog']" routerLinkActive="active-link">View Change Log</a>
+          </li>
+        </ul>
+      </p-accordionTab>
+      <p-accordionTab header="Prepaid Member Options">
+        <ul class="left-menu">
+          <li>
+            <a [routerLink]="['./pcs-new']" routerLinkActive="active-link">New/Change Setup</a>
+          </li>
+          <li>
+            <a [routerLink]="['./ics-mso', {'system': 'PCS'}]" routerLinkActive="active-link">Add MSO</a>
+          </li>
+          <li>
+            <a [routerLink]="['./ics-settings']" routerLinkActive="active-link">View Settings</a>
+          </li>
+          <li>
+            <a [routerLink]="['./change-log']" routerLinkActive="active-link">View Change Log</a>
+          </li>
+        </ul>
+      </p-accordionTab>
+    
+      <p-accordionTab header="Prescreen">
+        <ul class="left-menu">
+          <li>
+            <a [routerLink]="['./prescreen-new']" routerLinkActive="active-link">New/Change Selection</a>
+          </li>
+          <li>
+            <a [routerLink]="['./prescreen-view']" routerLinkActive="active-link">View Selection</a>
+          </li>
+          <li>
+            <a [routerLink]="['./prescreen-log']" routerLinkActive="active-link">View Change Log</a>
+          </li>
+        </ul>
+      </p-accordionTab>
+      <p-accordionTab header="Security Administration">
+        <ul class="left-menu">
+          <li>
+            <a [routerLink]="['./change-password']" routerLinkActive="active-link">Change Password</a>
+          </li>
+          <li>
+            <a [routerLink]="['./security-log']" routerLinkActive="active-link">View Security Log</a>
+          </li>
+          <li>
+            <a [routerLink]="['./group-administration']" routerLinkActive="active-link">Group Administration</a>
+          </li>
+          <li>
+            <a [routerLink]="['./user-administration']" routerLinkActive="active-link">User Administration</a>
+          </li>
+          <li>
+            <a [routerLink]="['./change-association']" routerLinkActive="active-link">Change Association</a>
+          </li>
+        </ul>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+  <div class="col-md-10 app-main-right-container padding-0">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

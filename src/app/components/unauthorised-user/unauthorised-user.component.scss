@@ -1,0 +1,16 @@
+@import "../../../styles.scss"; 
+.type-content {
+    background: #fcfcfc;
+    border: 1px solid #eee;
+    padding: $spacing-base 0;
+    margin:$spacing-base 0;
+    @include border-radius(5px);
+}
+.invalid-input {
+    border-radius: 4px;
+    background: #ffefef;
+    border: 1px solid #efb3b3;
+}
+.padding10 {
+    padding-top: 10px;
+}

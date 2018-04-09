@@ -1,0 +1,48 @@
+<div>
+	<p-growl sticky="true" [(value)]="msgs"></p-growl>
+</div>
+<form #thresholdForm="ngForm" autocomplete="off">
+	<div class="form-horizontal main-container">
+		<div class="form-group">
+			<label class="control-label col-md-1" for="bid">BIN:</label>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="bin" placeholder="*BIN" required [(ngModel)]="threshold.bin" name="bin" #bin="ngModel"
+				 maxlength="6" (focusout)="fetchMso(threshold.bin)">
+				<div *ngIf="bin.invalid && (bin.dirty || bin.touched)">
+					<div *ngIf="bin.errors.required" class="text-danger errtext">
+						BIN is required.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group mso-container">
+			<label class="control-label col-md-1" for="">MSO:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap" id="mso" name="mso" [(ngModel)]="threshold.mso" #mso="ngModel">
+					<option *ngFor="let mso of msos" [value]="mso">{{mso}}</option>
+				</select>
+			</div>
+			<span class="control-label col-md-3" for="">Non-Bankcard: {{threshold.nonBankcard}}</span>
+			<button type="submit" class="btn btn-primary pull-right marginRight15" (click)="retrieveThreshold(threshold.bin, threshold.mso)">Retrieve</button>
+		</div>
+		<div class="retrieve-data">
+			<div class="accordionStyle">
+				<p-accordion [multiple]="true">
+					<app-application-velocity [invalidThresholdForm]="invalidThresholdForm" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'></app-application-velocity>
+					<app-unauthorised-user [invalidThresholdForm]="invalidThresholdForm" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'></app-unauthorised-user>
+				</p-accordion>
+			</div>
+			<div class="form-group text-right margin10">
+				<button type="submit" class="btn btn-primary" [disabled]="(!thresholdForm.form.valid || invalidThresholdForm)" (click)="saveThreshold(thresholdForm)">Save</button>
+				<button type="submit" class="btn btn-default" (click)="cancelThreshold()">Cancel</button>
+			</div>
+		</div>
+	</div>
+</form>
+<p-dialog [(visible)]="display" modal="modal" width="300">
+	<p class="text-center">{{binErrMsg}}</p>
+	<p class="text-center">{{binRelatedMsg}}</p>
+	<p-footer>
+		<button type="button" pButton (click)="display=false" label="Close"></button>
+	</p-footer>
+</p-dialog>

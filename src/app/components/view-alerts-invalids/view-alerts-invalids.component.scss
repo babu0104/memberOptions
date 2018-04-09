@@ -1,0 +1,30 @@
+@import "../../../styles.scss"; 
+.ssnAlerts {
+    padding: 0;
+    @include border-radius(4px); 
+    h5 {
+        border-bottom: 1px solid $h5border;
+        padding: $spacing-base 20px;
+        margin: 0;
+        background-color: $h5background ;
+    }
+    .checkboxSet {
+        padding:20px $spacing-base;
+        fieldset {
+            padding: .35em .625em .75em;
+            margin: 0 2px;
+            border: 1px solid $fieldsetborder;
+            legend {
+                width: auto;
+                border:none;
+                font-size: 16px;
+                color: $primary-color;
+            }
+        }
+
+    }
+
+}
+.alerts .retrieve-data{
+    padding: 0 20px;
+}

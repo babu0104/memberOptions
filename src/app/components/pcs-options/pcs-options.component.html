@@ -1,0 +1,155 @@
+<div>
+	<p-growl sticky="true" [(value)]="msgs"></p-growl>
+</div>
+<div class="form-horizontal main-container">
+	<form (ngSubmit)="onSubmit(optionsForm.value, optionsForm)" #optionsForm="ngForm" autocomplete="off">
+		<div class="form-group">
+			<label class="control-label col-md-1" for="icaBin">BIN:</label>
+			<div class="col-md-2">
+				<input type="text" maxlength="6" class="form-control" id="icaBin" placeholder="" required [(ngModel)]="userservice.icaBin"
+				 name="icaBin" #icaBin="ngModel" pattern="^\d+$" (focusout)="fetchMso(userservice.icaBin)">
+				<div *ngIf="icaBin.invalid && (icaBin.dirty || icaBin.touched)">
+					<div *ngIf="icaBin.errors.required" class="text-danger errtext">
+						BIN is required.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-1" for="mso">MSO:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap" id="mso" name="mso" [(ngModel)]="userservice.mso" #mso="ngModel">
+					<option *ngFor="let mso of msos" [value]="mso">{{mso}}</option>
+				</select>
+			</div>
+			<button type="button" class="btn btn-primary pull-right marginRight15" (click)="retrieve(1,userservice.icaBin, userservice.mso)">Retrieve</button>
+		</div>
+		<div class="retrieve-data">
+			<div class="accordionStyle">
+				<p-accordion [multiple]="true">
+					<p-accordionTab header="Options For Batch and Online" [selected]="true">
+						<div class="row">
+							<label class="control-label col-md-3" for="bid">Copy From Existing BIN/ MSO
+								<i class="fa fa-info-circle" pTooltip="(Options, Thresholds, Alerts and Invalids)" tooltipPosition="bottom" tooltipZIndex="99999"></i>
+							</label>
+							<div class="col-md-2">
+								<input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$" maxlength="6" minlength="6" class="form-control" id="existingBin" [(ngModel)]="userservice.existingBin"
+								 name="existingBin" #existingBin="ngModel" (focusout)="fetchExistingMso(userservice.existingBin)">
+							</div>
+							<div class="col-md-1">
+								<select class="form-control fix-overlap" id="existingMso" name="existingMso" [(ngModel)]="userservice.existingMso" #existingMso="ngModel">
+									<option *ngFor='let mso of existingMsos' value="{{mso}}">{{mso}}</option>
+								</select>
+							</div>
+							<div class="col-md-2">
+								<button type="button" class="btn btn-default" (click)="copyOptions()">Copy Options</button>
+							</div>
+							<label class="control-label col-md-2" for="bid">Non-bankcard MSO:</label>
+							<div class="col-md-2">
+								<p-inputSwitch onLabel="Yes" offLabel="No" [(ngModel)]="switch" name="nonBankcard"></p-inputSwitch>
+							</div>
+						</div>
+					</p-accordionTab>
+					<p-accordionTab header="Standard Alert Options">
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Threshold Option:</label>
+							<div class="col-md-4 label-value">
+								<p-radioButton name="thresoldOption" value="1" label="Limited" [(ngModel)]="userservice.thresoldOption"></p-radioButton>
+								<p-radioButton name="thresoldOption" value="0" label="Extended" [(ngModel)]="userservice.thresoldOption"></p-radioButton>
+							</div>
+						</div>
+					</p-accordionTab>
+					<p-accordionTab header="Retroactive Alert Options">
+						<div class="form-group">
+							<label class="control-label col-md-2" for="retroDelivery">Retro Delivery:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" name="retroDelivery" [(ngModel)]="userservice.retroDelivery" #retroDelivery="ngModel"
+								 (focusout)="validateConnectionType()" required>
+									<option *ngFor='let retro of retroDeliveries' value="{{retro.value}}">{{retro.key}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Retro SSN Velo:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" name="retroSSNVelo" [(ngModel)]="userservice.retroSSNVelo" #retroSSNVelo="ngModel"
+								 required>
+									<option *ngFor='let retro of retroVelocities' value="{{retro.value}}">{{retro.key}}</option>
+								</select>
+							</div>
+							<label class="control-label col-md-2 col-md-offset-1" for="">Retro SSN UU:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" name="retroSSNUnauthUse" [(ngModel)]="userservice.retroSSNUnauthUse" #retroSSNUnauthUse="ngModel"
+								 required>
+									<option *ngFor='let retro of retroUus' value="{{retro.value}}">{{retro.key}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Retro Address Velo:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" name="retroAddrVelo" [(ngModel)]="userservice.retroAddrVelo" #retroAddrVelo="ngModel"
+								 required>
+									<option *ngFor='let retro of retroVelocities' value="{{retro.value}}">{{retro.key}}</option>
+								</select>
+							</div>
+							<label class="control-label col-md-2 col-md-offset-1" for="">Retro Address UU:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" name="retroAddrUnauthUse" [(ngModel)]="userservice.retroAddrUnauthUse" #retroAddrUnauthUse="ngModel"
+								 required>
+									<option *ngFor='let retro of retroUus' value="{{retro.value}}">{{retro.key}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Retro Phone Velo:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" name="retroPhoneVelo" [(ngModel)]="userservice.retroPhoneVelo" #retroPhoneVelo="ngModel"
+								 required>
+									<option *ngFor='let retro of retroVelocities' value="{{retro.value}}">{{retro.key}}</option>
+								</select>
+							</div>
+							<label class="control-label col-md-2 col-md-offset-1" for="">Retro Phone UU:</label>
+							<div class="col-md-3">
+								<select class="form-control fix-overlap" id="" name="retroPhoneUnauthUse" [(ngModel)]="userservice.retroPhoneUnauthUse" #retroPhoneUnauthUse="ngModel"
+								 required>
+									<option *ngFor='let retro of retroUus' value="{{retro.value}}">{{retro.key}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Retro Velocity Time Frame:</label>
+							<div class="col-md-2">
+								<input type="text" class="form-control" id="retroVelocityTimeFrame" placeholder="" name="retroVelocityTimeFrame" [(ngModel)]="userservice.retroVelocityTimeFrame"
+								 #retroVelocityTimeFrame="ngModel" maxlength="3" pattern="^(?=.*?[1-9])[0-9()-]+$" required>
+							</div>
+							<div class="col-md-1">
+								<span>Days</span>
+							</div>
+
+							<label class="control-label col-md-3" for="">Retro UU Time Frame:</label>
+							<div class="col-md-2">
+								<input type="text" class="form-control" id="retroUnauthUseTimeFrame" placeholder="" name="retroUnauthUseTimeFrame" [(ngModel)]="userservice.retroUnauthUseTimeFrame"
+								 #retroUnauthUseTimeFrame="ngModel" maxlength="3" pattern="^(?=.*?[1-9])[0-9()-]+$" required>
+							</div>
+							<div class="col-md-1">
+								<span>Days</span>
+							</div>
+						</div>
+					</p-accordionTab>
+				</p-accordion>
+			</div>
+			<div class="form-group text-right margin10">
+				<button type="submit" class="btn btn-primary" [disabled]="!optionsForm.form.valid">Save</button>
+				<button type="button" class="btn btn-default">Cancel</button>
+			</div>
+			<p-dialog [(visible)]="display" modal="modal" width="300">
+				<p class="text-center">{{binErrMsg}}</p>
+				<p class="text-center">{{binRelatedMsg}}</p>
+				<p-footer>
+					<button type="button" pButton (click)="display=false" label="Close"></button>
+				</p-footer>
+			</p-dialog>
+		</div>
+	</form>
+</div>

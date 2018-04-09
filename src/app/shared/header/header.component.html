@@ -1,0 +1,49 @@
+
+
+<header>
+    <demo-toast></demo-toast>
+    <ng2-toasty [position]="toastyComponentPosition"></ng2-toasty>
+  <div class="row header-container">
+    <div class="col-md-5 paddingTop15">
+      <a>
+        <img [src]="logoImage" alt="login customer">
+      </a>
+    </div>
+    <!-- <div class="col-md-4 text-right externalLinks">
+        <ul class="directLinks">
+            <li>
+              <a class="">ICS Direct
+                
+              </a>
+            </li>
+            <li>
+              <a class="">PCS Direct
+                
+              </a>
+            </li>
+          </ul>
+    </div> -->
+    <div class="col-md-7 externalLinks">
+      <h3>Member Options</h3>
+      <ul *ngIf="isLoggedIn()" class="header-navigation directLinks" role="navigation">
+        <li>
+          <a [href]="['http://10.28.140.168:8080/visaics/in/#/ics-home/user-admin']" target="_blank">ICS Direct
+          </a>
+        </li>
+        <li>
+          <a [href]="['http://10.28.140.168:8080/visapcs/in/#/pcs-home/user-admin']" target="_blank">PCS Direct
+
+          </a>
+        </li>
+        <li>
+          <a>
+            <i class="fa fa-sign-out" pTooltip="Sign out" tooltipPosition="bottom" tooltipZIndex="99999" (click)="signOut($event)"></i>
+          </a>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+  <!-- <div>Registration closes in <span id="time">05:00</span> minutes!</div> -->
+</header>

@@ -1,0 +1,6 @@
+
+{ "roleObj": [
+        {"userName" : "test", "role" : "processor", "roleId": "3" }, 
+        {"userName" : "admin", "role" : "visa admin", "roleId": "1" }
+    ]
+}

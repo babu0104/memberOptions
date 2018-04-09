@@ -1,0 +1,99 @@
+<form autocomplete="off">
+	<div class="form-horizontal alerts main-container">
+		<div class="form-group">
+			<label class="control-label col-md-1" for="bin">BIN:</label>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="bin" placeholder="*BIN" maxlength="6" minlength="6" required
+				 name="bin" pattern="^\d+$">
+			</div>
+			
+
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-1" for="mso">MSO:</label>
+			<div class="col-md-4">
+				<p-autoComplete  [size]="30" [maxlength]="2" placeholder="Enter MSO" [dropdown]="true" required name="mso">
+					<ng-template let-mso pTemplate="item">
+						<div class="ui-helper-clearfix">
+							<div class="mso-options pull-right">{{mso}}</div>
+						</div>
+					</ng-template>
+				</p-autoComplete>
+			</div>
+
+			<label class="control-label col-md-2" for="nonBankcard">Non-Bankcard:</label>
+			<div class="col-md-2">
+				<span class=""></span>
+			</div>
+			<button type="button" class="btn btn-primary pull-right marginRight15">Retrieve</button>
+		</div>
+		<div class="retrieve-data">
+			<div class="form-group accordionStyle">
+				<div class="ssnAlerts col-md-5">
+					<p-accordion>
+						<p-accordionTab header="SSN Alerts" [selected]="true">
+							<span *ngFor="let ssninvalid of ssnInvalids" class={{ssninvalid.value}}></span>
+							<p-listbox [options]="SSNalerts" [(ngModel)]="ssnAlerts" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="SSNalerts" [metaKeySelection]="false" name="ssnAlerts">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+				<div class="ssnAlerts col-md-5 col-md-offset-1">
+					<p-accordion>
+						<p-accordionTab header="SSN Invalids" [selected]="true">
+							<span *ngFor="let ssn of ssnAlerts" class={{ssn.value}}></span>
+							<p-listbox [options]="SSNinvalids" [(ngModel)]="ssnInvalids" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="SSNinvalids" name="ssnInvalids" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+			</div>
+			<div class="form-group accordionStyle">
+				<div class="ssnAlerts col-md-5">
+					<p-accordion>
+						<p-accordionTab header="Address Alerts">
+							<p-listbox [options]="Addressalerts" [(ngModel)]="addrAlerts" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="Addressalerts" name="addressAlerts" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+				<div class="ssnAlerts col-md-5 col-md-offset-1">
+					<p-accordion>
+						<p-accordionTab header="Address Invalids">
+							<p-listbox [options]="Addressinvalids" [(ngModel)]="addrInvalids" multiple="multiple" checkbox="checkbox"
+							 optionLabel="name" styleClass="Addressinvalids" name="addressInvalids" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+			</div>
+			<div class="form-group accordionStyle">
+				<div class="ssnAlerts col-md-5">
+					<p-accordion>
+						<p-accordionTab header="Phone Alerts">
+							<span *ngFor="let invalid of phoneInvalids" class={{invalid.value}}></span>
+							<p-listbox [options]="Phonealerts" [(ngModel)]="phoneAlerts" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="Phonealerts" name="phoneAlerts" [metaKeySelection]="false"></p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+				<div class="ssnAlerts col-md-5 col-md-offset-1">
+					<p-accordion>
+						<p-accordionTab header="Phone Invalids">
+							<span *ngFor="let phone of phoneAlerts" class={{phone.value}}></span>
+							<p-listbox [options]="Phoneinvalids" [(ngModel)]="phoneInvalids" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="Phoneinvalids" name="phoneInvalids" [metaKeySelection]="false"></p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+			</div>
+			<div class="form-group text-right margin10">
+				<button type="submit" class="btn btn-primary">Save</button>
+				<button type="button" class="btn btn-default">Cancel</button>
+			</div>
+		</div>
+	</div>
+</form>

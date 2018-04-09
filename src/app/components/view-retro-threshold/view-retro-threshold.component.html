@@ -1,0 +1,793 @@
+<form #thresholdForm="ngForm" autocomplete="off">
+	<div class="form-horizontal main-container">
+		<div class="form-group">
+			<label class="control-label col-md-1" for="bid">BIN:</label>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="bin" placeholder="*BIN" name="bin">
+			</div>			
+		</div>
+		<div class="form-group mso-container">
+			<label class="control-label col-md-1" for="">MSO:</label>
+			<div class="col-md-4">
+				<p-autoComplete [size]="30"
+				 [minLength]="1" placeholder="Enter MSO" [dropdown]="true" name="mso" required>
+					<ng-template let-mso pTemplate="item">
+						<div class="ui-helper-clearfix">
+							<div class="mso-options">{{mso}}</div>
+						</div>
+					</ng-template>
+				</p-autoComplete>
+			</div>
+			<label class="control-label col-md-2" for="">Non-Bankcard:</label>
+			<div class="col-md-2">
+				<!-- <p-inputSwitch onLabel="Yes" offLabel="No" [(ngModel)]="switch" name="nonBankcard"></p-inputSwitch> -->
+			</div>
+			<button type="submit" class="btn btn-primary pull-right marginRight15">Retrieve</button>
+		</div>
+		<div class="retrieve-data">
+			<div class="accordionStyle">
+				<p-accordion [multiple]="true">
+					<p-accordionTab header="Application Velocity" [selected]="true">
+						<div class="form-group">
+								<div class="row">
+										<div class="col-md-offset-2 col-md-1">
+												<label class="control-label" for="bid">LOW</label>
+										</div>
+										<div class="col-md-offset-1 col-md-1">
+												<label class="control-label" for="bid">HIGH</label>
+										</div>
+										<div class="col-md-offset-1 col-md-1">
+												<label class="control-label" for="bid">SSN</label>
+										</div>
+										<div class="col-md-1">
+												<label class="control-label" for="bid">ADDRESS</label>
+										</div>
+										<div class="col-md-1">
+												<label class="control-label" for="bid">PHONE</label>
+										</div>
+									</div>
+							<div class="row">
+								<label class="control-label col-md-2" for="bid">Period 1:</label>
+								<div class="col-md-1 padding-0">
+									<span class=""></span>
+								</div>
+								<label class="control-label col-md-1" for="bid">to:</label>
+								<div class="col-md-1 padding-0">
+									<span class=""></span>
+								</div>
+								<label class="control-label col-md-1 pull-left" for="bid">days</label>
+								<div class="col-md-1 padding-0 marginRight15">
+									<span class=""></span>
+								</div>
+								<div class="col-md-1 padding-0 marginRight15">
+									<span class=""></span>
+								</div>
+								<div class="col-md-1 padding-0">
+									<span class=""></span>
+								</div>
+							</div>
+							<div class="row">
+								<label class="control-label col-md-2" for="bid">Period 2:</label>
+								<div class="col-md-1 padding-0">
+									<span class=""></span>
+								</div>
+								<label class="control-label col-md-1" for="bid">to:</label>
+								<div class="col-md-1 padding-0">
+									<span class=""></span>
+								</div>
+								<label class="control-label col-md-1 pull-left" for="bid">days</label>
+								<div class="col-md-1 padding-0 marginRight15">
+									<span class=""></span>
+								</div>
+								<div class="col-md-1 padding-0 marginRight15">
+									<span class=""></span>
+								</div>
+								<div class="col-md-1 padding-0">
+									<span class=""></span>
+								</div>
+							</div>
+
+							<div *ngIf="extended" class="padding10">
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 3:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 4:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+						<ng-template ngFor let-avType let-i="index">
+							<div class="form-group">
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 0:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+										
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+
+								<div *ngIf="extended" class="padding10">
+										<div class="row">
+											<label class="control-label col-md-2" for="bid">Period 3:</label>
+											<div class="col-md-1 padding-0">
+												<span class=""></span>
+											</div>
+											<label class="control-label col-md-1" for="bid">to:</label>
+											<div class="col-md-1 padding-0">
+												<span class=""></span>
+											</div>
+											<label class="control-label col-md-1 pull-left" for="bid">days</label>
+											<div class="col-md-1 padding-0 marginRight15">
+												<span class=""></span>
+											</div>
+											<div class="col-md-1 padding-0 marginRight15">
+												<span class=""></span>
+											</div>
+											<div class="col-md-1 padding-0">
+												<span class=""></span>
+											</div>
+										</div>
+										<div class="row">
+											<label class="control-label col-md-2" for="bid">Period 4:</label>
+											<div class="col-md-1 padding-0">
+												<span class=""></span>
+											</div>
+											<label class="control-label col-md-1" for="bid">to:</label>
+											<div class="col-md-1 padding-0">
+												<span class=""></span>
+											</div>
+											<label class="control-label col-md-1 pull-left" for="bid">days</label>
+											<div class="col-md-1 padding-0 marginRight15">
+												<span class=""></span>
+											</div>
+											<div class="col-md-1 padding-0 marginRight15">
+												<span class=""></span>
+											</div>
+											<div class="col-md-1 padding-0">
+												<span class=""></span>
+											</div>
+										</div>
+									</div>
+							</div>
+						</ng-template>
+					</p-accordionTab>
+
+					<p-accordionTab header="Unauthorised Use" [selected]="true">
+						<ng-template>
+							<div class="form-group type-content">
+									<div class="row">
+											<div class="col-md-offset-2 col-md-1">
+													<label class="control-label" for="bid">LOW</label>
+											</div>
+											<div class="col-md-offset-1 col-md-1">
+													<label class="control-label" for="bid">HIGH</label>
+											</div>
+											<div class="col-md-offset-1 col-md-1">
+													<label class="control-label" for="bid">SSN</label>
+											</div>
+											<div class="col-md-1">
+													<label class="control-label" for="bid">ADDRESS</label>
+											</div>
+											<div class="col-md-1">
+													<label class="control-label" for="bid">PHONE</label>
+											</div>
+										</div>
+								<label class="col-md-12" for="">Type 00 - Card reported loss, with loss</label>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 2:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group type-content">
+								<label class="col-md-12" for="">Type 01 - Card reported stolen, with loss</label>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 2:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group type-content">
+								<label class="col-md-12" for="">Type 02 - Card not received, with loss</label>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 2:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group type-content">
+								<label class="col-md-12" for="">Type 03 - Fradulent application, with loss</label>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 2:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group type-content">
+								<label class="col-md-12" for="">Type 04 - Counterfeit card, with loss</label>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 2:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group type-content">
+								<label class="col-md-12" for="">Type 05 - ADDRESS Change/account takeover, with loss</label>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 2:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group type-content">
+								<label class="col-md-12" for="">Type 06 - Telemarketing/no sales draft, with loss</label>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 2:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group type-content">
+								<label class="col-md-12" for="">Type 07 - Fradulent application, before loss (consumer contacted)</label>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 2:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group type-content">
+								<label class="col-md-12" for="">Type 08 - Suspicious application, before loss (cannot verify data)</label>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 2:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group type-content">
+								<label class="col-md-12" for="">Type 09 - Bust Out</label>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 2:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<span class=""></span>
+									</div>
+									<div class="col-md-1 padding-0">
+										<span class=""></span>
+									</div>
+								</div>
+							</div>
+						</ng-template>
+						<ng-template ngFor let-uuType let-i="index">
+							<div class="form-group type-content">
+								<label class="col-md-12" for="">{{titles && titles[i].title}}</label>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 0:</label>
+									<div class="col-md-1 padding-0">
+										<input type="text" class="form-control" id="" placeholder="LOW" pattern="[0-9]" value="{{uuType && uuType[0].lowDay}}" name="lowDay">
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<input type="text" class="form-control" id="" placeholder="HIGH" pattern="[0-9]" value="{{uuType && uuType[0].highDay}}"
+										 name="highDay">
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<input type="text" class="form-control" id="" placeholder="SSN" value="{{uuType && ((uuType[0].uuDeCode.includes('UUS')) ? uuType[0].thresholdValue : '')}}"
+										 name="thresholdValue">
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<input type="text" class="form-control" id="" placeholder="ADDRESS" value="{{uuType && ((uuType[0].uuDeCode.includes('UUA')) ? uuType[0].thresholdValue : '')}}"
+										 name="thresholdValue">
+									</div>
+									<div class="col-md-1 padding-0">
+										<input type="text" class="form-control" id="" placeholder="PHONE" value="{{uuType && ((uuType[0].uuDeCode.includes('UUP')) ? uuType[0].thresholdValue : '')}}"
+										 name="thresholdValue">
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-md-2" for="bid">Period 1:</label>
+									<div class="col-md-1 padding-0">
+										<input type="text" class="form-control" id="" placeholder="LOW" pattern="[0-9]" value="{{uuType && uuType[1].lowDay}}" name="lowDay">
+									</div>
+									<label class="control-label col-md-1" for="bid">to:</label>
+									<div class="col-md-1 padding-0">
+										<input type="text" class="form-control" id="" placeholder="HIGH" pattern="[0-9]" value="{{uuType && uuType[1].highDay}}"
+										 name="highDay">
+									</div>
+									<label class="control-label col-md-1 pull-left" for="bid">days</label>
+									<div class="col-md-1 padding-0 marginRight15">
+										<input type="text" class="form-control" id="" placeholder="SSN" value="{{uuType && ((uuType[1].uuDeCode.includes('UUS')) ? uuType[1].thresholdValue : '')}}"
+										 name="thresholdValue">
+									</div>
+									<div class="col-md-1 padding-0 marginRight15">
+										<input type="text" class="form-control" id="" placeholder="ADDRESS" value="{{uuType && ((uuType[1].uuDeCode.includes('UUA')) ? uuType[1].thresholdValue : '')}}"
+										 name="thresholdValue">
+									</div>
+									<div class="col-md-1 padding-0">
+										<input type="text" class="form-control" id="" placeholder="PHONE" value="{{uuType && ((uuType[1].uuDeCode.includes('UUP')) ? uuType[1].thresholdValue : '')}}"
+										 name="thresholdValue">
+									</div>
+								</div>
+
+								<div *ngIf="extended" class="padding10">
+									<div class="row">
+										<label class="control-label col-md-2" for="bid">Period 3:</label>
+										<div class="col-md-1 padding-0">
+											<input type="text" class="form-control" id="" placeholder="LOW" pattern="[0-9]" value="{{uuType && uuType[2].lowDay}}" name="lowDay">
+										</div>
+										<label class="control-label col-md-1" for="bid">to:</label>
+										<div class="col-md-1 padding-0">
+											<input type="text" class="form-control" id="" placeholder="HIGH" pattern="[0-9]" value="{{uuType && uuType[2].highDay}}"
+											 name="highDay">
+										</div>
+										<label class="control-label col-md-1 pull-left" for="bid">days</label>
+										<div class="col-md-1 padding-0 marginRight15">
+											<input type="text" class="form-control" id="" placeholder="SSN" value="{{uuType && ((uuType[2].uuDeCode.includes('UUS')) ? uuType[2].thresholdValue : '')}}"
+											 name="thresholdValue">
+										</div>
+										<div class="col-md-1 padding-0 marginRight15">
+											<input type="text" class="form-control" id="" placeholder="ADDRESS" value="{{uuType && ((uuType[2].uuDeCode.includes('UUA')) ? uuType[2].thresholdValue : '')}}"
+											 name="thresholdValue">
+										</div>
+										<div class="col-md-1 padding-0">
+											<input type="text" class="form-control" id="" placeholder="PHONE" value="{{uuType && ((uuType[2].uuDeCode.includes('UUP')) ? uuType[2].thresholdValue : '')}}"
+											 name="thresholdValue">
+										</div>
+									</div>
+									<div class="row">
+										<label class="control-label col-md-2" for="bid">Period 4:</label>
+										<div class="col-md-1 padding-0">
+											<input type="text" class="form-control" id="" placeholder="LOW" pattern="[0-9]" value="{{uuType && uuType[3].lowDay}}" name="lowDay">
+										</div>
+										<label class="control-label col-md-1" for="bid">to:</label>
+										<div class="col-md-1 padding-0">
+											<input type="text" class="form-control" id="" placeholder="HIGH" pattern="[0-9]" value="{{uuType && uuType[3].highDay}}"
+											 name="highDay">
+										</div>
+										<label class="control-label col-md-1 pull-left" for="bid">days</label>
+										<div class="col-md-1 padding-0 marginRight15">
+											<input type="text" class="form-control" id="" placeholder="SSN" value="{{uuType && ((uuType[3].uuDeCode.includes('UUS')) ? uuType[3].thresholdValue : '')}}"
+											 name="thresholdValue">
+										</div>
+										<div class="col-md-1 padding-0 marginRight15">
+											<input type="text" class="form-control" id="" placeholder="ADDRESS" value="{{uuType && ((uuType[3].uuDeCode.includes('UUA')) ? uuType[3].thresholdValue : '')}}"
+											 name="thresholdValue">
+										</div>
+										<div class="col-md-1 padding-0">
+											<input type="text" class="form-control" id="" placeholder="PHONE" value="{{uuType && ((uuType[3].uuDeCode.includes('UUP')) ? uuType[3].thresholdValue : '')}}"
+											 name="thresholdValue">
+										</div>
+									</div>
+								</div>
+							</div>
+						</ng-template>
+					</p-accordionTab>
+				</p-accordion>
+			</div>
+			<div class="form-group text-right margin10">
+				<button type="submit" class="btn btn-primary">Save</button>
+				<button type="submit" class="btn btn-default">Cancel</button>
+			</div>
+		</div>
+	</div>
+</form>

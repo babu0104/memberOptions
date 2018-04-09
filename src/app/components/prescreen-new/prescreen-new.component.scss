@@ -1,0 +1,54 @@
+@import "../../../styles.scss"; 
+.association{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 600px;
+    margin: auto;
+    height: 380px;
+    right: 0;
+    h1{
+      margin-bottom: 40px;
+      color: $primary-color;
+    }
+} 
+@mixin transition{
+ -webkit-transition: all 0.5s;
+     transition: all 0.5s;
+}
+.card{
+    background: $primary-bg;
+    margin: 0 15px;
+    box-shadow: 0px 0px 8px 0px #afafaf;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 45%;
+     @include transition;
+     border-radius: 5px;
+     i{
+      @include transition;
+     }
+     &:hover{
+       transform: scale(1.1,1.1); 
+       i{
+         padding-left: 10px;
+       }     
+    }
+    .option {
+        color: $primary-color;
+        font-size: 20px;
+        padding: 64px;
+        cursor: pointer;
+     }
+    .bottom{
+        width: 100%;
+        border-top: 2px solid $secondary-color;
+        padding: 7px 0 2px 0;
+        color: #666769;
+        font-size: 15px;
+    }
+}
+.main-container{
+    background: #efefef;
+}

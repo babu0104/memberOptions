@@ -1,0 +1,125 @@
+<div ngModelGroup="applicationVelocity">
+	<p-accordionTab header="Application Velocity" [selected]="true">
+		<ng-template [ngIf]="limited">
+			<div class="form-group">
+				<div class="row">
+					<label class="control-label col-md-2">Period 1:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod1Low"
+						 name="applicationVelocityPeriod1Low" #applicationVelocityPeriod1Low="ngModel" [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="applicationVelocity.applicationVelocityPeriod1Low"
+						 [(ngModel)]="applicationVelocity.applicationVelocityPeriod1High" name="applicationVelocityPeriod1High" #applicationVelocityPeriod1High="ngModel"
+						 [required]="limited" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod1Ssn"
+						 [isGreater]="applicationVelocity.applicationVelocityPeriod2Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="applicationVelocityPeriod1Ssn" #applicationVelocityPeriod1Ssn="ngModel"
+						 [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod1Address"
+						 [isGreater]="applicationVelocity.applicationVelocityPeriod2Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="applicationVelocityPeriod1Address" #applicationVelocityPeriod1Address="ngModel"
+						 [required]="limited">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod1Phone"
+						 [isGreater]="applicationVelocity.applicationVelocityPeriod2Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="applicationVelocityPeriod1Phone" #applicationVelocityPeriod1Phone="ngModel"
+						 [required]="limited">
+					</div>
+				</div>
+				<div class="row">
+					<label class="control-label col-md-2">Period 2:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod2Low"
+						 name="applicationVelocityPeriod2Low" #applicationVelocityPeriod2Low="ngModel" [required]="limited && !extended" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1">to:</label>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="applicationVelocity.applicationVelocityPeriod2Low"
+						 [(ngModel)]="applicationVelocity.applicationVelocityPeriod2High" name="applicationVelocityPeriod2High" #applicationVelocityPeriod2High="ngModel"
+						 [required]="limited && !extended" [disabled]="limited && !extended">
+					</div>
+					<label class="control-label col-md-1 pull-left">days</label>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod2Ssn"
+						 [isLesser]="applicationVelocity.applicationVelocityPeriod1Ssn" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="applicationVelocityPeriod2Ssn" #applicationVelocityPeriod2Ssn="ngModel"
+						 [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0 marginRight15">
+						<input type="text" class="form-control" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod2Address"
+						 [isLesser]="applicationVelocity.applicationVelocityPeriod1Address" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="applicationVelocityPeriod2Address" #applicationVelocityPeriod2Address="ngModel"
+						 [required]="limited && !extended">
+					</div>
+					<div class="col-md-1 padding-0">
+						<input type="text" class="form-control" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod2Phone"
+						 [isLesser]="applicationVelocity.applicationVelocityPeriod1Phone" (invalidThresholdFormStatus)='getInvalidThresholdFormStatus($event)'
+						 [invalidThresholdForm]="invalidThresholdForm" name="applicationVelocityPeriod2Phone" #applicationVelocityPeriod2Phone="ngModel"
+						 [required]="limited && !extended">
+					</div>
+				</div>
+
+				<div *ngIf="extended" class="padding10">
+					<div class="row">
+						<label class="control-label col-md-2">Period 3:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod3Low"
+							 name="applicationVelocityPeriod3Low" #applicationVelocityPeriod3Low="ngModel">
+						</div>
+						<label class="control-label col-md-1">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="applicationVelocity.applicationVelocityPeriod3Low"
+							 [(ngModel)]="applicationVelocity.applicationVelocityPeriod3High" name="applicationVelocityPeriod3High" #applicationVelocityPeriod2High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod3Ssn"
+							 name="applicationVelocityPeriod3Ssn" #applicationVelocityPeriod3Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod3Address"
+							 name="applicationVelocityPeriod3Address" #applicationVelocityPeriod3Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod3Phone"
+							 name="applicationVelocityPeriod3Phone" #applicationVelocityPeriod3Phone="ngModel">
+						</div>
+					</div>
+					<div class="row">
+						<label class="control-label col-md-2">Period 4:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" placeholder="LOW" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod4Low"
+							 name="applicationVelocityPeriod4Low" #applicationVelocityPeriod4Low="ngModel">
+						</div>
+						<label class="control-label col-md-1">to:</label>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" placeholder="HIGH" maxlength="3" OnlyNumber="true" validateGreater="applicationVelocity.applicationVelocityPeriod4Low"
+							 [(ngModel)]="applicationVelocity.applicationVelocityPeriod4High" name="applicationVelocityPeriod4High" #applicationVelocityPeriod4High="ngModel">
+						</div>
+						<label class="control-label col-md-1 pull-left">days</label>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" placeholder="SSN" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod4Ssn"
+							 name="applicationVelocityPeriod4Ssn" #applicationVelocityPeriod4Ssn="ngModel">
+						</div>
+						<div class="col-md-1 padding-0 marginRight15">
+							<input type="text" class="form-control" placeholder="ADDRESS" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod4Address"
+							 name="applicationVelocityPeriod4Address" #applicationVelocityPeriod4Address="ngModel">
+						</div>
+						<div class="col-md-1 padding-0">
+							<input type="text" class="form-control" placeholder="PHONE" maxlength="3" OnlyNumber="true" [(ngModel)]="applicationVelocity.applicationVelocityPeriod4Phone"
+							 name="applicationVelocityPeriod4Phone" #applicationVelocityPeriod4Phone="ngModel">
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-template>
+	</p-accordionTab>
+</div>

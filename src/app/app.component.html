@@ -1,0 +1,21 @@
+<div id="wrapper" class="{{isLoggedIn()}}">
+  <div class="row header navbar navbar-default navbar-fixed-top">
+    <div class="">
+      <app-header></app-header>
+    </div>
+  </div>
+  <div class="content-area">
+    <div class="app-main">
+      <div class="inner-outlet">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    
+  </div>
+  <div class="row footer">
+    <app-footer></app-footer>
+  </div>
+  <div class="" *ngIf="loading">
+    <app-loader></app-loader>
+  </div>
+</div>

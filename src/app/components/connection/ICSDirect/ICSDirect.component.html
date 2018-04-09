@@ -1,0 +1,31 @@
+<p-accordionTab header="ICSDirect">
+	<div class="row">
+		<label class="control-label col-md-2" for="">Process Flag:</label>
+		<div class="col-md-2">
+				<select class="form-control fix-overlap" [(ngModel)]="icsConnectionsIcsDirectDto.processFlag" name="processFlag" #processFlag="ngModel">
+					<option value="P">Prod</option>
+				</select>
+			</div>
+		<label class="control-label col-md-2" for="Description">Description:</label>
+		<div class="col-md-6">
+			<textarea rows="5" cols="30" pInputTextarea [(ngModel)]="icsConnectionsIcsDirectDto.connectDesc" name="connectDesc" #connectDesc="ngModel"></textarea>
+		</div>
+	</div>
+	<div class="row">
+		<h4 class="col-md-4" for="">ICSDirect File Transfer For Batch Processing:</h4>
+	</div>
+	<div class="row">
+		<label class="control-label col-md-2" for="">Output Format:</label>
+		<div class="col-md-3">
+			<select class="form-control fix-overlap" [(ngModel)]="icsConnectionsIcsDirectDto.recFormatOut" name="recFormatOut" #recFormatOut="ngModel">
+				<option value="F">Formatted</option>
+				<option value="U">Unformatted</option>
+			</select>
+		</div>
+		<div class="checkbox-wrapper">
+			<p-checkbox binary="true" class="col-md-2" [(ngModel)]="icsConnectionsIcsDirectDto.confirmation" name="confirmation" label="Confirmation"></p-checkbox>
+			<p-checkbox binary="true" value="Audit4" class="col-md-2" [(ngModel)]="icsConnectionsIcsDirectDto.auditAdvice" name="Audit" label="Audit Advice"></p-checkbox>
+		</div>
+	</div>
+
+</p-accordionTab>

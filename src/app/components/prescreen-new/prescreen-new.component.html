@@ -1,0 +1,18 @@
+<p-tabView styleClass="nav-result-container" (onChange)="handleChange($event)">
+    <p-tabPanel header="File/Report Selection">
+        <h3>File/Report Selection</h3>
+        <app-file-selection (getDataToRetrieve)="getDataToRetrieve($event)"></app-file-selection>
+    </p-tabPanel>
+    <p-tabPanel header="Data Elements Selection">
+        <h3>Data Elements Selection</h3>
+        <app-data-elements [dataForRetrieveingDataElement]="dataForRetrieveingDataElement"></app-data-elements>
+    </p-tabPanel>
+    <p-tabPanel header="Area Code Selection">
+        <h3>Area Code Selection</h3>
+        <app-areacode-selection [dataForRetrieveingDataElement]="dataForRetrieveingDataElement"></app-areacode-selection>
+    </p-tabPanel>
+    <p-tabPanel header="SCF Selection">
+        <h3>SCF Selection</h3>
+        <app-scf-selection [dataForRetrieveingDataElement]="dataForRetrieveingDataElement"></app-scf-selection>
+    </p-tabPanel>
+</p-tabView>

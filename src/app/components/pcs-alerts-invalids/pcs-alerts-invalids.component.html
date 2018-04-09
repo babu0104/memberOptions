@@ -1,0 +1,215 @@
+<div>
+	<p-growl sticky="true" [(value)]="msgs"></p-growl>
+</div>
+<form (ngSubmit)="onSubmit(pcsalertsinvalidsForm)" #pcsalertsinvalidsForm="ngForm" autocomplete="off">
+	<div class="form-horizontal alerts main-container">
+		<div class="form-group">
+			<label class="control-label col-md-1" for="bin">BIN:</label>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="bin" placeholder="*BIN" maxlength="6" minlength="4" required [(ngModel)]="user.bin"
+				 name="bin" #bin="ngModel" (focusout)="fetchMso(user.bin)">
+				<div *ngIf="bin.invalid && (bin.dirty || bin.touched)">
+					<div *ngIf="bin.errors.required" class="text-danger errtext">
+						BIN is required.
+					</div>
+					<div *ngIf="bin.errors.minlength || bin.errors.pattern" class="text-danger errtext">
+						Invalid BIN
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-1" for="mso">MSO:</label>
+			<div class="col-md-2">
+				<select class="form-control fix-overlap" id="mso" name="mso" [(ngModel)]="user.mso" #mso="ngModel">
+					<option *ngFor="let mso of msos" [value]="mso">{{mso}}</option>
+				</select>
+			</div>
+			<label class="control-label col-md-2" for="nonBankcard">Non-Bankcard:</label>
+			<div class="col-md-2">
+				<span>{{nonBankcard}}</span>
+			</div>
+			<button type="button" class="btn btn-primary pull-right marginRight15" [disabled]="bin.invalid" (click)="retrieve(1, user.bin, user.mso)">Retrieve</button>
+		</div>
+		<div class="retrieve-data">
+			<div class="form-group accordionStyle">
+				<div class="ssnAlerts col-md-5">
+					<p-accordion>
+						<p-accordionTab header="SSN Alerts" [selected]="true">
+							<span *ngFor="let ssninvalid of ssnInvalidCodes" class={{ssninvalid.value}}></span>
+							<p-listbox [options]="SSNalerts" [(ngModel)]="ssnAlertCodes" multiple="multiple" checkbox="checkbox" optionLabel="name" styleClass="SSNalerts"
+							 [metaKeySelection]="false" name="ssnAlertCodes">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+					<p>
+					</p>
+				</div>
+				<div class="ssnAlerts col-md-5 col-md-offset-1">
+					<p-accordion>
+						<p-accordionTab header="SSN Invalids" [selected]="true">
+							<span *ngFor="let ssn of ssnAlertCodes" class={{ssn.value}}></span>
+							<p-listbox [options]="SSNinvalids" [(ngModel)]="ssnInvalidCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="SSNinvalids" name="ssnInvalidCodes" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+			</div>
+			<div class="form-group accordionStyle">
+				<div class="ssnAlerts col-md-5">
+					<p-accordion>
+						<p-accordionTab header="Address Alerts">
+							<p-listbox [options]="Addressalerts" [(ngModel)]="addrAlertCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="Addressalerts" name="addrAlertCodes" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+				<div class="ssnAlerts col-md-5 col-md-offset-1">
+					<p-accordion>
+						<p-accordionTab header="Address Invalids">
+							<p-listbox [options]="Addressinvalids" [(ngModel)]="addrInvalidCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="Addressinvalids" name="addrInvalidCodes" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+			</div>
+			<div class="form-group accordionStyle">
+				<div class="ssnAlerts col-md-5">
+					<p-accordion>
+						<p-accordionTab header="Phone Alerts">
+							<span *ngFor="let invalid of phoneInvalidCodes" class={{invalid.value}}></span>
+							<p-listbox [options]="Phonealerts" [(ngModel)]="phoneAlertCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="Phonealerts" name="phoneAlertCodes" [metaKeySelection]="false"></p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+				<div class="ssnAlerts col-md-5 col-md-offset-1">
+					<p-accordion>
+						<p-accordionTab header="Phone Invalids">
+							<span *ngFor="let phone of phoneAlertCodes" class={{phone.value}}></span>
+							<p-listbox [options]="Phoneinvalids" [(ngModel)]="phoneInvalidCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="Phoneinvalids" name="phoneInvalidCodes" [metaKeySelection]="false"></p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+			</div>
+			<div class="form-group accordionStyle">
+				<div class="ssnAlerts col-md-5">
+					<p-accordion>
+						<p-accordionTab header="State ID Alerts">
+							<p-listbox [options]="StateIdAlert" [(ngModel)]="stateAlertCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="StateIdAlert" name="stateAlertCodes" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+				<div class="ssnAlerts col-md-5 col-md-offset-1">
+					<p-accordion>
+						<p-accordionTab header="State ID Invalids">
+							<p-listbox [options]="StateIdInvalid" [(ngModel)]="stateInvalidCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="StateIdInvalid" name="stateInvalidCodes" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+			</div>
+			<div class="form-group accordionStyle">
+				<div class="ssnAlerts col-md-5">
+					<p-accordion>
+						<p-accordionTab header="Funding Source Alerts">
+							<p-listbox [options]="FundingSourceAlerts" [(ngModel)]="fundAlertCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="FundingSourceAlerts" name="fundAlertCodes" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+				<div class="ssnAlerts col-md-5 col-md-offset-1">
+					<p-accordion>
+						<p-accordionTab header="Funding Source Invalids">
+							<p-listbox [options]="FundingSourceInvalids" [(ngModel)]="fundInvalidCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="FundingSourceInvalids" name="fundInvalidCodes" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+			</div>
+			<div class="form-group accordionStyle">
+				<div class="ssnAlerts col-md-5">
+					<p-accordion>
+						<p-accordionTab header="Email Alerts">
+							<p-listbox [options]="EmailAlerts" [(ngModel)]="emailAlertCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="EmailAlerts" name="emailAlertCodes" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+				<div class="ssnAlerts col-md-5 col-md-offset-1">
+					<p-accordion>
+						<p-accordionTab header="Email Invalids">
+							<p-listbox [options]="EmailInvalids" [(ngModel)]="emailInvalidCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="EmailInvalids" name="emailInvalidCodes" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+			</div>
+			<div class="form-group accordionStyle">
+				<div class="ssnAlerts col-md-5">
+					<p-accordion>
+						<p-accordionTab header="IP Address Alerts">
+							<p-checkbox binary="true" [(ngModel)]="ipAddrAlertCodes" name="ipAddrAlertCodes" label="All IP Address Alerts"></p-checkbox>
+							<!-- <p-listbox [options]="IPAddressAlerts" [(ngModel)]="ipAddrAlertCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="IPAddressAlerts" name="ipAddrAlertCodes" [metaKeySelection]="false">
+							</p-listbox> -->
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+				<div class="ssnAlerts col-md-5 col-md-offset-1">
+					<p-accordion>
+						<p-accordionTab header="IP Address Invalids">
+							<p-checkbox binary="true" [(ngModel)]="ipAddrInvalidCodes" name="ipAddrInvalidCodes" label="All IP Address Invalids"></p-checkbox>
+							<!-- <p-listbox [options]="IPAddressInvalids" [(ngModel)]="ipAddrInvalidCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="IPAddressInvalids" name="ipAddrInvalidCodes" [metaKeySelection]="false">
+							</p-listbox> -->
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+			</div>
+			<div class="form-group accordionStyle">
+				<div class="ssnAlerts col-md-5">
+					<p-accordion>
+						<p-accordionTab header="Device ID Alert">
+							<p-checkbox binary="true" [(ngModel)]="deviceAlertCodes" name="deviceAlertCodes" label="All Device ID Alert"></p-checkbox>
+							<!-- <p-listbox [options]="DeviceIDAlert" [(ngModel)]="deviceAlertCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="DeviceIDAlert" name="deviceAlertCodes" [metaKeySelection]="false">
+							</p-listbox> -->
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+				<div class="ssnAlerts col-md-5 col-md-offset-1">
+					<p-accordion>
+						<p-accordionTab header="Device ID Invalids">
+							<p-listbox [options]="DeviceIDInvalids" [(ngModel)]="deviceInvalidCodes" multiple="multiple" checkbox="checkbox" optionLabel="name"
+							 styleClass="DeviceIDInvalids" name="deviceInvalidCodes" [metaKeySelection]="false">
+							</p-listbox>
+						</p-accordionTab>
+					</p-accordion>
+				</div>
+			</div>
+			<div class="form-group text-right margin10">
+				<button type="submit" class="btn btn-primary" [disabled]="!pcsalertsinvalidsForm.form.valid">Save</button>
+				<button type="button" class="btn btn-default">Cancel</button>
+			</div>
+		</div>
+		<p-dialog [(visible)]="display" modal="modal" width="300">
+			<p class="text-center">{{binErrMsg}}</p>
+			<p class="text-center">{{binRelatedMsg}}</p>
+			<p-footer>
+				<button type="button" pButton (click)="display=false" label="Close"></button>
+			</p-footer>
+		</p-dialog>
+	</div>
+</form>

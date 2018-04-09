@@ -1,0 +1,145 @@
+<div>
+	<p-growl [(value)]="msgs"></p-growl>
+</div>
+<div class="form-horizontal main-container">
+	<form (ngSubmit)="onSubmit(optionsForm.value)" #optionsForm="ngForm" autocomplete="off">
+		<div class="form-group">
+			<label class="control-label col-md-1" for="icaBin">BIN:</label>
+			<div class="col-md-2">
+				<input type="text" class="form-control" id="icaBin" placeholder="" required [(ngModel)]="userservice.icaBin" name="icaBin"
+				 #icaBin="ngModel" pattern="^\d+$" (focusout)="fetchMso(userservice.icaBin)">
+			</div>
+			<div *ngIf="icaBin.invalid && (icaBin.dirty || icaBin.touched)">
+				<div *ngIf="icaBin.errors.required" class="text-danger errtext">
+					BIN is required.
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-1" for="mso">MSO:</label>
+			<div class="col-md-4">
+				<p-autoComplete [suggestions]="filteredOptions" (completeMethod)="filterOptions($event)" [size]="30" [minLength]="1" placeholder="Enter MSO"
+				 [dropdown]="true" name="mso" [(ngModel)]="userservice.mso" required #mso="ngModel">
+					<ng-template let-mso pTemplate="item">
+						<div class="ui-helper-clearfix">
+							<div class="mso-options pull-right">{{mso}}</div>
+						</div>
+					</ng-template>
+				</p-autoComplete>
+				<div *ngIf="mso.invalid && (mso.dirty || mso.touched)">
+					<div *ngIf="mso.errors.required" class="text-danger errtext">
+						MSO is required.
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn btn-primary pull-right marginRight15" (click)="retrieve(1,userservice.icaBin, userservice.mso)">Retrieve</button>
+		</div>
+		<div class="retrieve-data">
+			<div class="accordionStyle">
+				<p-accordion [multiple]="true">
+					<p-accordionTab header="Options For Batch and Online" [selected]="true">
+						<div class="form-group">
+							<label class="control-label col-md-3" for="bid">Effective Date:</label>
+							<div class="col-md-2">
+								<span class=""></span>
+							</div>
+
+							<label class="control-label col-md-2" for="bid">Non-bankcard MSO:</label>
+							<div class="col-md-2">
+								<span class=""></span>
+							</div>
+						</div>
+					</p-accordionTab>
+					<p-accordionTab header="Standard Alert Options">
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Threshold Option:</label>
+							<div class="col-md-4">
+								<span class=""></span>
+							</div>
+							<label class="control-label col-md-3" for="">Bankruptcy Alert Time Frame:</label>
+							<div class="col-md-2">
+								<span class=""></span>
+							</div>
+							<div class="col-md-1">
+								<span>Days</span>
+							</div>
+
+						</div>
+					</p-accordionTab>
+					<p-accordionTab header="Retroactive Alert Options">
+						<div class="form-group">
+							<label class="control-label col-md-2" for="retroDelivery">Retro Delivery:</label>
+							<div class="col-md-3">
+								<span class=""></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Bankruptcy Retros:</label>
+							<div class="col-md-3">
+								<span class=""></span>
+							</div>
+							<label class="control-label col-md-3" for="retroBankruptcyTimeframe">Retro Bankruptcy Time Frame:</label>
+							<div class="col-md-2">
+								<span class=""></span>
+							</div>
+							<span>Days</span>
+							
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Retro SSN Velocity:</label>
+							<div class="col-md-3">
+								<span class=""></span>
+							</div>
+							<label class="control-label col-md-2 col-md-offset-1" for="">Retro SSN UU:</label>
+							<div class="col-md-3">
+								<span class=""></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Retro Address Velocity:</label>
+							<div class="col-md-3">
+								<span class=""></span>
+							</div>
+							<label class="control-label col-md-2 col-md-offset-1" for="">Retro Address UU:</label>
+							<div class="col-md-3">
+								<span class=""></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Retro Phone Velocity:</label>
+							<div class="col-md-3">
+								<span class=""></span>
+							</div>
+							<label class="control-label col-md-2 col-md-offset-1" for="">Retro Phone UU:</label>
+							<div class="col-md-3">
+								<span class=""></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-2" for="">Retro Velocity Time Frame:</label>
+							<div class="col-md-2">
+								<span class=""></span>
+							</div>
+							<div class="col-md-1">
+								<span>Days</span>
+							</div>
+
+							<label class="control-label col-md-3" for="">Retro UU Time Frame:</label>
+							<div class="col-md-2">
+								<span class=""></span>
+							</div>
+							<div class="col-md-1">
+								<span>Days</span>
+							</div>
+						</div>
+					</p-accordionTab>
+				</p-accordion>
+			</div>
+			<div class="form-group text-right margin10">
+				<button type="submit" class="btn btn-primary">View Report</button>
+				<button type="button" class="btn btn-default">Download Report</button>
+			</div>
+		</div>
+
+	</form>
+</div>
